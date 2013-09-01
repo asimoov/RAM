@@ -21,14 +21,13 @@ public class ListHospitals extends Fragment {
 		ListView listView = (ListView) viewLista.findViewById(R.id.list);
 
 		Hospital hospitals[] = new Hospital[] {
-				new Hospital(),
-				new Hospital()
+				new Hospital("Hospital Edgard", "HUPES", "Salvador"),
+				new Hospital("Hospital Geral do Estado", "HGE", "Salvador")
 		};
 
-		final HospitalAdapter adapter = new HospitalAdapter(this.getActivity(),
-				android.R.layout.simple_list_item_1, hospitals);
+		final HospitalAdapter adapter = new HospitalAdapter(this.getActivity(), R.layout.item_hospital, hospitals);
 		listView.setAdapter(adapter);
-
+		
 		return viewLista;
 	}
 }

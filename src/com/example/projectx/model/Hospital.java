@@ -5,6 +5,16 @@ public class Hospital {
 	private String acronym;
 	private String county;
 
+	public Hospital() {
+	}
+	
+	public Hospital(String name, String acronym, String county) {
+		super();
+		this.name = name;
+		this.acronym = acronym;
+		this.county = county;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -27,5 +37,9 @@ public class Hospital {
 
 	public void setCounty(String county) {
 		this.county = county;
+	}
+
+	public Number getQuantity() {
+		return 0;
 	}
 }

@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <fragment
-        android:id="@+id/hospitals"
-        android:name="com.example.projectx.fragment.ListHospitals"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <FrameLayout android:id="@+id/ambos"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.projectx.adapter;
+package br.ufba.hupes.hospitaladmissionforram.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.projectx.R;
-import com.example.projectx.model.Hospital;
+import br.ufba.hupes.hospitaladmissionforram.R;
+import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
 public class HospitalAdapter extends ArrayAdapter<Hospital> {
 
 	static class HospitalHolder {
-		TextView acronym;
 		TextView county;
+		TextView acronym;
 		TextView name;
 		TextView quantity;
 	}
@@ -36,21 +36,21 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
 			view = inflater.inflate(R.layout.item_hospital, parent, false);
 
 			holder = new HospitalHolder();
-			holder.acronym = (TextView) view.findViewById(R.id.acronym);
-			holder.county = (TextView) view.findViewById(R.id.county);
-			holder.name = (TextView) view.findViewById(R.id.name);
 			holder.quantity = (TextView) view.findViewById(R.id.quantity);
+			holder.acronym = (TextView) view.findViewById(R.id.acronym);
+			holder.name =  (TextView) view.findViewById(R.id.name);
+			holder.county = (TextView) view.findViewById(R.id.county);
 			
 			view.setTag(holder);
 		} else {
             holder = (HospitalHolder) view.getTag();
         }
 		
-		holder.acronym.setText(hospital.getAcronym());
-		holder.county.setText(hospital.getCounty());
-		holder.name.setText(hospital.getName());
 		holder.quantity.setText(hospital.getQuantity().toString());
-
+		holder.acronym.setText(hospital.getAcronym());
+		holder.name.setText(hospital.getName().toString());
+		holder.county.setText(hospital.getCounty());
+		
 		return view;
 	}
 }

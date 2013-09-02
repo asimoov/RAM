@@ -1,5 +1,8 @@
-package com.example.projectx.model;
+package br.ufba.hupes.hospitaladmissionforram.model;
 
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "accounts")
 public class Hospital {
 	private String name;
 	private String acronym;
@@ -15,6 +18,10 @@ public class Hospital {
 		this.county = county;
 	}
 
+	public String getFullName(){
+		return getAcronym() + " - " + getName();
+	}
+	
 	public String getName() {
 		return name;
 	}

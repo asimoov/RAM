@@ -2,6 +2,7 @@ package br.ufba.hupes.hospitaladmissionforram.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,9 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
 		} else {
             holder = (HospitalHolder) view.getTag();
         }
-		
-		holder.quantity.setText(hospital.getQuantity().toString());
+
+        String styledText = "<font color='red'>" + hospital.getQuantityOpen() + "</font>/" + hospital.getQuantity();
+		holder.quantity.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
 		holder.acronym.setText(hospital.getAcronym());
 		holder.name.setText(hospital.getName().toString());
 		holder.county.setText(hospital.getCounty());

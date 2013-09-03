@@ -49,4 +49,8 @@ public class Hospital {
 	public Number getQuantity() {
 		return 0;
 	}
+
+    public Number getQuantityOpen() {
+        return 0;
+    }
 }

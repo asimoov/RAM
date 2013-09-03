@@ -24,7 +24,7 @@ public class GridHospitals extends Fragment {
 		final View view = inflater.inflate(R.layout.grid_hospitals, null);
 		final GridView listView = (GridView) view.findViewById(R.id.grid_hospitals);
 
-		Hospital hospitals[] = new Hospital[] {
+		final Hospital hospitals[] = new Hospital[] {
 				new Hospital("Hospital Universitário Professor Edgard Santos", "HUPES", "Salvador"),
 				new Hospital("Hospital Geral do Estado", "HGE", "Salvador") };
 
@@ -35,12 +35,10 @@ public class GridHospitals extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				Log.d("GridHospitals", "3");
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
-				ft.replace(R.id.ambos, new ListResearches());
+				ft.replace(R.id.ambos, new ListResearches(hospitals[position]));
                 ft.addToBackStack(null);
 				ft.commit();
-				Log.d("GridHospitals", "4");
 			}
 		});
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.ufba.hupes.hospitaladmissionforram.R;
@@ -20,11 +21,22 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 
 @SuppressLint("NewApi")
 public class ListResearches extends Fragment {
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    private Hospital hospital;
+
+    public ListResearches() {
+    }
+
+    public ListResearches(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		final View viewLista = inflater.inflate(R.layout.list_researches, null);
-		final ListView listView = (ListView) viewLista.findViewById(R.id.list_researches);
+		final View view = inflater.inflate(R.layout.list_researches, null);
+		final ListView listView = (ListView) view.findViewById(R.id.list_researches);
+        final TextView header = (TextView) view.findViewById(R.id.header);
+        header.setText(this.hospital.getAcronym());
 
 		Research researches[] = new Research[] {
 				new Research("123456", "Ivelisse Sousa", "098765"),
@@ -42,6 +54,6 @@ public class ListResearches extends Fragment {
 			}
 		});
 
-		return viewLista;
+		return view;
 	}
 }

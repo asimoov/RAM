@@ -21,8 +21,8 @@ public class GridHospitals extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		final View viewLista = inflater.inflate(R.layout.grid_hospitals, null);
-		final GridView listView = (GridView) viewLista.findViewById(R.id.grid_hospitals);
+		final View view = inflater.inflate(R.layout.grid_hospitals, null);
+		final GridView listView = (GridView) view.findViewById(R.id.grid_hospitals);
 
 		Hospital hospitals[] = new Hospital[] {
 				new Hospital("Hospital Universitário Professor Edgard Santos", "HUPES", "Salvador"),
@@ -44,6 +44,6 @@ public class GridHospitals extends Fragment {
 			}
 		});
 
-		return viewLista;
+		return view;
 	}
 }

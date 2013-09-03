@@ -47,7 +47,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
             holder = (HospitalHolder) view.getTag();
         }
 
-        String styledText = "<font color='red'>" + hospital.getQuantityOpen() + "</font>/" + hospital.getQuantity();
+        String styledText = "<font color='red'><sup>" + hospital.getQuantityOpen() + "</sup></font>/<sub>" + hospital.getQuantity() + "</sub>";
 		holder.quantity.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
 		holder.acronym.setText(hospital.getAcronym());
 		holder.name.setText(hospital.getName().toString());

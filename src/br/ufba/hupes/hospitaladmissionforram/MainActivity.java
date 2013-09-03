@@ -3,6 +3,7 @@ package br.ufba.hupes.hospitaladmissionforram;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +12,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import br.ufba.hupes.hospitaladmissionforram.fragment.GridHospitals;
+import br.ufba.hupes.hospitaladmissionforram.fragment.ListResearches;
+import br.ufba.hupes.hospitaladmissionforram.fragment.SearchResearches;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -36,10 +41,8 @@ public class MainActivity extends Activity {
     public void onBackPressed() {
         FragmentManager fm = getFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
-            Log.i("MainActivity", "popping backstack");
             fm.popBackStack();
         } else {
-            Log.i("MainActivity", "nothing on backstack, calling super");
             super.onBackPressed();
         }
     }
@@ -70,7 +73,10 @@ public class MainActivity extends Activity {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
-            Log.d("dddd", "foi");
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.ambos, new SearchResearches(query));
+            ft.addToBackStack(null);
+            ft.commit();
 
             InputMethodManager inputManager = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);

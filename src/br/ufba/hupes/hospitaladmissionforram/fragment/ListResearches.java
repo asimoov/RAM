@@ -21,6 +21,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 
 @SuppressLint("NewApi")
 public class ListResearches extends Fragment {
+
     private Hospital hospital;
 
     public ListResearches() {
@@ -32,11 +33,10 @@ public class ListResearches extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		final View view = inflater.inflate(R.layout.list_researches, null);
 		final ListView listView = (ListView) view.findViewById(R.id.list_researches);
         final TextView header = (TextView) view.findViewById(R.id.header);
-        header.setText(this.hospital.getAcronym());
+        header.setText(this.getHospital().getAcronym());
 
 		Research researches[] = new Research[] {
 				new Research("123456", "Ivelisse Sousa", "098765"),
@@ -56,4 +56,12 @@ public class ListResearches extends Fragment {
 
 		return view;
 	}
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }

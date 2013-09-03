@@ -1,8 +1,10 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Research {
+
 	private String handbook;
     private String name;
 	private String cns;
@@ -18,6 +20,10 @@ public class Research {
     private String bed;
 
     private Calendar admission;
+
+    private List<Suspect> suspects;
+    private List<Cause> causes;
+    private List<Comorbidity> comorbidities;
 
     public Research() {
     }
@@ -114,5 +120,29 @@ public class Research {
 
     public void setAdmission(Calendar admission) {
         this.admission = admission;
+    }
+
+    public List<Suspect> getSuspects() {
+        return suspects;
+    }
+
+    public void setSuspects(List<Suspect> suspects) {
+        this.suspects = suspects;
+    }
+
+    public List<Cause> getCauses() {
+        return causes;
+    }
+
+    public void setCauses(List<Cause> causes) {
+        this.causes = causes;
+    }
+
+    public List<Comorbidity> getComorbidities() {
+        return comorbidities;
+    }
+
+    public void setComorbidities(List<Comorbidity> comorbidities) {
+        this.comorbidities = comorbidities;
     }
 }

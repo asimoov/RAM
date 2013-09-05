@@ -46,8 +46,6 @@ public class GridHospitals extends Fragment {
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
                     Hospital hospital = hospitals.get(position);
-                    Log.d("GridHospitals", hospitals.toString());
-                    Log.d("GridHospitals", hospital.getId().toString());
                     Fragment fragment = new ListResearches();
 
                     Bundle args = new Bundle();

@@ -31,18 +31,13 @@ public class SearchResearches extends Fragment {
 
     private DatabaseHelper databaseHelper;
 
-    private String query;
-
-    public SearchResearches(String query) {
-        this.query = query;
-    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.list_researches, null);
         final ListView listView = (ListView) view.findViewById(R.id.list_researches);
         final TextView header = (TextView) view.findViewById(R.id.header);
-        header.setText(this.query);
+        header.setText(this.getArguments().getString("QUERY"));
 
         try {
             Dao dao = this.getHelper().getDao(Research.class);

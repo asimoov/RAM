@@ -2,6 +2,7 @@ package br.ufba.hupes.hospitaladmissionforram;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
@@ -23,6 +24,7 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import br.ufba.hupes.hospitaladmissionforram.fragment.GridHospitals;
 import br.ufba.hupes.hospitaladmissionforram.fragment.ListResearches;
 import br.ufba.hupes.hospitaladmissionforram.fragment.SearchResearches;
+import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -75,8 +77,14 @@ public class MainActivity extends Activity {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
+            Fragment fragment = new SearchResearches();
+
+            Bundle args = new Bundle();
+            args.putString("QUERY", query);
+            fragment.setArguments(args);
+
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.ambos, new SearchResearches(query));
+            ft.replace(R.id.ambos, fragment);
             ft.addToBackStack(null);
             ft.commit();
 

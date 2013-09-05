@@ -75,7 +75,7 @@ public class Hospital {
 	}
 
 	public Number getQuantity() {
-		return 0;
+		return getResearches().size();
 	}
 
     public Number getQuantityOpen() {

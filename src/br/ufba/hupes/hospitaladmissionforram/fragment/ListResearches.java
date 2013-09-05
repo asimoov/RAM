@@ -5,6 +5,9 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -40,7 +43,8 @@ public class ListResearches extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		final View view = inflater.inflate(R.layout.list_researches, null);
+        this.setHasOptionsMenu(true);
+        final View view = inflater.inflate(R.layout.list_researches, null);
 		final ListView listView = (ListView) view.findViewById(R.id.list_researches);
         final TextView header = (TextView) view.findViewById(R.id.header);
 
@@ -66,9 +70,23 @@ public class ListResearches extends Fragment {
             Log.e("ListResearches", ex.getMessage());
         }
 
-
 		return view;
 	}
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == R.id.add_item) {
+            Toast.makeText(ListResearches.this.getActivity(), "ADD", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_research, menu);
+    }
 
     private DatabaseHelper getHelper() {
         if (this.databaseHelper == null) {

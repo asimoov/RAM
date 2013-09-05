@@ -2,11 +2,14 @@ package br.ufba.hupes.hospitaladmissionforram.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.util.List;
 
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
@@ -16,11 +19,10 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
 	static class ResearchHolder {
 		TextView name;
 		TextView handbook;
-		TextView cns;
 	}
 
 	public ResearchAdapter(Context context, int textViewResourceId,
-			Research[] researches) {
+			List<Research> researches) {
 		super(context, textViewResourceId, researches);
 	}
 
@@ -36,16 +38,14 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
 
 			holder = new ResearchHolder();
 			holder.handbook = (TextView) view.findViewById(R.id.handbook);
-			holder.cns = (TextView) view.findViewById(R.id.cns);
 			holder.name =  (TextView) view.findViewById(R.id.name);
 			
 			view.setTag(holder);
 		} else {
             holder = (ResearchHolder) view.getTag();
         }
-		
-		holder.handbook.setText(research.getHandbook());
-		holder.cns.setText(research.getCns());
+
+        holder.handbook.setText(research.getHandbook());
 		holder.name.setText(research.getName());
 		
 		return view;

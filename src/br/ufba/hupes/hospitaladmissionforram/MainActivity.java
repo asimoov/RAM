@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+
 import br.ufba.hupes.hospitaladmissionforram.fragment.GridHospitals;
 import br.ufba.hupes.hospitaladmissionforram.fragment.ListResearches;
 import br.ufba.hupes.hospitaladmissionforram.fragment.SearchResearches;
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.ambos, new GridHospitals())
+                    .replace(R.id.ambos, new GridHospitals())
                     .commit();
         }
     }

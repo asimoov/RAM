@@ -5,5 +5,6 @@ package br.ufba.hupes.hospitaladmissionforram.model;
  */
 public class Suspect {
     private Drug drug;
+
     private Research research;
 }

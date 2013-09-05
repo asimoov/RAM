@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
@@ -22,7 +24,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
 	}
 
 	public HospitalAdapter(Context context, int textViewResourceId,
-			Hospital[] hospitals) {
+			List<Hospital> hospitals) {
 		super(context, textViewResourceId, hospitals);
 	}
 

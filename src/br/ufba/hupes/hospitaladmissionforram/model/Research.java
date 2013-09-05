@@ -1,25 +1,55 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import java.util.Calendar;
-import java.util.List;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@DatabaseTable(tableName = "research")
 public class Research {
 
+    @DatabaseField(id = true)
+    private UUID id = UUID.randomUUID();
+
+    @DatabaseField
 	private String handbook;
+
+    @DatabaseField
     private String name;
+
+    @DatabaseField
 	private String cns;
 
-    private Calendar birthday;
+    @DatabaseField
+    private Date birthday;
+
+    @DatabaseField
     private Sex sex;
 
+    @DatabaseField
     private Double weight;
+
+    @DatabaseField
     private Double height;
 
+    @DatabaseField
     private Color color;
+
+    @DatabaseField
     private String unit;
+
+    @DatabaseField
     private String bed;
 
-    private Calendar admission;
+    @DatabaseField
+    private Date admission;
+
+    @DatabaseField(foreign = true)
+    private Hospital hospital;
 
     private List<Suspect> suspects;
     private List<Cause> causes;
@@ -28,10 +58,19 @@ public class Research {
     public Research() {
     }
 
-    public Research(String handbook, String name, String cns) {
+    public Research(String handbook, String name, String cns, Hospital hospital) {
         this.setHandbook(handbook);
         this.setName(name);
         this.setCns(cns);
+        this.setHospital(hospital);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getHandbook() {
@@ -58,11 +97,11 @@ public class Research {
         this.cns = cns;
     }
 
-    public Calendar getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Calendar birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -114,12 +153,20 @@ public class Research {
         this.bed = bed;
     }
 
-    public Calendar getAdmission() {
+    public Date getAdmission() {
         return admission;
     }
 
-    public void setAdmission(Calendar admission) {
+    public void setAdmission(Date admission) {
         this.admission = admission;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 
     public List<Suspect> getSuspects() {

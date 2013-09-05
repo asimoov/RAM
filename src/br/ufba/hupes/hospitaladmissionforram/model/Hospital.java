@@ -1,12 +1,32 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "accounts")
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+
+@DatabaseTable(tableName = "hospital")
 public class Hospital {
+
+    @DatabaseField(id = true)
+    private UUID id = UUID.randomUUID();
+
+    @DatabaseField
 	private String name;
+
+    @DatabaseField
 	private String acronym;
+
+    @DatabaseField
 	private String county;
+
+    @ForeignCollectionField
+    private Collection<Research> researches;
 
 	public Hospital() {
 	}
@@ -18,11 +38,19 @@ public class Hospital {
 		this.county = county;
 	}
 
-	public String getFullName(){
-		return getAcronym() + " - " + getName();
-	}
-	
-	public String getName() {
+    public Hospital(UUID id) {
+        this.id = id;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
 		return name;
 	}
 
@@ -52,5 +80,17 @@ public class Hospital {
 
     public Number getQuantityOpen() {
         return 0;
+    }
+
+    public Collection<Research> getResearches() {
+        return researches;
+    }
+
+    public void setResearches(Collection<Research> researches) {
+        this.researches = researches;
+    }
+
+    public String getFullName(){
+        return getAcronym() + " - " + getName();
     }
 }

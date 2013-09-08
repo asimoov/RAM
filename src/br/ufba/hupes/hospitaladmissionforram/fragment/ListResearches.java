@@ -49,9 +49,7 @@ public class ListResearches extends Fragment {
         final TextView header = (TextView) view.findViewById(R.id.header);
 
         try {
-            Dao HospitalDao = this.getHelper().getDao(Hospital.class);
-            UUID id = UUID.fromString(this.getArguments().getString("HOSPITAL_ID"));
-            Hospital hospital = (Hospital) HospitalDao.queryForId(id);
+            Hospital hospital = getHospital();
             header.setText(hospital.getAcronym());
 
             final List<Research> researches = new ArrayList<Research>(hospital.getResearches());
@@ -72,6 +70,12 @@ public class ListResearches extends Fragment {
 
 		return view;
 	}
+
+    private Hospital getHospital() throws SQLException {
+        Dao HospitalDao = this.getHelper().getDao(Hospital.class);
+        UUID id = UUID.fromString(this.getArguments().getString("HOSPITAL_ID"));
+        return (Hospital) HospitalDao.queryForId(id);
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

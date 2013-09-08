@@ -35,8 +35,7 @@ public class GridHospitals extends Fragment {
 		final GridView listView = (GridView) view.findViewById(R.id.grid_hospitals);
 
         try {
-            Dao dao = this.getHelper().getDao(Hospital.class);
-            final List<Hospital> hospitals = dao.queryForAll();
+            final List<Hospital> hospitals = getHospitals();
 
             final HospitalAdapter adapter = new HospitalAdapter(this.getActivity(),
                     R.layout.item_hospital, hospitals);
@@ -45,17 +44,22 @@ public class GridHospitals extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
+                    Fragment fragment = getFragment(position, hospitals);
+
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.ambos, fragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+
+                private Fragment getFragment(int position, List<Hospital> hospitals) {
                     Hospital hospital = hospitals.get(position);
                     Fragment fragment = new ListResearches();
 
                     Bundle args = new Bundle();
                     args.putString("HOSPITAL_ID", hospital.getId().toString());
                     fragment.setArguments(args);
-
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.ambos, fragment);
-                    ft.addToBackStack(null);
-                    ft.commit();
+                    return fragment;
                 }
             });
         } catch(SQLException ex) {
@@ -64,6 +68,11 @@ public class GridHospitals extends Fragment {
 
 		return view;
 	}
+
+    private List<Hospital> getHospitals() throws SQLException {
+        Dao dao = this.getHelper().getDao(Hospital.class);
+        return dao.queryForAll();
+    }
 
     private DatabaseHelper getHelper() {
         if (this.databaseHelper == null) {

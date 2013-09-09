@@ -2,6 +2,7 @@ package br.ufba.hupes.hospitaladmissionforram.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.R;
+import br.ufba.hupes.hospitaladmissionforram.ResearchActivity;
 import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
 import br.ufba.hupes.hospitaladmissionforram.adapter.ResearchAdapter;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
@@ -60,8 +62,10 @@ public class ListResearches extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
-                    Toast.makeText(ListResearches.this.getActivity(), "" + researches.get(position),
-                            Toast.LENGTH_SHORT).show();
+                    Research research = researches.get(position);
+                    Intent intent = new Intent(ListResearches.this.getActivity(), ResearchActivity.class);
+                    intent.putExtra("RESEARCH_ID", research.getId());
+                    startActivity(intent);
                 }
             });
         } catch(SQLException ex) {

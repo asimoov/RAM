@@ -45,6 +45,18 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent">
                 </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/tab4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/tab5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

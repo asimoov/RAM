@@ -58,10 +58,11 @@ public class Research {
     public Research() {
     }
 
-    public Research(String handbook, String name, String cns, Hospital hospital) {
+    public Research(String handbook, String name, String bed, String cns, Hospital hospital) {
         this.setHandbook(handbook);
         this.setName(name);
         this.setCns(cns);
+        this.setBed(bed);
         this.setHospital(hospital);
     }
 

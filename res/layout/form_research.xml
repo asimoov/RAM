@@ -63,7 +63,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.25"
-                                android:text="Prontuario"/>
+                                android:text="Prontuário"/>
 
                         <EditText
                                 android:layout_width="0dp"
@@ -92,7 +92,35 @@
                                 android:ems="10"
                                 android:singleLine="true"
                                 android:inputType="number"
-                                android:id="@+id/ordem"/>
+                                android:id="@+id/bed"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:text="Data Nasc."/>
+
+                        <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.50"
+                                android:ems="10"
+                                android:singleLine="true"
+                                android:inputType="number"
+                                android:id="@+id/birthday"/>
+
+                        <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:text="Calendário"
+                                android:onClick="showTimePickerDialog" />
                     </LinearLayout>
                 </LinearLayout>
 

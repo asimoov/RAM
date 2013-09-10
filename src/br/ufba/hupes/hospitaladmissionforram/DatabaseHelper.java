@@ -1,7 +1,5 @@
 package br.ufba.hupes.hospitaladmissionforram;
 
-import java.sql.SQLException;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -10,6 +8,8 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
 
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
@@ -54,10 +54,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             }
 
             Research researches[] = new Research[] {
-            	new Research("123456", "Ivelisse Sousa", "098765", hospitals[0]),
-                new Research("123456", "Glaucia Noblat", "098765", hospitals[0]),
-                new Research("123456", "Denis Rangel", "098765", hospitals[1]),
-                new Research("123456", "Rose Maria", "098765", hospitals[1])};
+            	new Research("123456", "Ivelisse Sousa", "1", "098765", hospitals[0]),
+                new Research("123456", "Glaucia Noblat","2", "098765", hospitals[0]),
+                new Research("123456", "Denis Rangel", "3", "098765", hospitals[1]),
+                new Research("123456", "Rose Maria", "4", "098765", hospitals[1])};
             Dao ResearchDao = this.getDao(Research.class);
             for(Research researche: researches) {
                 ResearchDao.createIfNotExists(researche);

@@ -64,7 +64,7 @@ public class ListResearches extends Fragment {
                                         int position, long arg3) {
                     Research research = researches.get(position);
                     Intent intent = new Intent(ListResearches.this.getActivity(), ResearchActivity.class);
-                    intent.putExtra("RESEARCH_ID", research.getId());
+                    intent.putExtra("RESEARCH_ID", research.getId().toString());
                     startActivity(intent);
                 }
             });

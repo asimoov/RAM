@@ -31,31 +31,97 @@
                 <LinearLayout
                         android:id="@+id/tab1"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:text="Nome"/>
+
+                        <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.75"
+                                android:ems="10"
+                                android:singleLine="true"
+                                android:id="@+id/name"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:text="Prontuario"/>
+
+                        <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.75"
+                                android:ems="10"
+                                android:singleLine="true"
+                                android:id="@+id/handbook"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.25"
+                                android:text="N° Ordem"/>
+
+                        <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.75"
+                                android:ems="10"
+                                android:singleLine="true"
+                                android:inputType="number"
+                                android:id="@+id/ordem"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                         android:id="@+id/tab2"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
                 </LinearLayout>
 
                 <LinearLayout
                         android:id="@+id/tab3"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
                 </LinearLayout>
 
                 <LinearLayout
                         android:id="@+id/tab4"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
                 </LinearLayout>
 
                 <LinearLayout
                         android:id="@+id/tab5"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent">
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

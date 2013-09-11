@@ -22,14 +22,12 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.ResearchActivity;
-import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
 import br.ufba.hupes.hospitaladmissionforram.adapter.ResearchAdapter;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
@@ -44,10 +42,10 @@ public class ListResearches extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         this.setHasOptionsMenu(true);
         final View view = inflater.inflate(R.layout.list_researches, null);
-		final ListView listView = (ListView) view.findViewById(R.id.list_researches);
+        final ListView listView = (ListView) view.findViewById(R.id.list_researches);
         final TextView header = (TextView) view.findViewById(R.id.header);
 
         try {
@@ -68,12 +66,12 @@ public class ListResearches extends Fragment {
                     startActivity(intent);
                 }
             });
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             Log.e("ListResearches", ex.getMessage());
         }
 
-		return view;
-	}
+        return view;
+    }
 
     private Hospital getHospital() throws SQLException {
         Dao HospitalDao = this.getHelper().getDao(Hospital.class);

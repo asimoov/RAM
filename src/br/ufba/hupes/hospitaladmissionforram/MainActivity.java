@@ -7,24 +7,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.SearchView;
-import android.widget.Toast;
-
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import br.ufba.hupes.hospitaladmissionforram.fragment.GridHospitals;
-import br.ufba.hupes.hospitaladmissionforram.fragment.ListResearches;
 import br.ufba.hupes.hospitaladmissionforram.fragment.SearchResearches;
-import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {

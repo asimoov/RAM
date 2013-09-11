@@ -17,16 +17,23 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TabHost;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
+
+import static com.j256.ormlite.dao.Dao.CreateOrUpdateStatus;
 
 /**
  * Created by denis on 09/09/13.
@@ -50,15 +57,6 @@ public class ResearchActivity extends Activity {
     private void edit(Research research) {
         this.setContentView(R.layout.form_research);
         this.createTab();
-
-        EditText name = (EditText) this.findViewById(R.id.name);
-        name.setText(research.getName());
-
-        EditText handbook = (EditText) this.findViewById(R.id.handbook);
-        handbook.setText(research.getHandbook());
-
-        EditText bed = (EditText) this.findViewById(R.id.bed);
-        bed.setText(research.getBed());
     }
 
     private void createTab() {
@@ -104,6 +102,47 @@ public class ResearchActivity extends Activity {
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
+    public void load(Research research) {
+        EditText name = (EditText) this.findViewById(R.id.name);
+        name.setText(research.getName());
+
+        EditText handbook = (EditText) this.findViewById(R.id.handbook);
+        handbook.setText(research.getHandbook());
+
+        EditText bed = (EditText) this.findViewById(R.id.bed);
+        bed.setText(research.getBed());
+
+        EditText birthday = (EditText) this.findViewById(R.id.birthday);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        birthday.setText(dateFormat.format(research.getBirthday()));
+    }
+
+    public void save(Research research) {
+        EditText name = (EditText) this.findViewById(R.id.name);
+        research.setName(name.getText().toString());
+
+        EditText handbook = (EditText) this.findViewById(R.id.handbook);
+        research.setHandbook(handbook.getText().toString());
+
+        EditText bed = (EditText) this.findViewById(R.id.bed);
+        research.setBed(bed.getText().toString());
+
+        try {
+            EditText birthday = (EditText) this.findViewById(R.id.birthday);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            research.setBirthday(dateFormat.parse(birthday.getText().toString()));
+        } catch (ParseException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        try {
+            Dao dao = getHelper().getDao(Research.class);
+            dao.createOrUpdate(research);
+        } catch (SQLException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private Research getResearch(String research_id) throws SQLException {
         Dao dao = this.getHelper().getDao(Research.class);
         UUID id = UUID.fromString(research_id);
@@ -117,7 +156,7 @@ public class ResearchActivity extends Activity {
         return this.databaseHelper;
     }
 
-    public static class DatePickerFragment extends DialogFragment
+    static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override

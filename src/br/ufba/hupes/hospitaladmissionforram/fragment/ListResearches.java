@@ -1,7 +1,9 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +38,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 public class ListResearches extends Fragment {
 
     private DatabaseHelper databaseHelper;
+    private View view;
 
     public ListResearches() {
     }
@@ -44,12 +47,18 @@ public class ListResearches extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.setHasOptionsMenu(true);
-        final View view = inflater.inflate(R.layout.list_researches, null);
-        final ListView listView = (ListView) view.findViewById(R.id.list_researches);
-        final TextView header = (TextView) view.findViewById(R.id.header);
+        this.view = inflater.inflate(R.layout.list_researches, null);
+
+        this.update();
+        return this.view;
+    }
+
+    private void update() {
+        final ListView listView = (ListView) this.view.findViewById(R.id.list_researches);
+        final TextView header = (TextView) this.view.findViewById(R.id.header);
 
         try {
-            Hospital hospital = getHospital();
+            Hospital hospital = this.getHospital();
             header.setText(hospital.getAcronym());
 
             final List<Research> researches = new ArrayList<Research>(hospital.getResearches());
@@ -61,16 +70,14 @@ public class ListResearches extends Fragment {
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
                     Research research = researches.get(position);
-                    Intent intent = new Intent(ListResearches.this.getActivity(), ResearchActivity.class);
+                    Intent intent = new Intent(getActivity(), ResearchActivity.class);
                     intent.putExtra("RESEARCH_ID", research.getId().toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, 1);
                 }
             });
         } catch (SQLException ex) {
             Log.e("ListResearches", ex.getMessage());
         }
-
-        return view;
     }
 
     private Hospital getHospital() throws SQLException {
@@ -82,10 +89,21 @@ public class ListResearches extends Fragment {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.add_item) {
-            Toast.makeText(ListResearches.this.getActivity(), "ADD", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getActivity(), "ADD", Toast.LENGTH_SHORT).show();
         }
 
         return true;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                this.update();
+
+                break;
+        }
     }
 
     @Override

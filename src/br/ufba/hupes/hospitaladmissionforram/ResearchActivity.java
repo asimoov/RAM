@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.Menu;
@@ -42,21 +46,24 @@ public class ResearchActivity extends Activity {
 
     private DatabaseHelper databaseHelper;
 
+    private Research research;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         try {
-            Research research = this.getResearch(getIntent().getExtras().getString("RESEARCH_ID"));
-            this.edit(research);
+            this.research = this.getResearch(getIntent().getExtras().getString("RESEARCH_ID"));
+            this.edit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void edit(Research research) {
+    private void edit() {
         this.setContentView(R.layout.form_research);
         this.createTab();
+        this.load();
     }
 
     private void createTab() {
@@ -90,6 +97,19 @@ public class ResearchActivity extends Activity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_save:
+                this.save();
+                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
+                this.setResult(Activity.RESULT_OK);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.save_research, menu);
@@ -102,7 +122,7 @@ public class ResearchActivity extends Activity {
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
-    public void load(Research research) {
+    public void load() {
         EditText name = (EditText) this.findViewById(R.id.name);
         name.setText(research.getName());
 
@@ -112,12 +132,15 @@ public class ResearchActivity extends Activity {
         EditText bed = (EditText) this.findViewById(R.id.bed);
         bed.setText(research.getBed());
 
-        EditText birthday = (EditText) this.findViewById(R.id.birthday);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        birthday.setText(dateFormat.format(research.getBirthday()));
+        try {
+            EditText birthday = (EditText) this.findViewById(R.id.birthday);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            birthday.setText(dateFormat.format(research.getBirthday()));
+        } catch (NullPointerException e) {
+        }
     }
 
-    public void save(Research research) {
+    public void save() {
         EditText name = (EditText) this.findViewById(R.id.name);
         research.setName(name.getText().toString());
 

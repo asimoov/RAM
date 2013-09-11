@@ -53,7 +53,7 @@ public class ResearchActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         try {
-            this.research = this.getResearch(getIntent().getExtras().getString("RESEARCH_ID"));
+            this.research = this.getResearch();
             this.edit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,8 +101,8 @@ public class ResearchActivity extends Activity {
         switch(item.getItemId()) {
             case R.id.menu_save:
                 this.save();
-                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
                 this.setResult(Activity.RESULT_OK);
+                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -166,10 +166,27 @@ public class ResearchActivity extends Activity {
         }
     }
 
-    private Research getResearch(String research_id) throws SQLException {
-        Dao dao = this.getHelper().getDao(Research.class);
-        UUID id = UUID.fromString(research_id);
-        return (Research) dao.queryForId(id);
+    private Research getResearch() throws SQLException {
+        String researchId = getIntent().getExtras().getString("RESEARCH_ID");
+        if (researchId != null) {
+            Dao dao = this.getHelper().getDao(Research.class);
+            UUID id = UUID.fromString(researchId);
+            return (Research) dao.queryForId(id);
+        }
+
+        String hospitalId = getIntent().getExtras().getString("HOSPITAL_ID");
+        if(hospitalId != null) {
+            Dao dao = this.getHelper().getDao(Hospital.class);
+            UUID id = UUID.fromString(hospitalId);
+            Hospital hospital = (Hospital) dao.queryForId(id);
+
+            Research research = new Research();
+            research.setHospital(hospital);
+
+            return research;
+        }
+
+        return null;
     }
 
     private DatabaseHelper getHelper() {

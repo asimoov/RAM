@@ -89,7 +89,13 @@ public class ListResearches extends Fragment {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.add_item) {
-            Toast.makeText(this.getActivity(), "ADD", Toast.LENGTH_SHORT).show();
+            try {
+                Intent intent = new Intent(getActivity(), ResearchActivity.class);
+                intent.putExtra("HOSPITAL_ID", getHospital().getId().toString());
+                startActivityForResult(intent, 1);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return true;
@@ -101,7 +107,6 @@ public class ListResearches extends Fragment {
         switch (resultCode) {
             case Activity.RESULT_OK:
                 this.update();
-
                 break;
         }
     }

@@ -30,7 +30,6 @@ public class GridHospitals extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		final View view = inflater.inflate(R.layout.grid_hospitals, null);
 		final GridView listView = (GridView) view.findViewById(R.id.grid_hospitals);
 

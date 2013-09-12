@@ -4,23 +4,15 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.SearchManager;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.TabHost;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -30,14 +22,11 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 
-import static com.j256.ormlite.dao.Dao.CreateOrUpdateStatus;
 
 /**
  * Created by denis on 09/09/13.
@@ -103,10 +92,12 @@ public class ResearchActivity extends Activity {
                 this.save();
                 this.setResult(Activity.RESULT_OK);
                 Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
-                return true;
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
     @Override
@@ -117,8 +108,8 @@ public class ResearchActivity extends Activity {
         return true;
     }
 
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+    public void showTimePickerDialog(View v) throws SQLException {
+        DialogFragment newFragment = new DatePickerFragment(this.getResearch());
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
@@ -193,16 +184,28 @@ public class ResearchActivity extends Activity {
         if (this.databaseHelper == null) {
             this.databaseHelper = (DatabaseHelper) OpenHelperManager.getHelper(this, DatabaseHelper.class);
         }
+
         return this.databaseHelper;
     }
 
     static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
+        private Research research;
+
+        public DatePickerFragment(Research research) {
+            this.research = research;
+        }
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
+
+            if(research.getBirthday() != null) {
+                c.setTime(research.getBirthday());
+            }
+
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
@@ -214,7 +217,7 @@ public class ResearchActivity extends Activity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
             EditText birthday = (EditText) getActivity().findViewById(R.id.birthday);
-            birthday.setText(day + "/" + month + "/" + year);
+            birthday.setText(day + "/" + (month + 1) + "/" + year);
         }
     }
 }

@@ -3,6 +3,7 @@ package br.ufba.hupes.hospitaladmissionforram.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +47,6 @@ public class ListResearches extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.setHasOptionsMenu(true);
         this.view = inflater.inflate(R.layout.list_researches, null);
 
         this.update();
@@ -88,17 +88,19 @@ public class ListResearches extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == R.id.add_item) {
-            try {
-                Intent intent = new Intent(getActivity(), ResearchActivity.class);
-                intent.putExtra("HOSPITAL_ID", getHospital().getId().toString());
-                startActivityForResult(intent, 1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        switch (item.getItemId()) {
+            case R.id.add_item:
+                try {
+                    Intent intent = new Intent(getActivity(), ResearchActivity.class);
+                    intent.putExtra("HOSPITAL_ID", getHospital().getId().toString());
+                    startActivityForResult(intent, 1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return true;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -31,10 +31,10 @@ public class Research {
     private Sex sex;
 
     @DatabaseField
-    private Double weight;
+    private Long weight;
 
     @DatabaseField
-    private Double height;
+    private Long height;
 
     @DatabaseField
     private Color color;
@@ -114,19 +114,19 @@ public class Research {
         this.sex = sex;
     }
 
-    public Double getWeight() {
+    public Long getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(Long weight) {
         this.weight = weight;
     }
 
-    public Double getHeight() {
+    public Long getHeight() {
         return height;
     }
 
-    public void setHeight(Double height) {
+    public void setHeight(Long height) {
         this.height = height;
     }
 

@@ -1,15 +1,18 @@
 package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -111,6 +114,46 @@ public class NewResearch extends Activity {
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
+    public void showHeightPickerDialog(View v) {
+        final NumberPicker np = new NumberPicker(this);
+        np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        np.setMinValue(10);
+        np.setMaxValue(260);
+        np.setValue(169);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setView(np);
+        alert.setTitle("Selecione a Altura (cm): ");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                EditText height = (EditText) NewResearch.this.findViewById(R.id.height);
+                height.setText(np.getValue() + "");
+            }
+        });
+
+        alert.show();
+    }
+
+    public void showWeightPickerDialog(View v) {
+        final NumberPicker np = new NumberPicker(this);
+        np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        np.setMinValue(1);
+        np.setMaxValue(200);
+        np.setValue(69);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setView(np);
+        alert.setTitle("Selecione o Peso (kg): ");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                EditText weight = (EditText) NewResearch.this.findViewById(R.id.weight);
+                weight.setText(np.getValue() + "");
+            }
+        });
+
+        alert.show();
+    }
+
     public void load() {
         this.getActionBar().setTitle(research.getHospital().getAcronym());
 
@@ -124,11 +167,20 @@ public class NewResearch extends Activity {
         bed.setText(research.getBed());
 
         try {
+            EditText weight = (EditText) this.findViewById(R.id.weight);
+            weight.setText(research.getWeight().toString());
+        } catch (Exception e) {}
+
+        try {
+            EditText height = (EditText) this.findViewById(R.id.height);
+            height.setText(research.getHeight().toString());
+        } catch (Exception e) {}
+
+        try {
             EditText birthday = (EditText) this.findViewById(R.id.birthday);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             birthday.setText(dateFormat.format(research.getBirthday()));
-        } catch (NullPointerException e) {
-        }
+        } catch (Exception e) {}
     }
 
     public void save() {
@@ -137,6 +189,8 @@ public class NewResearch extends Activity {
         EditText handbook = (EditText) this.findViewById(R.id.handbook);
         EditText bed = (EditText) this.findViewById(R.id.bed);
         EditText birthday = (EditText) this.findViewById(R.id.birthday);
+        EditText weight = (EditText) this.findViewById(R.id.weight);
+        EditText height = (EditText) this.findViewById(R.id.height);
 
         if (Validator.validateNotNull(name, "O nome não pode estar em branco") &&
             Validator.validateNotNull(handbook, "O prontuário não pode estar em branco") &&
@@ -147,6 +201,8 @@ public class NewResearch extends Activity {
                 research.setHandbook(handbook.getText().toString());
                 research.setBed(bed.getText().toString());
                 research.setBirthday(dateFormat.parse(birthday.getText().toString()));
+                research.setWeight(Long.parseLong(weight.getText().toString(), 10));
+                research.setHeight(Long.parseLong(height.getText().toString(), 10));
 
                 Dao dao = getHelper().getDao(Research.class);
                 dao.createOrUpdate(research);

@@ -48,7 +48,7 @@ public class Research {
     @DatabaseField
     private Date admission;
 
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Hospital hospital;
 
     private List<Suspect> suspects;

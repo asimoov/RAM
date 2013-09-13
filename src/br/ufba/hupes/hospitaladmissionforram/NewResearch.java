@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +17,6 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
@@ -31,7 +28,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 /**
  * Created by denis on 09/09/13.
  */
-public class ResearchActivity extends Activity {
+public class NewResearch extends Activity {
 
     private DatabaseHelper databaseHelper;
 
@@ -114,6 +111,8 @@ public class ResearchActivity extends Activity {
     }
 
     public void load() {
+        this.getActionBar().setTitle(research.getHospital().getAcronym());
+
         EditText name = (EditText) this.findViewById(R.id.name);
         name.setText(research.getName());
 
@@ -132,28 +131,27 @@ public class ResearchActivity extends Activity {
     }
 
     public void save() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         EditText name = (EditText) this.findViewById(R.id.name);
-        research.setName(name.getText().toString());
-
         EditText handbook = (EditText) this.findViewById(R.id.handbook);
-        research.setHandbook(handbook.getText().toString());
-
         EditText bed = (EditText) this.findViewById(R.id.bed);
-        research.setBed(bed.getText().toString());
+        EditText birthday = (EditText) this.findViewById(R.id.birthday);
 
-        try {
-            EditText birthday = (EditText) this.findViewById(R.id.birthday);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            research.setBirthday(dateFormat.parse(birthday.getText().toString()));
-        } catch (ParseException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        if (Validator.validateNotNull(name, "O nome não pode estar em branco") &&
+            Validator.validateNotNull(handbook, "O prontuário não pode estar em branco") &&
+            Validator.validateNotNull(bed, "O leito não pode estar em branco") &&
+            Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento estar no formato errada")) {
+            try {
+                research.setName(name.getText().toString());
+                research.setHandbook(handbook.getText().toString());
+                research.setBed(bed.getText().toString());
+                research.setBirthday(dateFormat.parse(birthday.getText().toString()));
 
-        try {
-            Dao dao = getHelper().getDao(Research.class);
-            dao.createOrUpdate(research);
-        } catch (SQLException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Dao dao = getHelper().getDao(Research.class);
+                dao.createOrUpdate(research);
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -2,45 +2,74 @@ package br.ufba.hupes.hospitaladmissionforram;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import br.ufba.hupes.hospitaladmissionforram.fragment.GridHospitals;
-import br.ufba.hupes.hospitaladmissionforram.fragment.SearchResearches;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
+import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
 
+    private DatabaseHelper databaseHelper;
+
+    private ArrayAdapter adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.ambos, new GridHospitals())
-                    .commit();
+
+        try {
+            final List<Hospital> hospitals = getHospitals();
+            this.adapter = new HospitalAdapter(this,
+                    R.layout.item_hospital, hospitals);
+
+            final GridView listView = (GridView) this.findViewById(R.id.grid_hospitals);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View arg1,
+                                        int position, long arg3) {
+                    Hospital hospital = hospitals.get(position);
+                    Intent intent = new Intent(MainActivity.this, br.ufba.hupes.hospitaladmissionforram.ListResearches.class);
+                    intent.putExtra("HOSPITAL_ID", hospital.getId().toString());
+                    startActivityForResult(intent, 1);
+                }
+            });
+        } catch(SQLException ex) {
+            Log.e("ListResearches", ex.getMessage());
         }
+
     }
 
-    @Override
-    public void onBackPressed() {
-        FragmentManager fm = getFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStack();
-        } else {
-            super.onBackPressed();
+    private List<Hospital> getHospitals() throws SQLException {
+        Dao dao = this.getHelper().getDao(Hospital.class);
+        return dao.queryForAll();
+    }
+
+    private DatabaseHelper getHelper() {
+        if (this.databaseHelper == null) {
+            this.databaseHelper = (DatabaseHelper) OpenHelperManager.getHelper(this, DatabaseHelper.class);
         }
+        return this.databaseHelper;
     }
 
 	@Override
@@ -62,27 +91,15 @@ public class MainActivity extends Activity {
 	}
 
     final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+
         @Override
         public boolean onQueryTextChange(String newText) {
+            adapter.getFilter().filter(newText);
             return true;
         }
 
         @Override
         public boolean onQueryTextSubmit(String query) {
-            Fragment fragment = new SearchResearches();
-
-            Bundle args = new Bundle();
-            args.putString("QUERY", query);
-            fragment.setArguments(args);
-
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.ambos, fragment);
-            ft.addToBackStack(null);
-            ft.commit();
-
-            InputMethodManager inputManager = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
             return true;
         }
     };

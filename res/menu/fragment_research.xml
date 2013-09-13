@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/add_item"
-        android:icon="@android:drawable/ic_menu_add"
-        android:orderInCategory="20"
-        android:showAsAction="ifRoom"
-        android:title="Add">
-    </item>
+    <item
+            android:id="@+id/menu_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:actionViewClass="android.widget.SearchView"
+            android:showAsAction="ifRoom|collapseActionView"
+            android:title="Search"/>
+
+    <item
+            android:id="@+id/add_item"
+            android:icon="@android:drawable/ic_menu_add"
+            android:orderInCategory="20"
+            android:showAsAction="ifRoom"
+            android:title="Add"/>
 
 </menu>

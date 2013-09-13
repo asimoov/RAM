@@ -29,7 +29,9 @@
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".ResearchActivity"/>
+        <activity android:name=".ListResearches"/>
+        <activity android:name=".SearchResearches"/>
+        <activity android:name=".NewResearch"/>
     </application>
 
 </manifest>

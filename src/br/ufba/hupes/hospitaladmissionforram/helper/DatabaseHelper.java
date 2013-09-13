@@ -52,16 +52,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             for(Hospital hospital: hospitals) {
                 HospitalDao.createIfNotExists(hospital);
             }
-
-            Research researches[] = new Research[] {
-            	new Research("123456", "Ivelisse Sousa", "1", "098765", hospitals[0]),
-                new Research("123456", "Glaucia Noblat","2", "098765", hospitals[0]),
-                new Research("123456", "Denis Rangel", "3", "098765", hospitals[1]),
-                new Research("123456", "Rose Maria", "4", "098765", hospitals[1])};
-            Dao ResearchDao = this.getDao(Research.class);
-            for(Research researche: researches) {
-                ResearchDao.createIfNotExists(researche);
-            }
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);

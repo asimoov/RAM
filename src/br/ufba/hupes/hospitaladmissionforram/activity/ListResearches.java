@@ -50,11 +50,11 @@ public class ListResearches extends Activity {
             Hospital hospital = this.getHospital();
             this.getActionBar().setTitle(hospital.getAcronym());
 
-
             final List<Research> researches = new ArrayList<Research>(hospital.getResearches());
             this.adapter = new ResearchAdapter(this,
                     R.layout.item_research, researches);
             listView.setAdapter(adapter);
+            listView.setEmptyView(findViewById(android.R.id.empty));
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1,

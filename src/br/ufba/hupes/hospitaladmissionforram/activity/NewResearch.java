@@ -90,8 +90,6 @@ public class NewResearch extends Activity {
         switch(item.getItemId()) {
             case R.id.menu_save:
                 this.save();
-                this.setResult(Activity.RESULT_OK);
-                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -152,6 +150,9 @@ public class NewResearch extends Activity {
 
                 Dao dao = getHelper().getDao(Research.class);
                 dao.createOrUpdate(research);
+
+                this.setResult(Activity.RESULT_OK);
+                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }

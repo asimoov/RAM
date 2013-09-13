@@ -110,6 +110,25 @@ public class ListResearches extends Activity {
         return true;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                this.update();
+                this.setResult(Activity.RESULT_OK);
+                break;
+        }
+    }
+
+    private DatabaseHelper getHelper() {
+        if (this.databaseHelper == null) {
+            this.databaseHelper = (DatabaseHelper) OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        }
+        return this.databaseHelper;
+    }
+
     final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
 
         @Override
@@ -123,22 +142,4 @@ public class ListResearches extends Activity {
             return true;
         }
     };
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (resultCode) {
-            case Activity.RESULT_OK:
-                this.update();
-                break;
-        }
-    }
-
-    private DatabaseHelper getHelper() {
-        if (this.databaseHelper == null) {
-            this.databaseHelper = (DatabaseHelper) OpenHelperManager.getHelper(this, DatabaseHelper.class);
-        }
-        return this.databaseHelper;
-    }
 }

@@ -37,7 +37,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        this.update();
+    }
 
+    private void update() {
         try {
             final List<Hospital> hospitals = getHospitals();
             this.adapter = new HospitalAdapter(this,
@@ -58,7 +61,17 @@ public class MainActivity extends Activity {
         } catch(SQLException ex) {
             Log.e("ListResearches", ex.getMessage());
         }
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                this.update();
+                break;
+        }
     }
 
     private List<Hospital> getHospitals() throws SQLException {

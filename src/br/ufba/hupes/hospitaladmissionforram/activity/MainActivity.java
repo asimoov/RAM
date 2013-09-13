@@ -1,4 +1,4 @@
-package br.ufba.hupes.hospitaladmissionforram;
+package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -22,6 +21,8 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
+import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
@@ -49,7 +50,7 @@ public class MainActivity extends Activity {
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
                     Hospital hospital = hospitals.get(position);
-                    Intent intent = new Intent(MainActivity.this, br.ufba.hupes.hospitaladmissionforram.ListResearches.class);
+                    Intent intent = new Intent(MainActivity.this, ListResearches.class);
                     intent.putExtra("HOSPITAL_ID", hospital.getId().toString());
                     startActivityForResult(intent, 1);
                 }

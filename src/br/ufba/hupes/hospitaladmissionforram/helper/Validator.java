@@ -1,4 +1,4 @@
-package br.ufba.hupes.hospitaladmissionforram;
+package br.ufba.hupes.hospitaladmissionforram.helper;
 
 import android.text.Editable;
 import android.text.TextUtils;

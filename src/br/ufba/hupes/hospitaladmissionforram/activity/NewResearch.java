@@ -1,4 +1,4 @@
-package br.ufba.hupes.hospitaladmissionforram;
+package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -21,6 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
+import br.ufba.hupes.hospitaladmissionforram.R;
+import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 

@@ -1,4 +1,4 @@
-package br.ufba.hupes.hospitaladmissionforram;
+package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -22,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
+import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.ResearchAdapter;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;

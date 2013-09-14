@@ -7,12 +7,15 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -20,8 +23,12 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
@@ -109,8 +116,15 @@ public class NewResearch extends Activity {
         return true;
     }
 
-    public void showTimePickerDialog(View v) throws SQLException {
-        DialogFragment newFragment = new DatePickerFragment(this.getResearch());
+    public void showBirthdayPickerDialog(View v) throws SQLException {
+        EditText birthday = (EditText) this.findViewById(R.id.birthday);
+        DialogFragment newFragment = new DatePickerFragment(birthday);
+        newFragment.show(this.getFragmentManager(), "timePicker");
+    }
+
+    public void showAdmissionPickerDialog(View v) throws SQLException {
+        EditText admission = (EditText) this.findViewById(R.id.admission);
+        DialogFragment newFragment = new DatePickerFragment(admission);
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
@@ -166,6 +180,20 @@ public class NewResearch extends Activity {
         EditText bed = (EditText) this.findViewById(R.id.bed);
         bed.setText(research.getBed());
 
+        EditText number = (EditText) this.findViewById(R.id.number);
+        number.setText(research.getId().toString());
+
+        RadioButton sexFemale = (RadioButton) this.findViewById(R.id.sexFemale);
+        RadioButton sexMale = (RadioButton) this.findViewById(R.id.sexMale);
+
+        if(research.getSex() != null && research.getSex().equals("Feminino")) {
+            sexFemale.setChecked(true);
+            sexMale.setChecked(false);
+        } else {
+            sexFemale.setChecked(false);
+            sexMale.setChecked(true);
+        }
+
         try {
             EditText weight = (EditText) this.findViewById(R.id.weight);
             weight.setText(research.getWeight().toString());
@@ -181,6 +209,19 @@ public class NewResearch extends Activity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             birthday.setText(dateFormat.format(research.getBirthday()));
         } catch (Exception e) {}
+
+        try {
+            EditText admission = (EditText) this.findViewById(R.id.admission);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            admission.setText(dateFormat.format(research.getAdmission()));
+        } catch (Exception e) {}
+
+        List colors = Arrays.asList(this.getResources().getStringArray(R.array.colors));
+        Spinner color = (Spinner) this.findViewById(R.id.color);
+        color.setSelection(colors.indexOf(research.getColor()));
+
+        EditText unit = (EditText) this.findViewById(R.id.unit);
+        unit.setText(research.getUnit());
     }
 
     public void save() {
@@ -191,18 +232,36 @@ public class NewResearch extends Activity {
         EditText birthday = (EditText) this.findViewById(R.id.birthday);
         EditText weight = (EditText) this.findViewById(R.id.weight);
         EditText height = (EditText) this.findViewById(R.id.height);
+        EditText unit = (EditText) this.findViewById(R.id.unit);
+        EditText admission = (EditText) this.findViewById(R.id.admission);
+
+        RadioButton sexFemale = (RadioButton) this.findViewById(R.id.sexFemale);
+        RadioButton sexMale = (RadioButton) this.findViewById(R.id.sexMale);
+        Spinner color = (Spinner) this.findViewById(R.id.color);
 
         if (Validator.validateNotNull(name, "O nome não pode estar em branco") &&
-            Validator.validateNotNull(handbook, "O prontuário não pode estar em branco") &&
-            Validator.validateNotNull(bed, "O leito não pode estar em branco") &&
-            Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento estar no formato errada")) {
+                Validator.validateNotNull(handbook, "O prontuário não pode estar em branco") &&
+                Validator.validateNotNull(bed, "O leito não pode estar em branco") &&
+                Validator.validateNotNull(admission, "O Admissão não pode estar em branco") &&
+                Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento estar no formato errada")) {
             try {
                 research.setName(name.getText().toString());
                 research.setHandbook(handbook.getText().toString());
                 research.setBed(bed.getText().toString());
                 research.setBirthday(dateFormat.parse(birthday.getText().toString()));
+                research.setAdmission(dateFormat.parse(admission.getText().toString()));
                 research.setWeight(Long.parseLong(weight.getText().toString(), 10));
                 research.setHeight(Long.parseLong(height.getText().toString(), 10));
+                research.setUnit(unit.getText().toString());
+
+                List<String> colors = Arrays.asList(this.getResources().getStringArray(R.array.colors));
+                research.setColor(colors.get(color.getSelectedItemPosition()));
+
+                if(sexFemale.isChecked()) {
+                    research.setSex("Feminino");
+                } else {
+                    research.setSex("Masculino");
+                }
 
                 Dao dao = getHelper().getDao(Research.class);
                 dao.createOrUpdate(research);
@@ -249,10 +308,10 @@ public class NewResearch extends Activity {
     static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
-        private Research research;
+        private EditText view;
 
-        public DatePickerFragment(Research research) {
-            this.research = research;
+        public DatePickerFragment(EditText view) {
+            this.view = view;
         }
 
         @Override
@@ -260,8 +319,13 @@ public class NewResearch extends Activity {
             // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
 
-            if(research.getBirthday() != null) {
-                c.setTime(research.getBirthday());
+            if(this.view.getText() != null) {
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    c.setTime(dateFormat.parse(this.view.getText().toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             int year = c.get(Calendar.YEAR);
@@ -274,8 +338,7 @@ public class NewResearch extends Activity {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
-            EditText birthday = (EditText) getActivity().findViewById(R.id.birthday);
-            birthday.setText(day + "/" + (month + 1) + "/" + year);
+            this.view.setText(day + "/" + (month + 1) + "/" + year);
         }
     }
 }

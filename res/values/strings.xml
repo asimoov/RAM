@@ -5,4 +5,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
 
+    <string-array name="colors">
+        <item>Branco</item>
+        <item>Indígenas</item>
+        <item>Preto</item>
+        <item>Pardo</item>
+        <item>Amarelo</item>
+    </string-array>
+
 </resources>

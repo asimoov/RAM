@@ -96,7 +96,7 @@
                                     android:ems="10"
                                     android:singleLine="true"
                                     android:inputType="number"
-                                    android:id="@+id/bed"/>
+                                    android:id="@+id/number"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -114,6 +114,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.75"
+                                    android:ems="10"
                                     android:orientation="horizontal">
 
                                 <RadioButton
@@ -142,7 +143,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.25"
-                                    android:text="Data Nasc."/>
+                                    android:text="Data Nascimento"/>
 
                             <EditText
                                     android:layout_width="0dp"
@@ -158,7 +159,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.25"
                                     android:text="Ajuda"
-                                    android:onClick="showTimePickerDialog"/>
+                                    android:onClick="showBirthdayPickerDialog"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -215,6 +216,95 @@
                                     android:layout_weight="0.25"
                                     android:text="Ajuda"
                                     android:onClick="showWeightPickerDialog"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.25"
+                                    android:text="Cor"/>
+
+                            <Spinner
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.75"
+                                    android:ems="10"
+                                    android:entries="@array/colors"
+                                    android:id="@+id/color"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.25"
+                                    android:text="Unidade"/>
+
+                            <EditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.75"
+                                    android:ems="10"
+                                    android:singleLine="true"
+                                    android:id="@+id/unit"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.25"
+                                    android:text="Leito"/>
+
+                            <EditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.75"
+                                    android:ems="10"
+                                    android:singleLine="true"
+                                    android:id="@+id/bed"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.25"
+                                    android:text="Data Admissão"/>
+
+                            <EditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.50"
+                                    android:ems="10"
+                                    android:singleLine="true"
+                                    android:inputType="number"
+                                    android:id="@+id/admission"/>
+
+                            <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.25"
+                                    android:text="Ajuda"
+                                    android:onClick="showAdmissionPickerDialog"/>
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>

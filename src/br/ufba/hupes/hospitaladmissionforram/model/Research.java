@@ -28,7 +28,7 @@ public class Research {
     private Date birthday;
 
     @DatabaseField
-    private Sex sex;
+    private String sex;
 
     @DatabaseField
     private Long weight;
@@ -37,7 +37,7 @@ public class Research {
     private Long height;
 
     @DatabaseField
-    private Color color;
+    private String color;
 
     @DatabaseField
     private String unit;
@@ -106,11 +106,11 @@ public class Research {
         this.birthday = birthday;
     }
 
-    public Sex getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -130,11 +130,11 @@ public class Research {
         this.height = height;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

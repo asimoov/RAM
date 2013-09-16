@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
+import br.ufba.hupes.hospitaladmissionforram.model.Status;
 
 public class ResearchAdapter extends ArrayAdapter<Research> {
 
@@ -27,6 +29,7 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
 	static class ResearchHolder {
 		TextView name;
 		TextView handbook;
+        ImageView status;
 	}
 
 	public ResearchAdapter(Context context, int textViewResourceId,
@@ -53,6 +56,7 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
 			holder = new ResearchHolder();
 			holder.handbook = (TextView) view.findViewById(R.id.handbook);
 			holder.name =  (TextView) view.findViewById(R.id.name);
+            holder.status =  (ImageView) view.findViewById(R.id.status);
 			
 			view.setTag(holder);
 		} else {
@@ -61,7 +65,11 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
 
         holder.handbook.setText(research.getHandbook());
 		holder.name.setText(research.getName());
-		
+
+        if(research.getStatus() == null || research.getStatus() == Status.OPEN.ordinal()) {
+            holder.status.setImageResource(R.drawable.rejected);
+        }
+
 		return view;
 	}
 

@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,7 @@ import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
+import br.ufba.hupes.hospitaladmissionforram.model.Status;
 
 
 /**
@@ -263,11 +265,18 @@ public class NewResearch extends Activity {
                     research.setSex("Masculino");
                 }
 
-                Dao dao = getHelper().getDao(Research.class);
-                dao.createOrUpdate(research);
+                if(research.isOpen()) {
+                    research.setStatus(Status.OPEN.ordinal());
 
-                this.setResult(Activity.RESULT_OK);
-                Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
+                    research.setUpdateAt(new Date());
+                    Dao dao = getHelper().getDao(Research.class);
+                    dao.createOrUpdate(research);
+
+                    this.setResult(Activity.RESULT_OK);
+                    Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
+                } else {
+                    research.setStatus(Status.CLOSE.ordinal());
+                }
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }

@@ -55,6 +55,14 @@ public class Research {
     private List<Cause> causes;
     private List<Comorbidity> comorbidities;
 
+    private Integer status;
+
+    @DatabaseField
+    private Date updateAt;
+
+    @DatabaseField
+    private Date syncedAt;
+
     public Research() {
     }
 
@@ -192,5 +200,33 @@ public class Research {
 
     public void setComorbidities(List<Comorbidity> comorbidities) {
         this.comorbidities = comorbidities;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Date getSyncedAt() {
+        return syncedAt;
+    }
+
+    public void setSyncedAt(Date syncedAt) {
+        this.syncedAt = syncedAt;
+    }
+
+    public boolean isOpen() {
+        return true;
     }
 }

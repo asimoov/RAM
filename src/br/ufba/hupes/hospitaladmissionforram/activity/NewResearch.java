@@ -72,27 +72,27 @@ public class NewResearch extends Activity {
         tabs.setup();
 
         TabHost.TabSpec tspec1 = tabs.newTabSpec("First Tab");
-        tspec1.setIndicator("Anamnese");
+        tspec1.setIndicator("Dados Gerais");
         tspec1.setContent(R.id.tab1);
         tabs.addTab(tspec1);
 
         TabHost.TabSpec tspec2 = tabs.newTabSpec("Second Tab");
-        tspec2.setIndicator("Suspeitos");
+        tspec2.setIndicator("RAM");
         tspec2.setContent(R.id.tab2);
         tabs.addTab(tspec2);
 
         TabHost.TabSpec tspec3 = tabs.newTabSpec("Third Tab");
-        tspec3.setIndicator("Causas");
+        tspec3.setIndicator("Outras Causas");
         tspec3.setContent(R.id.tab3);
         tabs.addTab(tspec3);
 
         TabHost.TabSpec tspec4 = tabs.newTabSpec("Fourth Tab");
-        tspec4.setIndicator("Outros");
+        tspec4.setIndicator("Info. Adicionais");
         tspec4.setContent(R.id.tab4);
         tabs.addTab(tspec4);
 
         TabHost.TabSpec tspec5 = tabs.newTabSpec("Fifth Tab");
-        tspec5.setIndicator("Extras");
+        tspec5.setIndicator("Algoritmo");
         tspec5.setContent(R.id.tab5);
         tabs.addTab(tspec5);
     }

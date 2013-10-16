@@ -1,11 +1,14 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/ormlite-core-4.46.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/ormlite-android-4.46.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ormlite-core-4.46.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/androidannotations-api-3.0-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/androidannotations-3.0-SNAPSHOT.jar!/" />
+    </SOURCES>
   </library>
 </component>

@@ -12,7 +12,6 @@
         <item>Pardo</item>
         <item>Amarelo</item>
     </string-array>
-
     <string-array name="ways">
         <item>Oral</item>
         <item>Retal</item>
@@ -26,5 +25,26 @@
         <item>Dérmica</item>
         <item>Vaginal</item>
     </string-array>
+    
+    <string-array name="opcoes_tratamento">
+        <item>Suspensão do medicamento</item>
+        <item>Suspensão e tratamento medicamentoso</item>
+        <item>Tratamento medicamentoso</item>
+        <item>Não tratada</item>
+    </string-array>
 
+    <string-array name="opcoes_resultado">
+        <item>Recuperado</item>
+        <item>Risco de vida</item>
+        <item>Desconhecido</item>
+        <item>Fatal</item>
+    </string-array>
+    
+    <string-array name="opcoes_gravidade">
+        <item>Leve</item>
+        <item>Moderada</item>
+        <item>Grave</item>
+        <item>Fatal</item>
+    </string-array>
+    
 </resources>

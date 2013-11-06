@@ -120,17 +120,12 @@
                 android:id="@+id/birthday"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50"
+                android:layout_weight="0.75"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:inputType="number"
+                android:onClick="showPickerDialog"
                 android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:onClick="showBirthdayPickerDialog"
-                android:text="Ajuda" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,17 +143,12 @@
                 android:id="@+id/height"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50"
+                android:layout_weight="0.75"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:inputType="number"
-                android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
                 android:onClick="showHeightPickerDialog"
-                android:text="Ajuda" />
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,17 +166,12 @@
                 android:id="@+id/weight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50"
+                android:layout_weight="0.75"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:inputType="number"
-                android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
                 android:onClick="showWeightPickerDialog"
-                android:text="Ajuda" />
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -264,17 +249,12 @@
                 android:id="@+id/admission"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50"
+                android:layout_weight="0.75"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:inputType="number"
+                android:onClick="showPickerDialog"
                 android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:onClick="showAdmissionPickerDialog"
-                android:text="Ajuda" />
         </LinearLayout>
     </LinearLayout>
 

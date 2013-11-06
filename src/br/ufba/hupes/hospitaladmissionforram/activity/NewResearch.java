@@ -3,14 +3,10 @@ package br.ufba.hupes.hospitaladmissionforram.activity;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -24,23 +20,14 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.PagerAdapter;
 import br.ufba.hupes.hospitaladmissionforram.fragment.NewResearchFragment;
-import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
-import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
-import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
-import br.ufba.hupes.hospitaladmissionforram.model.Research;
-import br.ufba.hupes.hospitaladmissionforram.model.Status;
-
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
 
 /**
@@ -114,15 +101,8 @@ public class NewResearch extends FragmentActivity {
         return true;
     }
 
-    public void showBirthdayPickerDialog(View v) throws SQLException {
-        EditText birthday = (EditText) this.findViewById(R.id.birthday);
-        DialogFragment newFragment = new DatePickerFragment(birthday);
-        newFragment.show(this.getFragmentManager(), "timePicker");
-    }
-
-    public void showAdmissionPickerDialog(View v) throws SQLException {
-        EditText admission = (EditText) this.findViewById(R.id.admission);
-        DialogFragment newFragment = new DatePickerFragment(admission);
+    public void showPickerDialog(View v) throws SQLException {
+        DialogFragment newFragment = new DatePickerFragment((TextView) v);
         newFragment.show(this.getFragmentManager(), "timePicker");
     }
 
@@ -175,16 +155,17 @@ public class NewResearch extends FragmentActivity {
         }
     }
 
-    public static class DatePickerFragment extends DialogFragment
+    @SuppressLint("ValidFragment")
+	public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
-        private EditText view;
+        private TextView view;
 
         public DatePickerFragment() {
 
         }
 
-        public DatePickerFragment(EditText view) {
+        public DatePickerFragment(TextView view) {
             this.view = view;
         }
 

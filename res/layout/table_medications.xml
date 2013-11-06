@@ -100,17 +100,12 @@
             android:id="@+id/initial_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.50"
+            android:layout_weight="0.75"
             android:ems="10"
+            android:focusableInTouchMode="false"
             android:inputType="number"
+            android:onClick="showPickerDialog"
             android:singleLine="true" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="showAdmissionPickerDialog"
-            android:text="Ajuda" />
     </LinearLayout>
 
     <LinearLayout
@@ -128,17 +123,12 @@
             android:id="@+id/final_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.50"
+            android:layout_weight="0.75"
             android:ems="10"
+            android:focusableInTouchMode="false"
             android:inputType="number"
+            android:onClick="showPickerDialog"
             android:singleLine="true" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="showAdmissionPickerDialog"
-            android:text="Ajuda" />
     </LinearLayout>
 
 </LinearLayout>

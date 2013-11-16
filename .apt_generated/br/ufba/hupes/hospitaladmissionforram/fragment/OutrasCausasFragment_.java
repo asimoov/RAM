@@ -8,9 +8,10 @@ package br.ufba.hupes.hospitaladmissionforram.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import br.ufba.hupes.hospitaladmissionforram.R.layout;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedListener;
@@ -64,12 +65,21 @@ public final class OutrasCausasFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        dose = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose));
-        way = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.way));
-        medication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medication));
-        initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
-        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
-        indication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.indication));
+        comorbidities = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidities));
+        otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
+        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
+        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication)!= null) {
+            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication).setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    OutrasCausasFragment_.this.addMedication();
+                }
+
+            }
+            );
+        }
         init();
     }
 

@@ -6,6 +6,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -17,10 +18,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Medicamento" />
+                android:text="Outras causa internação" />
 
             <EditText
-                android:id="@+id/medication"
+                android:id="@+id/other_causes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
@@ -37,30 +38,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Via" />
-
-            <Spinner
-                android:id="@+id/way"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:ems="10"
-                android:entries="@array/ways" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Dose (mg ou ml)" />
+                android:text="Comorbidades" />
 
             <EditText
-                android:id="@+id/dose"
+                android:id="@+id/comorbidities"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
@@ -70,80 +51,19 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/medications"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Indicação" />
-
-            <EditText
-                android:id="@+id/indication"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:ems="10"
-                android:singleLine="true" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <Button
+            android:id="@+id/addMedication"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Data Inicio" />
-
-            <EditText
-                android:id="@+id/initial_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.50"
-                android:ems="10"
-                android:inputType="number"
-                android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:onClick="showPickerDialog"
-                android:text="Ajuda" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Data Final" />
-
-            <EditText
-                android:id="@+id/final_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.50"
-                android:ems="10"
-                android:inputType="number"
-                android:singleLine="true" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:onClick="showPickerDialog"
-                android:text="Ajuda" />
-        </LinearLayout>
+            android:padding="10dp"
+            android:text="Adicionar Medicamento" />
     </LinearLayout>
 
 </ScrollView>

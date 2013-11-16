@@ -1,53 +1,55 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
-import android.app.Activity;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.j256.ormlite.dao.Dao;
+import java.util.ArrayList;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringArrayRes;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import br.ufba.hupes.hospitaladmissionforram.R;
-import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
-import br.ufba.hupes.hospitaladmissionforram.model.Research;
-import br.ufba.hupes.hospitaladmissionforram.model.Status;
+import br.ufba.hupes.hospitaladmissionforram.fragment.NovoMedicamentoFragment.NovoMedicamentoListener;
+import br.ufba.hupes.hospitaladmissionforram.model.Medication;
+import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication;
+import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 
 @EFragment(R.layout.frag_outras_causas)
-public class OutrasCausasFragment extends NewResearchFragment {
+public class OutrasCausasFragment extends NewResearchFragment implements NovoMedicamentoListener {
 
-    @ViewById
-    EditText medication;
-    @ViewById
-    Spinner way;
-    @ViewById
-    EditText dose;
-    @ViewById
-    EditText indication;
-    @ViewById
-    EditText initialDate;
-    @ViewById
-    EditText finalDate;
+	@ViewById
+	EditText comorbidities;
 
-//    @StringArrayRes(R.array.colors)
-//    String[] arrayColors;
-//    private List<String> colors;
+	@ViewById
+	EditText otherCauses;
+	
+	@ViewById
+	LinearLayout medications;
 
-    @AfterViews
-    public void init() {
-    }
+	ArrayList<Medication> medicationList = new ArrayList<Medication>();
 
-    public void save() {
+	@AfterViews
+	public void init() {
+	}
 
-    }
+	public void save() {
+
+	}
+
+	@Click
+	public void addMedication() {
+		NovoMedicamentoFragment fragment = NovoMedicamentoFragment_.builder()
+				.build();
+		fragment.setListener(this);
+		fragment.show(getFragmentManager(), "NovoMedicamento");
+	}
+
+	@Override
+	public void saveMedicamento(Medication med) {
+		ViewMedication view = ViewMedication_.build(getActivity());
+		view.bind(med);
+		medications.addView(view);
+		medicationList.add(med);
+	}
 }

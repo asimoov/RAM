@@ -104,7 +104,6 @@
             android:ems="10"
             android:focusableInTouchMode="false"
             android:inputType="number"
-            android:onClick="showPickerDialog"
             android:singleLine="true" />
     </LinearLayout>
 
@@ -127,8 +126,30 @@
             android:ems="10"
             android:focusableInTouchMode="false"
             android:inputType="number"
-            android:onClick="showPickerDialog"
             android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btCancelar"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btOk"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="OK" />
     </LinearLayout>
 
 </LinearLayout>

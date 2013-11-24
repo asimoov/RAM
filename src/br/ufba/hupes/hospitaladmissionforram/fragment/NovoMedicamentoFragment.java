@@ -77,7 +77,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 					indication.getText().toString(),
 					initialDate.getText().toString(), 
 					finalDate.getText().toString());
-    		listener.saveMedicamento(med);
+    		listener.saveMedication(med);
 		}
     	dismiss();
 	}
@@ -102,6 +102,6 @@ public class NovoMedicamentoFragment extends DialogFragment {
     }
 
 	interface NovoMedicamentoListener {
-		void saveMedicamento(Medication med);
+		void saveMedication(Medication med);
 	}
 }

@@ -7,6 +7,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.fragment.NovoMedicamentoFragment.NovoMedicamentoListener;
@@ -19,6 +20,15 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 
 	@ViewById
 	LinearLayout medications;
+	
+	@ViewById
+	EditText cause;
+
+	@ViewById
+	EditText comorbidities;
+
+	@ViewById
+	EditText otherCauses;
 	
 	ArrayList<Medication> medicationList = new ArrayList<Medication>();
 	
@@ -38,7 +48,7 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     }
 
 	@Override
-	public void saveMedicamento(Medication med) {
+	public void saveMedication(Medication med) {
 		ViewMedication view = ViewMedication_.build(getActivity());
 		view.bind(med);
 		medications.addView(view);

@@ -19,6 +19,18 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	@ViewById(R.id.chk_desenv_reacao)
 	CheckBox checkReacao;
 	
+	@ViewById(R.id.chk_reacao_passada)
+	CheckBox checkReacaoPassada;
+	
+	@ViewById(R.id.chk_plantas_med)
+	CheckBox checkPlantasMed;
+
+	@ViewById
+	View viewReacaoPassada;
+
+	@ViewById
+	View viewPlantasMed;
+	
     @AfterViews
     public void init() {
     	checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -27,7 +39,23 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 				checkReacao.setVisibility(isChecked ? View.VISIBLE : View.GONE);
 			}
 		});
+    	checkReacaoPassada.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				viewReacaoPassada.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+			}
+		});
+    	checkReacaoPassada.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				viewPlantasMed.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+			}
+		});
     }
+    
+    
 
     public void save() {
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="dose_types">
+        <item>mg</item>
+        <item>ml</item>
+    </string-array>
+    <string-array name="colors">
+        <item>Branco</item>
+        <item>Indígenas</item>
+        <item>Negro</item>
+        <item>Pardo</item>
+        <item>Amarelo</item>
+    </string-array>
+    <string-array name="ways">
+        <item>Oral</item>
+        <item>Retal</item>
+        <item>Intradérmica</item>
+        <item>Subcutânea</item>
+        <item>Intramuscular</item>
+        <item>Endovenosa</item>
+        <item>Inalatória</item>
+        <item>Ocular</item>
+        <item>Intranasal</item>
+        <item>Dérmica</item>
+        <item>Vaginal</item>
+    </string-array>
+    <string-array name="opcoes_tratamento">
+        <item>Suspensão do medicamento</item>
+        <item>Suspensão e tratamento medicamentoso</item>
+        <item>Tratamento medicamentoso</item>
+        <item>Não tratada</item>
+    </string-array>
+    <string-array name="opcoes_resultado">
+        <item>Recuperado</item>
+        <item>Risco de vida</item>
+        <item>Desconhecido</item>
+        <item>Fatal</item>
+    </string-array>
+    <string-array name="opcoes_gravidade">
+        <item>Leve</item>
+        <item>Moderada</item>
+        <item>Grave</item>
+        <item>Fatal</item>
+    </string-array>
+
+</resources>

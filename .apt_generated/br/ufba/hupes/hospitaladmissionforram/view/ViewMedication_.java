@@ -98,9 +98,9 @@ public final class ViewMedication_
     @Override
     public void onViewChanged(HasViews hasViews) {
         dose = ((TextView) hasViews.findViewById(id.dose));
+        way = ((TextView) hasViews.findViewById(id.way));
         name = ((TextView) hasViews.findViewById(id.name));
         date = ((TextView) hasViews.findViewById(id.date));
-        way = ((TextView) hasViews.findViewById(id.way));
         indication = ((TextView) hasViews.findViewById(id.indication));
         if (hasViews.findViewById(id.bt_delete)!= null) {
             hasViews.findViewById(id.bt_delete).setOnClickListener(new OnClickListener() {

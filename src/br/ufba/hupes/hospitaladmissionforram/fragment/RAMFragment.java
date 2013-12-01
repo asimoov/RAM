@@ -36,8 +36,8 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     public void init() {
     }
 
-    public void save() {
-
+    public boolean save() {
+    	return false;
     }
     
     @Click

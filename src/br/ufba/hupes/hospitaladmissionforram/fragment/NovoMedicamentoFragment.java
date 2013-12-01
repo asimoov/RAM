@@ -1,6 +1,5 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
-
 import java.util.Arrays;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,7 +26,8 @@ public class NovoMedicamentoFragment extends DialogFragment {
 	Medication medicationItem;
 	
     @ViewById
-    EditText medication;
+    EditText name;
+    
     @ViewById
     Spinner way;
     @ViewById
@@ -54,7 +54,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 		}
     	
     	if (medicationItem != null) {
-    		medication.setText(medicationItem.getName());
+    		name.setText(medicationItem.getName());
     		try {
 				way.setSelection(Arrays.binarySearch(ways,medicationItem.getWay()));
 			} catch (Exception e) {}
@@ -74,7 +74,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
     @Click
     public void btOk() {
 		if (isValid()) {
-			Medication med = new Medication(medication.getText().toString(),
+			Medication med = new Medication(name.getText().toString(),
 					way.getSelectedItem().toString(),
 					dose.getText().toString().trim() + " " + doseType.getSelectedItem().toString(), 
 					indication.getText().toString(),
@@ -87,7 +87,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 	}
 
 	private boolean isValid() {
-		return (Validator.validateNotNull(medication, "O medicamento não pode estar em branco") &&
+		return (Validator.validateNotNull(name, "O medicamento não pode estar em branco") &&
                 Validator.validateNotNull(dose, "A dose não pode estar em branco") &&
                 Validator.validateNotNull(indication, "A indicação não pode estar em branco") &&
                 Validator.validateDateFormat(initialDate, "dd/MM/yyyy", "A data inicial está no formato errado") &&

@@ -26,7 +26,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 	Medication medicationItem;
 	
     @ViewById
-    EditText medication;
+    EditText name;
     @ViewById
     Spinner way;
     @ViewById
@@ -51,7 +51,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 		}
     	
     	if (medicationItem != null) {
-    		medication.setText(medicationItem.getName());
+    		name.setText(medicationItem.getName());
     		try {
 				way.setSelection(Arrays.binarySearch(ways,medicationItem.getWay()));
 			} catch (Exception e) {}
@@ -71,7 +71,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
     @Click
     public void btOk() {
 		if (listener != null) {
-			Medication med = new Medication(medication.getText().toString(),
+			Medication med = new Medication(name.getText().toString(),
 					way.getSelectedItem().toString(),
 					dose.getText().toString(), 
 					indication.getText().toString(),

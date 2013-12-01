@@ -44,11 +44,11 @@ public class ViewMedication extends RelativeLayout {
 
 	public void bind(Medication obj) {
 		if (obj != null) {
-			medication.setText(obj.getMedication());
+			medication.setText(obj.getName());
 			way.setText(obj.getWay());
 			dose.setText(obj.getDose());
 			indication.setText(obj.getIndication());
-			date.setText(obj.getInitialDate() + " a " + obj.getFinalDate());
+			date.setText(obj.getStart() + " a " + obj.getEnd());
 		}
 
 	}

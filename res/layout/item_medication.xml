@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <TextView
-        android:id="@+id/medication"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp" />
@@ -11,21 +11,21 @@
         android:id="@+id/way"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/medication"
+        android:layout_toRightOf="@id/name"
         android:padding="3dp" />
 
     <TextView
         android:id="@+id/dose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/medication"
+        android:layout_below="@id/name"
         android:padding="3dp" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/medication"
+        android:layout_below="@id/name"
         android:layout_toRightOf="@id/dose"
         android:padding="3dp" />
 

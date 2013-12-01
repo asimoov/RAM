@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -14,9 +14,11 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:actionBarTabTextStyle">@style/MyActionBarTabTextStyle</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
     </style>
 
     <style name="MyActionBar" parent="android:style/Widget.Holo.ActionBar">
@@ -26,4 +28,14 @@
     <style name="MyActionBarTabTextStyle" parent="android:Widget.Holo.ActionBar.TabText">
         <item name="android:textColor">@android:color/black</item>
     </style>
+
+    <style name="EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:inputType">textCapSentences</item>
+    </style>
+
+    <style name="EditTextStyle.Number">
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:digits">1234567890,</item>
+    </style>
+
 </resources>

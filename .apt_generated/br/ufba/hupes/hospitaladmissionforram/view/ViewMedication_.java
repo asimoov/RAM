@@ -100,8 +100,8 @@ public final class ViewMedication_
         dose = ((TextView) hasViews.findViewById(id.dose));
         way = ((TextView) hasViews.findViewById(id.way));
         name = ((TextView) hasViews.findViewById(id.name));
-        date = ((TextView) hasViews.findViewById(id.date));
         indication = ((TextView) hasViews.findViewById(id.indication));
+        date = ((TextView) hasViews.findViewById(id.date));
         if (hasViews.findViewById(id.bt_delete)!= null) {
             hasViews.findViewById(id.bt_delete).setOnClickListener(new OnClickListener() {
 

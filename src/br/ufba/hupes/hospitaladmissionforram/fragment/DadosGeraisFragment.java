@@ -56,6 +56,9 @@ public class DadosGeraisFragment extends NewResearchFragment {
 
     @AfterViews
     public void init() {
+    	weight.addTextChangedListener(new RealNumberWatcher());
+    	height.addTextChangedListener(new RealNumberWatcher());
+    	
         name.setText(research.getName());
         handbook.setText(research.getHandbook());
         bed.setText(research.getBed());

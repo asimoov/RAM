@@ -60,7 +60,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
     		initialDate.setText(medicationItem.getStart());
     		finalDate.setText(medicationItem.getEnd());
     	}
-    	
+    	dose.addTextChangedListener(new RealNumberWatcher());
     }
 
     @Click

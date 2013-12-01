@@ -141,13 +141,11 @@
 
             <EditText
                 android:id="@+id/height"
+                style="@style/EditTextStyle.Number"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:ems="10"
-                android:focusableInTouchMode="false"
-                android:inputType="number"
-                android:onClick="showHeightPickerDialog"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -164,13 +162,11 @@
 
             <EditText
                 android:id="@+id/weight"
+                style="@style/EditTextStyle.Number"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:ems="10"
-                android:focusableInTouchMode="false"
-                android:inputType="number"
-                android:onClick="showWeightPickerDialog"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -230,8 +226,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:inputType="number"
                 android:ems="10"
+                android:inputType="number"
                 android:singleLine="true" />
         </LinearLayout>
 

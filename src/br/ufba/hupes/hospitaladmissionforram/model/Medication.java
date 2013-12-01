@@ -1,34 +1,35 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Medication implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	String medication;
+	String name;
 	String way;
 	String dose;
 	String indication;
-	String initialDate;
-	String finalDate;
+	Date start;
+	Date end;
 
 	public Medication(String medication, String way, String dose,
-			String indication, String initialDate, String finalDate) {
-		this.medication = medication;
+			String indication, Date initialDate, Date finalDate) {
+		this.name = medication;
 		this.way = way;
 		this.dose = dose;
 		this.indication = indication;
-		this.initialDate = initialDate;
-		this.finalDate = finalDate;
+		this.start = initialDate;
+		this.end = finalDate;
 	}
 
-	public String getMedication() {
-		return medication;
+	public String getName() {
+		return name;
 	}
 
-	public void setMedication(String medication) {
-		this.medication = medication;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getWay() {
@@ -55,20 +56,20 @@ public class Medication implements Serializable {
 		this.indication = indication;
 	}
 
-	public String getInitialDate() {
-		return initialDate;
+	public Date getStart() {
+		return start;
 	}
 
-	public void setInitialDate(String initialDate) {
-		this.initialDate = initialDate;
+	public void setStart(Date start) {
+		this.start = start;
 	}
 
-	public String getFinalDate() {
-		return finalDate;
+	public Date getEnd() {
+		return end;
 	}
 
-	public void setFinalDate(String finalDate) {
-		this.finalDate = finalDate;
+	public void setEnd(Date end) {
+		this.end = end;
 	}
 
 }

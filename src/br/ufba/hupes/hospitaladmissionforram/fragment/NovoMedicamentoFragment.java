@@ -54,14 +54,14 @@ public class NovoMedicamentoFragment extends DialogFragment {
 		}
     	
     	if (medicationItem != null) {
-    		medication.setText(medicationItem.getMedication());
+    		medication.setText(medicationItem.getName());
     		try {
 				way.setSelection(Arrays.binarySearch(ways,medicationItem.getWay()));
 			} catch (Exception e) {}
     		dose.setText(medicationItem.getDose());
     		indication.setText(medicationItem.getIndication());
-    		initialDate.setText(medicationItem.getInitialDate());
-    		finalDate.setText(medicationItem.getFinalDate());
+    		initialDate.setText(medicationItem.getStart());
+    		finalDate.setText(medicationItem.getEnd());
     	}
     	
     }

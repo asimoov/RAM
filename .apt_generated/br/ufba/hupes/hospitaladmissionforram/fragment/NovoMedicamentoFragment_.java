@@ -72,24 +72,13 @@ public final class NovoMedicamentoFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        medication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medication));
-        dose = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose));
-        way = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.way));
-        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
+        doseType = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose_type));
         indication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.indication));
+        way = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.way));
         initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
-        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar)!= null) {
-            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar).setOnClickListener(new OnClickListener() {
-
-
-                @Override
-                public void onClick(View view) {
-                    NovoMedicamentoFragment_.this.btCancelar();
-                }
-
-            }
-            );
-        }
+        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
+        dose = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose));
+        name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
         if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btOk)!= null) {
             hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btOk).setOnClickListener(new OnClickListener() {
 
@@ -121,6 +110,18 @@ public final class NovoMedicamentoFragment_
                 @Override
                 public void onClick(View view) {
                     NovoMedicamentoFragment_.this.finalDate();
+                }
+
+            }
+            );
+        }
+        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar)!= null) {
+            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar).setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    NovoMedicamentoFragment_.this.btCancelar();
                 }
 
             }

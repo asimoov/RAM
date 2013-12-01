@@ -23,7 +23,7 @@ public class Hospital {
 	private String acronym;
 
     @DatabaseField
-	private String county;
+	private String country;
 
     @ForeignCollectionField
     private Collection<Research> researches;
@@ -35,7 +35,7 @@ public class Hospital {
 		super();
 		this.name = name;
 		this.acronym = acronym;
-		this.county = county;
+		this.country = county;
 	}
 
     public Hospital(UUID id) {
@@ -67,11 +67,11 @@ public class Hospital {
 	}
 
 	public String getCounty() {
-		return county;
+		return country;
 	}
 
 	public void setCounty(String county) {
-		this.county = county;
+		this.country = county;
 	}
 
 	public Number getQuantity() {

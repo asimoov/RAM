@@ -1,7 +1,6 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Medication implements Serializable {
 
@@ -11,11 +10,11 @@ public class Medication implements Serializable {
 	String way;
 	String dose;
 	String indication;
-	Date start;
-	Date end;
+	String start;
+	String end;
 
 	public Medication(String medication, String way, String dose,
-			String indication, Date initialDate, Date finalDate) {
+			String indication, String initialDate, String finalDate) {
 		this.name = medication;
 		this.way = way;
 		this.dose = dose;
@@ -56,19 +55,19 @@ public class Medication implements Serializable {
 		this.indication = indication;
 	}
 
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 
-	public Date getEnd() {
+	public String getEnd() {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		this.end = end;
 	}
 

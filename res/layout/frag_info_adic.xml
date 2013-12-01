@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <CheckBox
@@ -18,7 +18,7 @@
             android:id="@+id/chk_med_anterior"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Usou este medicamento anteriormente?" />
+            android:text="Exposição prévia ao medicamento suspeito?" />
 
         <CheckBox
             android:id="@+id/chk_desenv_reacao"
@@ -49,12 +49,13 @@
                 android:text="Quais?" />
 
             <EditText
-                android:id="@+id/reacao_passada"
+                android:id="@+id/edit_reacao_passada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
                 android:singleLine="true" />
         </LinearLayout>
-        
+
         <CheckBox
             android:id="@+id/chk_plantas_med"
             android:layout_width="fill_parent"
@@ -76,12 +77,33 @@
                 android:text="Quais?" />
 
             <EditText
-                android:id="@+id/reacao_passada"
+                android:id="@+id/edit_plantas_med"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
         </LinearLayout>
-        
+
+        <LinearLayout
+            android:id="@+id/view_plantas_med_freq"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Com que frequência?" />
+
+            <EditText
+                android:id="@+id/edit_plantas_med_freq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -93,13 +115,34 @@
                 android:layout_weight="0.6"
                 android:text="Tabagismo (Quantidade)" />
 
-            <EditText
-                android:id="@+id/tabagismo"
+            <Spinner
+                android:id="@+id/spn_tabagismo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:entries="@array/opcoes_tabagismo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_tempo_tabagismo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="Tempo de tabagismo" />
+
+            <Spinner
+                android:id="@+id/spn_tempo_tabagismo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:ems="10"
-                android:singleLine="true" />
+                android:entries="@array/opcoes_tempo" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,13 +156,204 @@
                 android:layout_weight="0.6"
                 android:text="Etilismo (Quantidade)" />
 
-            <EditText
-                android:id="@+id/etilismo"
+            <Spinner
+                android:id="@+id/spn_etilismo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:entries="@array/opcoes_etilismo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_tempo_etilismo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="Tempo de etilismo" />
+
+            <Spinner
+                android:id="@+id/spn_tempo_etilismo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
+                android:entries="@array/opcoes_tempo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uso de drogas ilícitas" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk_crack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Crack" />
+
+                <CheckBox
+                    android:id="@+id/chk_cocaina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Cocaína" />
+
+                <CheckBox
+                    android:id="@+id/chk_maconha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Maconha" />
+
+                <CheckBox
+                    android:id="@+id/chk_lsd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="LSD" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Tratamento: " />
+
+            <Spinner
+                android:id="@+id/spn_tratamento"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:entries="@array/opcoes_tratamento"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Resultado: " />
+
+            <Spinner
+                android:id="@+id/spinner_resultado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:entries="@array/opcoes_resultado"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_data_obito"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="Data do óbito" />
+
+            <EditText
+                android:id="@+id/edit_data_obito"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:onClick="showPickerDialog"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Sequelas (Se houve) " />
+
+            <EditText
+                android:id="@+id/edit_sequelas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
                 android:ems="10"
                 android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Data da Alta" />
+
+            <EditText
+                android:id="@+id/edit_alta_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:onClick="showPickerDialog"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Gravidade: " />
+
+            <Spinner
+                android:id="@+id/spn_gravidade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:entries="@array/opcoes_gravidade"
+                android:spinnerMode="dropdown" />
         </LinearLayout>
     </LinearLayout>
 

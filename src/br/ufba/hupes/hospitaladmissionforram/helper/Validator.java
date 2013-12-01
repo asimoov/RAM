@@ -7,7 +7,6 @@ import android.widget.EditText;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by denis on 13/09/13.
@@ -27,7 +26,7 @@ public class Validator {
                     return true;
                 }
             }
-            // em qualquer outra condição é gerado um erro
+            // em qualquer outra condiÃ§Ã£o e gerado um erro
             edText.setError(pMessage);
             edText.setFocusable(true);
             edText.requestFocus();
@@ -36,7 +35,8 @@ public class Validator {
         return false;
     }
 
-    public static boolean validateDateFormat(View pView, String pDateFormat, String pMessage) {
+    public static boolean validateDateFormat(View pView, String pDateFormat,
+                                             String pMessage) {
         if (pView instanceof EditText) {
             EditText edText = (EditText) pView;
             Editable text = edText.getText();
@@ -54,7 +54,7 @@ public class Validator {
                     }
                 }
             }
-            // em qualquer outra condição é gerado um erro
+            // em qualquer outra condiÃ§Ã£o Ã© gerado um erro
             edText.setError(pMessage);
             edText.setFocusable(true);
             edText.requestFocus();
@@ -62,36 +62,4 @@ public class Validator {
         }
         return false;
     }
-
-	public static boolean validateDateRange(View pInitialDate, View pFinalDate, String pDateFormat, String pMessage) {
-		if (pInitialDate instanceof EditText && pFinalDate instanceof EditText) {
-			EditText edText = (EditText) pInitialDate;
-			EditText edText2 = (EditText) pFinalDate;
-            Editable textIni = edText.getText();
-            Editable textFin = edText2.getText();
-            if (textIni != null && textFin != null) {
-            	String strIniDate = edText.getText().toString();
-            	String strFinDate = edText2.getText().toString();
-		        if (!TextUtils.isEmpty(strIniDate) && !TextUtils.isEmpty(strFinDate)) {
-		            SimpleDateFormat format = new SimpleDateFormat(pDateFormat);
-		            try {
-		            	Date iniDate = format.parse(strIniDate);
-		            	Date finDate = format.parse(strFinDate);
-		                if (!finDate.before(iniDate)) { 
-			            	edText.setError(null);
-			                edText.setFocusable(false);
-			                return true;
-		                }
-		            } catch (ParseException pe) {
-		
-		            }
-		        }
-            }
-	        // em qualquer outra condição é gerado um erro
-	        edText.setError(pMessage);
-	        edText.setFocusable(true);
-	        edText.requestFocus();
-		}
-        return false;
-	}
 }

@@ -1,5 +1,6 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
+
 import java.util.Arrays;
 
 import org.androidannotations.annotations.AfterViews;
@@ -16,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.activity.NewResearch.DatePickerFragment;
-import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
 import br.ufba.hupes.hospitaladmissionforram.model.Medication;
 
 @EFragment(R.layout.table_medications)
@@ -26,14 +26,11 @@ public class NovoMedicamentoFragment extends DialogFragment {
 	Medication medicationItem;
 	
     @ViewById
-    EditText name;
-    
+    EditText medication;
     @ViewById
     Spinner way;
     @ViewById
     EditText dose;
-    @ViewById
-    Spinner doseType;
     @ViewById
     EditText indication;
     @ViewById
@@ -54,7 +51,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
 		}
     	
     	if (medicationItem != null) {
-    		name.setText(medicationItem.getName());
+    		medication.setText(medicationItem.getName());
     		try {
 				way.setSelection(Arrays.binarySearch(ways,medicationItem.getWay()));
 			} catch (Exception e) {}
@@ -73,41 +70,31 @@ public class NovoMedicamentoFragment extends DialogFragment {
 
     @Click
     public void btOk() {
-		if (isValid()) {
-			Medication med = new Medication(name.getText().toString(),
+		if (listener != null) {
+			Medication med = new Medication(medication.getText().toString(),
 					way.getSelectedItem().toString(),
-					dose.getText().toString().trim() + " " + doseType.getSelectedItem().toString(), 
+					dose.getText().toString(), 
 					indication.getText().toString(),
 					initialDate.getText().toString(), 
 					finalDate.getText().toString());
-			if (listener != null)
-				listener.saveMedication(med);
-    		dismiss();
+    		listener.saveMedication(med);
 		}
-	}
-
-	private boolean isValid() {
-		return (Validator.validateNotNull(name, "O medicamento não pode estar em branco") &&
-                Validator.validateNotNull(dose, "A dose não pode estar em branco") &&
-                Validator.validateNotNull(indication, "A indicação não pode estar em branco") &&
-                Validator.validateDateFormat(initialDate, "dd/MM/yyyy", "A data inicial está no formato errado") &&
-                Validator.validateDateFormat(finalDate, "dd/MM/yyyy", "A data final está no formato errado")&&
-                Validator.validateDateRange(initialDate, finalDate, "dd/MM/yyyy", "A data final está no formato errado"));
+    	dismiss();
 	}
 
 	public void setListener(NovoMedicamentoListener listener) {
 		this.listener = listener;
 	}
 
-	@Click
-	void initialDate() {
-		showPickerDialog(initialDate);
-	}
+    @Click
+    void initialDate() {
+        showPickerDialog(initialDate);
+    }
 
-	@Click
-	void finalDate() {
-		showPickerDialog(finalDate);
-	}
+    @Click
+    void finalDate() {
+        showPickerDialog(finalDate);
+    }
 	
     public void showPickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment((TextView) v);

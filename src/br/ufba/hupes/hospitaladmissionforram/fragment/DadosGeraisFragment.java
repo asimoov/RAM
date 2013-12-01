@@ -99,10 +99,10 @@ public class DadosGeraisFragment extends NewResearchFragment {
     public boolean save() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        if (Validator.validateNotNull(name, "O nome n„o pode estar em branco") &&
-                Validator.validateNotNull(handbook, "O prontu√°rio n„o pode estar em branco") &&
-                Validator.validateNotNull(bed, "O leito n„o pode estar em branco") &&
-                Validator.validateNotNull(admission, "O Admiss„o n„o pode estar em branco") &&
+        if (Validator.validateNotNull(name, "O nome nao pode estar em branco") &&
+                Validator.validateNotNull(handbook, "O prontu√°rio nao pode estar em branco") &&
+                Validator.validateNotNull(bed, "O leito nao pode estar em branco") &&
+                Validator.validateNotNull(admission, "O Admissao nao pode estar em branco") &&
                 Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento estar no formato errada")) {
             try {
                 research.setName(name.getText().toString());

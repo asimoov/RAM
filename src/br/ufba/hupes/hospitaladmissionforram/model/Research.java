@@ -1,10 +1,8 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -52,8 +50,12 @@ public class Research {
     private Hospital hospital;
 
     private List<Medication> suspects;
+
     private Cause cause;
-    private List<Comorbidity> comorbidities;
+
+    private Cause comorbidity;
+
+    private List<Medication> medications;
 
     private Integer status;
 
@@ -194,12 +196,12 @@ public class Research {
         this.cause = cause;
     }
 
-    public List<Comorbidity> getComorbidities() {
-        return comorbidities;
+    public Cause getComorbidity() {
+        return comorbidity;
     }
 
-    public void setComorbidities(List<Comorbidity> comorbidities) {
-        this.comorbidities = comorbidities;
+    public void setComorbidity(Cause comorbidity) {
+        this.comorbidity = comorbidity;
     }
 
     public Integer getStatus() {

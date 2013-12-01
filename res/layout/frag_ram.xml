@@ -122,7 +122,7 @@
                 android:text="Comorbidades" />
 
             <EditText
-                android:id="@+id/comorbidities"
+                android:id="@+id/comorbidity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"

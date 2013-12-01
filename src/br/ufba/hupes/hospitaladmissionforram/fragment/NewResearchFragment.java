@@ -16,7 +16,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 /**
  * Created by Leandro on 15/10/13.
  */
-public class NewResearchFragment extends Fragment {
+public abstract class NewResearchFragment extends Fragment {
 
 
     private DatabaseHelper databaseHelper;
@@ -58,9 +58,7 @@ public class NewResearchFragment extends Fragment {
         return null;
     }
 
-    public void save() {
-
-    }
+    public abstract boolean save();
 
     protected DatabaseHelper getHelper() {
         if (this.databaseHelper == null) {

@@ -8,6 +8,8 @@ package br.ufba.hupes.hospitaladmissionforram.view;
 import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R.id;
 import br.ufba.hupes.hospitaladmissionforram.R.layout;
@@ -95,11 +97,23 @@ public final class ViewMedication_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        medication = ((TextView) hasViews.findViewById(id.medication));
-        indication = ((TextView) hasViews.findViewById(id.indication));
-        way = ((TextView) hasViews.findViewById(id.way));
-        date = ((TextView) hasViews.findViewById(id.date));
         dose = ((TextView) hasViews.findViewById(id.dose));
+        way = ((TextView) hasViews.findViewById(id.way));
+        indication = ((TextView) hasViews.findViewById(id.indication));
+        date = ((TextView) hasViews.findViewById(id.date));
+        medication = ((TextView) hasViews.findViewById(id.medication));
+        if (hasViews.findViewById(id.bt_delete)!= null) {
+            hasViews.findViewById(id.bt_delete).setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    ViewMedication_.this.btDelete();
+                }
+
+            }
+            );
+        }
         init();
     }
 

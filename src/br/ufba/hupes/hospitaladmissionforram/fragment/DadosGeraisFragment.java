@@ -96,13 +96,13 @@ public class DadosGeraisFragment extends NewResearchFragment {
         unit.setText(research.getUnit());
     }
 
-    public void save() {
+    public boolean save() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        if (Validator.validateNotNull(name, "O nome n√£o pode estar em branco") &&
-                Validator.validateNotNull(handbook, "O prontu√°rio n√£o pode estar em branco") &&
-                Validator.validateNotNull(bed, "O leito n√£o pode estar em branco") &&
-                Validator.validateNotNull(admission, "O Admiss√£o n√£o pode estar em branco") &&
+        if (Validator.validateNotNull(name, "O nome n„o pode estar em branco") &&
+                Validator.validateNotNull(handbook, "O prontu√°rio n„o pode estar em branco") &&
+                Validator.validateNotNull(bed, "O leito n„o pode estar em branco") &&
+                Validator.validateNotNull(admission, "O Admiss„o n„o pode estar em branco") &&
                 Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento estar no formato errada")) {
             try {
                 research.setName(name.getText().toString());
@@ -137,6 +137,9 @@ public class DadosGeraisFragment extends NewResearchFragment {
             } catch (Exception e) {
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
+        } else {
+        	return false;
         }
+        return true;
     }
 }

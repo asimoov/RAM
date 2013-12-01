@@ -13,6 +13,7 @@ import br.ufba.hupes.hospitaladmissionforram.fragment.NovoMedicamentoFragment.No
 import br.ufba.hupes.hospitaladmissionforram.model.Medication;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
+import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication.Listener;
 
 @EFragment(R.layout.frag_outras_causas)
 public class OutrasCausasFragment extends NewResearchFragment implements NovoMedicamentoListener {
@@ -26,8 +27,8 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 	public void init() {
 	}
 
-	public void save() {
-
+	public boolean save() {
+		return true;
 	}
 
 	@Click
@@ -41,7 +42,20 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 	@Override
 	public void saveMedication(Medication med) {
 		ViewMedication view = ViewMedication_.build(getActivity());
-		view.bind(med);
+		view.bind(med, new Listener() {
+			
+			@Override
+			public void onUpdate(int position) {
+				
+			}
+			
+			@Override
+			public void onDelete(int position) {
+				medicationList.remove(position);
+				medications.removeViewAt(position);
+			}
+		});
+		view.setTag(medicationList.size()); //Guarda a posicao da view
 		medications.addView(view);
 		medicationList.add(med);
 	}

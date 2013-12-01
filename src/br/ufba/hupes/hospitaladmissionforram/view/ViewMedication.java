@@ -1,6 +1,7 @@
 package br.ufba.hupes.hospitaladmissionforram.view;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
@@ -24,6 +25,8 @@ public class ViewMedication extends RelativeLayout {
 	TextView indication;
 	@ViewById
 	TextView date;
+	
+	private Listener listener;
 
 	public ViewMedication(Context context) {
 		super(context);
@@ -50,6 +53,23 @@ public class ViewMedication extends RelativeLayout {
 			indication.setText(obj.getIndication());
 			date.setText(obj.getInitialDate() + " a " + obj.getFinalDate());
 		}
+	}
+	
+	public void bind(Medication obj, Listener listener) {
+		this.listener = listener;
+		bind(obj);
+	}
 
+	@Click
+	public void btDelete() {
+		int position = (Integer) getTag();
+		if (listener != null) {
+			listener.onDelete(position);
+		}
+	}
+	
+	public interface Listener {
+		void onUpdate(int position);
+		void onDelete(int position);
 	}
 }

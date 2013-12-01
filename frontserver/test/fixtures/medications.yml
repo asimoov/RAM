@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  way: 
+  dose: 
+  indication: 
+  start: 
+  end: 
+
+two:
+  name: 
+  way: 
+  dose: 
+  indication: 
+  start: 
+  end: 

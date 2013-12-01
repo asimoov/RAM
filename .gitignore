@@ -3,3 +3,6 @@ gen/
 .idea/
 out/
 generated/
+frontserver/tmp
+frontserver/log
+frontserver/db/development.sqlite3

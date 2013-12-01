@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  handbook: MyString
+  name: MyString
+  cns: MyString
+  sex: MyString
+  weight: 1.5
+  height: 1.5
+  color: MyString
+  unit: MyString
+  bed: 1
+  admission: 2013-12-01
+  hospital_id: 
+  cause_id: 
+
+two:
+  handbook: MyString
+  name: MyString
+  cns: MyString
+  sex: MyString
+  weight: 1.5
+  height: 1.5
+  color: MyString
+  unit: MyString
+  bed: 1
+  admission: 2013-12-01
+  hospital_id: 
+  cause_id: 

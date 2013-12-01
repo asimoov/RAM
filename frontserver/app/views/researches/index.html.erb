@@ -1,0 +1,49 @@
+<h1>Listing researches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Handbook</th>
+      <th>Name</th>
+      <th>Cns</th>
+      <th>Sex</th>
+      <th>Weight</th>
+      <th>Height</th>
+      <th>Color</th>
+      <th>Unit</th>
+      <th>Bed</th>
+      <th>Admission</th>
+      <th>Hospital</th>
+      <th>Cause</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @researches.each do |research| %>
+      <tr>
+        <td><%= research.handbook %></td>
+        <td><%= research.name %></td>
+        <td><%= research.cns %></td>
+        <td><%= research.sex %></td>
+        <td><%= research.weight %></td>
+        <td><%= research.height %></td>
+        <td><%= research.color %></td>
+        <td><%= research.unit %></td>
+        <td><%= research.bed %></td>
+        <td><%= research.admission %></td>
+        <td><%= research.hospital %></td>
+        <td><%= research.cause %></td>
+        <td><%= link_to 'Show', research %></td>
+        <td><%= link_to 'Edit', edit_research_path(research) %></td>
+        <td><%= link_to 'Destroy', research, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Research', new_research_path %>

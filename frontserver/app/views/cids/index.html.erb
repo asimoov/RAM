@@ -1,0 +1,29 @@
+<h1>Listing cids</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cids.each do |cid| %>
+      <tr>
+        <td><%= cid.code %></td>
+        <td><%= cid.description %></td>
+        <td><%= link_to 'Show', cid %></td>
+        <td><%= link_to 'Edit', edit_cid_path(cid) %></td>
+        <td><%= link_to 'Destroy', cid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cid', new_cid_path %>

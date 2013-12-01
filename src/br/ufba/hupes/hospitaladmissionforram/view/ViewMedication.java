@@ -16,7 +16,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Medication;
 public class ViewMedication extends RelativeLayout {
 
 	@ViewById
-	TextView medication;
+	TextView name;
 	@ViewById
 	TextView way;
 	@ViewById
@@ -47,7 +47,7 @@ public class ViewMedication extends RelativeLayout {
 
 	public void bind(Medication obj) {
 		if (obj != null) {
-			medication.setText(obj.getName());
+			name.setText(obj.getName());
 			way.setText(obj.getWay());
 			dose.setText(obj.getDose());
 			indication.setText(obj.getIndication());

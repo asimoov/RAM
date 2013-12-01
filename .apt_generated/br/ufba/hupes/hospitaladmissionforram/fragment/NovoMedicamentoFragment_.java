@@ -72,13 +72,25 @@ public final class NovoMedicamentoFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        doseType = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose_type));
-        indication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.indication));
-        way = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.way));
-        initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
-        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
         dose = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose));
+        initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
+        doseType = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.dose_type));
+        way = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.way));
         name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
+        indication = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.indication));
+        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
+        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar)!= null) {
+            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar).setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    NovoMedicamentoFragment_.this.btCancelar();
+                }
+
+            }
+            );
+        }
         if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btOk)!= null) {
             hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btOk).setOnClickListener(new OnClickListener() {
 
@@ -86,18 +98,6 @@ public final class NovoMedicamentoFragment_
                 @Override
                 public void onClick(View view) {
                     NovoMedicamentoFragment_.this.btOk();
-                }
-
-            }
-            );
-        }
-        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date)!= null) {
-            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date).setOnClickListener(new OnClickListener() {
-
-
-                @Override
-                public void onClick(View view) {
-                    NovoMedicamentoFragment_.this.initialDate();
                 }
 
             }
@@ -115,13 +115,13 @@ public final class NovoMedicamentoFragment_
             }
             );
         }
-        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar)!= null) {
-            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.btCancelar).setOnClickListener(new OnClickListener() {
+        if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date)!= null) {
+            hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date).setOnClickListener(new OnClickListener() {
 
 
                 @Override
                 public void onClick(View view) {
-                    NovoMedicamentoFragment_.this.btCancelar();
+                    NovoMedicamentoFragment_.this.initialDate();
                 }
 
             }

@@ -51,8 +51,8 @@ public class Research {
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Hospital hospital;
 
-    private List<Suspect> suspects;
-    private List<Cause> causes;
+    private List<Medication> suspects;
+    private Cause cause;
     private List<Comorbidity> comorbidities;
 
     private Integer status;
@@ -178,20 +178,20 @@ public class Research {
         this.hospital = hospital;
     }
 
-    public List<Suspect> getSuspects() {
+    public List<Medication> getSuspects() {
         return suspects;
     }
 
-    public void setSuspects(List<Suspect> suspects) {
+    public void setSuspects(List<Medication> suspects) {
         this.suspects = suspects;
     }
 
-    public List<Cause> getCauses() {
-        return causes;
+    public Cause getCause() {
+        return cause;
     }
 
-    public void setCauses(List<Cause> causes) {
-        this.causes = causes;
+    public void setCause(Cause cause) {
+        this.cause = cause;
     }
 
     public List<Comorbidity> getComorbidities() {

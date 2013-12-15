@@ -55,6 +55,8 @@ public class Research {
 
     private Cause comorbidity;
 
+    private List<Medication> rams;
+
     private List<Medication> medications;
 
     private Integer status;

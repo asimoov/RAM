@@ -65,10 +65,10 @@ public final class RAMFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
-        comorbidity = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
-        cause = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
         otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
+        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
+        cause = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
+        comorbidity = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
         if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication)!= null) {
             hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication).setOnClickListener(new OnClickListener() {
 

@@ -124,19 +124,6 @@ public class DadosGeraisFragment extends NewResearchFragment {
                 } else {
                     research.setSex("Masculino");
                 }
-
-                if(research.isOpen()) {
-                    research.setStatus(Status.OPEN.ordinal());
-
-                    research.setUpdateAt(new Date());
-                    Dao dao = getHelper().getDao(Research.class);
-                    dao.createOrUpdate(research);
-
-                    getActivity().setResult(Activity.RESULT_OK);
-                    Toast.makeText(getActivity(), "Salvo", Toast.LENGTH_SHORT).show();
-                } else {
-                    research.setStatus(Status.CLOSE.ordinal());
-                }
             } catch (Exception e) {
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }

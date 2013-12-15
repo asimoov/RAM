@@ -28,6 +28,7 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 	}
 
 	public boolean save() {
+		research.setMedications(medicationList);
 		return true;
 	}
 

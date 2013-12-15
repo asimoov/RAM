@@ -141,16 +141,36 @@ public class NewResearch extends FragmentActivity {
                 weight.setText(np.getValue() + "");
             }
         });
-
         alert.show();
     }
 
     public void save() {
         Fragment[] fragments = pagerAdapter.getFragments();
-        for (Fragment fragment : fragments) {
-            try {
-                ((NewResearchFragment) fragment).save();
-            } catch (Exception ex) {}
+        boolean readyToSave = true;
+        NewResearchFragment researchFragment = null;
+        int i;
+        for (i = 0; i < fragments.length; i++) {
+		   try {
+            	if (readyToSave) {
+					researchFragment = (NewResearchFragment) fragments[i];
+					readyToSave = researchFragment.save();
+				} else break;
+            } catch (Exception ex) {
+            	ex.printStackTrace();
+            	readyToSave = false;
+            }
+        }
+		
+        if (readyToSave) {
+        	//TODO salvar research
+        	try {
+				researchFragment.saveResearchOnDatabase();
+				finish();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        } else {
+        	pager.setCurrentItem(i-1);
         }
     }
 

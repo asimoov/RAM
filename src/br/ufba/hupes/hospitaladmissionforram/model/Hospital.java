@@ -1,14 +1,11 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DataType;
+import java.util.Collection;
+import java.util.UUID;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
 
 @DatabaseTable(tableName = "hospital")
 public class Hospital {
@@ -25,7 +22,7 @@ public class Hospital {
     @DatabaseField
 	private String country;
 
-    @ForeignCollectionField
+    @ForeignCollectionField(eager=true)
     private Collection<Research> researches;
 
 	public Hospital() {

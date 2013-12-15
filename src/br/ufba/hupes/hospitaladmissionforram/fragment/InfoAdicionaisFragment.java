@@ -12,10 +12,14 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R;
 
 @EFragment(R.layout.frag_info_adic)
 public class InfoAdicionaisFragment extends NewResearchFragment {
+
+	@ViewById
+	CheckBox chkAnotherLocation;
 
 	@ViewById(R.id.chk_med_anterior)
 	CheckBox checkMedAnterior;
@@ -57,9 +61,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	View viewDataObito;
 
 	@ViewById
-	CheckBox check1;
-
-	@ViewById
 	EditText editReacaoPassada;
 
 	@ViewById
@@ -88,6 +89,9 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 
 	@ViewById
 	Spinner spnGravidade;
+	
+	@ViewById
+	TextView editDataAlta;
 
     @AfterViews
     public void init() {
@@ -150,11 +154,36 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-
     }
     
     @Override
     public boolean save() {
+    	research.setAnotherLocation(chkAnotherLocation.isChecked());
+    	research.setExposicaoPrevia(checkMedAnterior.isChecked());
+    	research.setDesenvolveuReacao(checkMedAnterior.isChecked() && checkReacao.isChecked());
+    	research.setReacoesAdversas(editReacaoPassada.getText().toString());
+    	research.setPlantasMedicinais(editPlantasMed.getText().toString());
+    	research.setFreqPlantasMedicinais(editPlantasMedFreq.getText().toString());
+
+    	if (spnTabagismo.getSelectedItemPosition() > 0) {
+    		research.setTabagismo(spnTabagismo.getSelectedItem().toString());
+    		research.setTempoTabagismo(spnTempoTabagismo.getSelectedItem().toString());
+		}
+
+    	if (spnEtilismo.getSelectedItemPosition() > 0) {
+    		research.setEtilismo(spnEtilismo.getSelectedItem().toString());
+    		research.setTempoEtilismo(spnTempoEtilismo.getSelectedItem().toString());
+		}
+    	
+    	research.setUsaCrack(chkCrack.isChecked());
+    	research.setUsaCocaina(chkCocaina.isChecked());
+    	research.setUsaMaconha(chkMaconha.isChecked());
+    	research.setUsaLSD(chkLsd.isChecked());
+    	
+    	research.setSequels(editSequelas.getText().toString());
+    	research.setResult(spinnerResultado.getSelectedItem().toString());
+    	research.setDischargeDate(editDataAlta.getText().toString());
+    	research.setGravity(spnGravidade.getSelectedItem().toString());
     	return true;
     }
 }

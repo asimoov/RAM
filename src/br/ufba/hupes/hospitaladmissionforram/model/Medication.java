@@ -1,18 +1,43 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "medication")
 public class Medication implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+    @DatabaseField(id = true)
+    private UUID id = UUID.randomUUID();
+
+	@DatabaseField
 	String name;
+	
+	@DatabaseField
 	String way;
+	
+	@DatabaseField
 	String dose;
+	
+	@DatabaseField
 	String indication;
+	
+	@DatabaseField
 	String start;
+	
+	@DatabaseField
 	String end;
 
+	@DatabaseField(foreign = true, foreignAutoRefresh = true)
+	private Research research;
+	
+	public Medication() {
+	}
+	
 	public Medication(String medication, String way, String dose,
 			String indication, String initialDate, String finalDate) {
 		this.name = medication;

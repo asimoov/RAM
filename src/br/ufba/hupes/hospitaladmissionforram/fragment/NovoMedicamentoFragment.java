@@ -1,6 +1,5 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
-
 import java.util.Arrays;
 
 import org.androidannotations.annotations.AfterViews;

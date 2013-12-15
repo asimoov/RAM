@@ -9,7 +9,7 @@
         android:orientation="vertical" >
 
         <CheckBox
-            android:id="@+id/check1"
+            android:id="@+id/chk_another_location"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Foi atendido em outro local no início dos sintomas" />
@@ -326,7 +326,7 @@
                 android:text="Data da Alta" />
 
             <EditText
-                android:id="@+id/edit_alta_date"
+                android:id="@+id/edit_data_alta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"

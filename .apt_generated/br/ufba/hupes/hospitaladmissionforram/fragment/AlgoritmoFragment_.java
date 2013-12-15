@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import br.ufba.hupes.hospitaladmissionforram.R.layout;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedListener;
@@ -62,6 +63,10 @@ public final class AlgoritmoFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
+        algUe = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_ue));
+        algOms = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_oms));
+        algRucam = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_rucam));
+        algNaranjo = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_naranjo));
         init();
     }
 

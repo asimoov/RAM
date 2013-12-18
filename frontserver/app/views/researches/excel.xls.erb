@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Handbook</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Cns</Data></Cell>
+        <Cell><Data ss:Type="String">Sex</Data></Cell>
+        <Cell><Data ss:Type="String">Weight</Data></Cell>
+        <Cell><Data ss:Type="String">Height</Data></Cell>
+        <Cell><Data ss:Type="String">Color</Data></Cell>
+        <Cell><Data ss:Type="String">Unit</Data></Cell>
+        <Cell><Data ss:Type="String">Bed</Data></Cell>
+        <Cell><Data ss:Type="String">Admission</Data></Cell>
+        <Cell><Data ss:Type="String">Hospital</Data></Cell>
+        <Cell><Data ss:Type="String">Cause</Data></Cell>
+      </Row>
+    <% @researches.each do |research| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= research.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= research.handbook %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= research.cns %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.sex %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.weight %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.height %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.color %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.unit %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.bed %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.admission %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.hospital %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= research.cause %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

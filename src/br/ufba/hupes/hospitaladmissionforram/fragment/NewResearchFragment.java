@@ -17,6 +17,7 @@ import java.util.UUID;
 
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
+import br.ufba.hupes.hospitaladmissionforram.model.RAM;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 import br.ufba.hupes.hospitaladmissionforram.model.Status;
 
@@ -28,7 +29,7 @@ public abstract class NewResearchFragment extends Fragment {
     private DatabaseHelper databaseHelper;
 
     static Research research;
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +83,19 @@ public abstract class NewResearchFragment extends Fragment {
             research.setUpdateAt(new Date());
             Dao<Research, UUID> dao = getHelper().getDao(Research.class);
             dao.createOrUpdate(research);
+            saveRAMOnDatabase(research);
 
             getActivity().setResult(Activity.RESULT_OK);
             Toast.makeText(getActivity(), "Salvo", Toast.LENGTH_SHORT).show();
         } else {
             research.setStatus(Status.CLOSE.ordinal());
         }
-    	Gson gb = new GsonBuilder().serializeNulls().create();
-    	Log.i("JSON", gb.toJson(research));
     	research = null;
+	}
+
+	private void saveRAMOnDatabase(Research research2) throws SQLException {
+		RAM ram = research.getRam();
+		Dao<RAM, UUID> dao = getHelper().getDao(RAM.class);
+		dao.createOrUpdate(ram);
 	}
 }

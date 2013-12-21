@@ -1,8 +1,9 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -12,25 +13,32 @@ public class RAM {
 	@DatabaseField(id = true)
 	private UUID id = UUID.randomUUID();
 
-	@DatabaseField(foreign=true)
+	@DatabaseField(dataType=DataType.SERIALIZABLE)
     private Cause cause;
 	
-	@DatabaseField(foreign=true)
+	@DatabaseField(dataType=DataType.SERIALIZABLE)
     private Cause comorbidity;
-	
+
 	@DatabaseField
     private String otherCauses;
+
+	@DatabaseField
+    private String initialDate;
+
+	@DatabaseField
+    private String finalDate;
 	
 	@DatabaseField(foreign=true)
 	private Research research;
-	
-    private List<Medication> suspects;
+
+	@DatabaseField(dataType=DataType.SERIALIZABLE)
+    private ArrayList<Medication> suspects;
     
-    public List<Medication> getSuspects() {
+    public ArrayList<Medication> getSuspects() {
         return suspects;
     }
 
-    public void setSuspects(List<Medication> suspects) {
+    public void setSuspects(ArrayList<Medication> suspects) {
         this.suspects = suspects;
     }
 
@@ -64,5 +72,21 @@ public class RAM {
 
 	public void setResearch(Research research) {
 		this.research = research;
+	}
+
+	public String getFinalDate() {
+		return finalDate;
+	}
+
+	public void setFinalDate(String finalDate) {
+		this.finalDate = finalDate;
+	}
+
+	public String getInitialDate() {
+		return initialDate;
+	}
+
+	public void setInitialDate(String initialDate) {
+		this.initialDate = initialDate;
 	}
 }

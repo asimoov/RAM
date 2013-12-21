@@ -31,8 +31,14 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 
 	@ViewById
 	EditText otherCauses;
+
+    @ViewById
+    EditText initialDate;
+    
+    @ViewById
+    EditText finalDate;
 	
-	ArrayList<Medication> medicationList = new ArrayList<Medication>();
+    ArrayList<Medication> medicationList = new ArrayList<Medication>();
 	
     @AfterViews
     public void init() {
@@ -41,6 +47,13 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 			cause.setText(ram.getCause().getDisease());
 			otherCauses.setText(ram.getOtherCauses());
 			comorbidity.setText(ram.getComorbidity().getDisease());
+			initialDate.setText(ram.getInitialDate());
+			finalDate.setText(ram.getFinalDate());
+			ArrayList<Medication> suspects = ram.getSuspects();
+			if (suspects != null) {
+				medicationList = suspects;
+				showMedications();
+			}
     	}
     }
 
@@ -51,8 +64,12 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     	ram.setComorbidity(new Cause(comorbidity.getText().toString(), null));
     	ram.setOtherCauses(otherCauses.getText().toString());
     	ram.setCause(new Cause(cause.getText().toString(), null));
+    	ram.setSuspects(medicationList);
+    	ram.setInitialDate(initialDate.getText().toString());
+    	ram.setFinalDate(finalDate.getText().toString());
     	
     	research.setRam(ram);
+    	ram.setResearch(research);
     	
     	return true;
     }
@@ -70,5 +87,13 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 		view.bind(med);
 		medications.addView(view);
 		medicationList.add(med);
+	}
+
+	public void showMedications(){
+		for (Medication med : medicationList) {
+			ViewMedication view = ViewMedication_.build(getActivity());
+			view.bind(med);
+			medications.addView(view);
+		}
 	}
 }

@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import br.ufba.hupes.hospitaladmissionforram.fragment.AlgoritmoFragment_;
-import br.ufba.hupes.hospitaladmissionforram.fragment.DadosGeraisFragment;
 import br.ufba.hupes.hospitaladmissionforram.fragment.DadosGeraisFragment_;
 import br.ufba.hupes.hospitaladmissionforram.fragment.InfoAdicionaisFragment_;
 import br.ufba.hupes.hospitaladmissionforram.fragment.OutrasCausasFragment_;
@@ -55,6 +54,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     }
 
     public Fragment[] getFragments() {
-        return fragments;
+    	return fragments;
     }
 }

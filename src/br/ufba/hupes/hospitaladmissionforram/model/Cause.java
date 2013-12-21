@@ -1,27 +1,17 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import java.util.UUID;
-
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import java.io.Serializable;
 
 /**
  * Created by denis on 03/09/13.
  */
 
-@DatabaseTable
-public class Cause {
+public class Cause implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-	@DatabaseField(id = true)
-	private UUID id = UUID.randomUUID();
-
-    @DatabaseField
 	private String disease;
 
     private Cid cid;
-
-    @DatabaseField(foreign = true)
-    private RAM ram;
 
     public Cause() {
     }

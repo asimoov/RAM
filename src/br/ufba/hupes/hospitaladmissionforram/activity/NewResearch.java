@@ -37,6 +37,8 @@ public class NewResearch extends FragmentActivity {
 	private ViewPager pager;
     private PagerAdapter pagerAdapter;
 
+    private boolean isNewResearch;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class NewResearch extends FragmentActivity {
     private void edit() {
         this.setContentView(R.layout.form_research);
         this.createTab();
+        isNewResearch = getIntent().getStringExtra("RESEARCH_ID") == null;
 //        this.load();
     }
 
@@ -152,8 +155,10 @@ public class NewResearch extends FragmentActivity {
         for (i = 0; i < fragments.length; i++) {
 		   try {
             	if (readyToSave) {
-					researchFragment = (NewResearchFragment) fragments[i];
-					readyToSave = researchFragment.save();
+            		if (fragments[i] != null || isNewResearch) { 
+	            		researchFragment = (NewResearchFragment) fragments[i];
+						readyToSave = researchFragment.save();
+            		}
 				} else break;
             } catch (Exception ex) {
             	ex.printStackTrace();
@@ -214,5 +219,22 @@ public class NewResearch extends FragmentActivity {
             // Do something with the date chosen by the user
             this.view.setText(day + "/" + (month + 1) + "/" + year);
         }
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Deseja sair? Você perderá todos os dados não salvos");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            	NewResearch.super.onBackPressed();
+            }
+        });
+        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            	dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }

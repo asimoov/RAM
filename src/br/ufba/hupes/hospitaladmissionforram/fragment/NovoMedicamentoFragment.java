@@ -46,6 +46,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
     public void init() {
     	try {
 			getDialog().setTitle("Adicionar Medicamento");
+			getDialog().setCanceledOnTouchOutside(false);
 		} catch (Exception e) {
 		}
     	

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "research")
@@ -54,10 +52,7 @@ public class Research {
 	@DatabaseField(foreign=true, foreignAutoRefresh = true)
 	private RAM ram;
 
-	private ArrayList<Medication> listMedications;
-	
-	@ForeignCollectionField(eager=true)
-	private ForeignCollection<Medication> medications;
+	private ArrayList<Medication> medications;
 
 	@DatabaseField
 	private Integer status;
@@ -279,11 +274,11 @@ public class Research {
 	}
 
 	public ArrayList<Medication> getMedications() {
-		return listMedications;
+		return medications;
 	}
 
 	public void setMedications(ArrayList<Medication> medications) {
-		this.listMedications = medications;
+		this.medications = medications;
 	}
 
 	public RAM getRam() {

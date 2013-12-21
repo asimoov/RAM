@@ -29,7 +29,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
 
-    private static final Class[] ClASSES = {Hospital.class, Research.class, Medication.class, RAM.class, Cause.class};
+    private static final Class[] ClASSES = {Hospital.class, Research.class, RAM.class};
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

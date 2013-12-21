@@ -66,34 +66,34 @@ public final class InfoAdicionaisFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        editDataObito = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_data_obito));
-        viewPlantasMedFreq = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_plantas_med_freq));
-        editSequelas = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_sequelas));
-        viewTempoEtilismo = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_tempo_etilismo));
-        chkLsd = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_lsd));
-        editReacaoPassada = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_reacao_passada));
-        viewReacaoPassada = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_reacao_passada));
-        viewDataObito = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_data_obito));
-        chkMaconha = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_maconha));
-        checkReacaoPassada = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_reacao_passada));
-        viewTempoTabagismo = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_tempo_tabagismo));
-        editPlantasMed = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_plantas_med));
-        spnTempoEtilismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tempo_etilismo));
-        spnTratamento = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tratamento));
-        checkMedAnterior = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_med_anterior));
         spnTabagismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tabagismo));
-        editDataAlta = ((TextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_data_alta));
-        checkReacao = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_desenv_reacao));
-        spnTempoTabagismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tempo_tabagismo));
-        spnEtilismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_etilismo));
-        checkPlantasMed = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_plantas_med));
-        spinnerResultado = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spinner_resultado));
         viewPlantasMed = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_plantas_med));
-        chkCrack = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_crack));
-        spnGravidade = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_gravidade));
         editPlantasMedFreq = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_plantas_med_freq));
-        chkAnotherLocation = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_another_location));
+        chkLsd = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_lsd));
+        editPlantasMed = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_plantas_med));
+        editReacaoPassada = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_reacao_passada));
+        spinnerResultado = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spinner_resultado));
+        checkPlantasMed = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_plantas_med));
+        checkReacao = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_desenv_reacao));
         chkCocaina = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_cocaina));
+        spnTratamento = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tratamento));
+        chkCrack = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_crack));
+        spnTempoTabagismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tempo_tabagismo));
+        spnGravidade = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_gravidade));
+        editSequelas = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_sequelas));
+        editDataObito = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_data_obito));
+        chkMaconha = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_maconha));
+        viewTempoEtilismo = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_tempo_etilismo));
+        checkReacaoPassada = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_reacao_passada));
+        spnEtilismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_etilismo));
+        spnTempoEtilismo = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.spn_tempo_etilismo));
+        editDataAlta = ((TextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.edit_data_alta));
+        checkMedAnterior = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_med_anterior));
+        viewPlantasMedFreq = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_plantas_med_freq));
+        viewDataObito = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_data_obito));
+        viewTempoTabagismo = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_tempo_tabagismo));
+        viewReacaoPassada = ((View) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.view_reacao_passada));
+        chkAnotherLocation = ((CheckBox) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.chk_another_location));
         init();
     }
 

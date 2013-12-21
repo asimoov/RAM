@@ -1,5 +1,7 @@
 class HospitalsController < ApplicationController
   before_action :set_hospital, only: [:show, :edit, :update, :destroy]
+  before_action :load_hospital, only: :create
+  load_and_authorize_resource
 
   # GET /hospitals
   # GET /hospitals.json
@@ -24,8 +26,6 @@ class HospitalsController < ApplicationController
   # POST /hospitals
   # POST /hospitals.json
   def create
-    @hospital = Hospital.new(hospital_params)
-
     respond_to do |format|
       if @hospital.save
         format.html { redirect_to @hospital, notice: 'Hospital was successfully created.' }
@@ -67,6 +67,10 @@ class HospitalsController < ApplicationController
       @hospital = Hospital.find(params[:id])
     end
 
+    def load_hospital
+      @hospital = Hospital.new(hospital_params)
+    end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def hospital_params
       params.require(:hospital).permit(:name, :acronym, :country)

@@ -1,5 +1,7 @@
 class ResearchesController < ApplicationController
   before_action :set_research, only: [:show, :edit, :update, :destroy]
+  before_action :load_research, only: :create
+  load_and_authorize_resource
 
   # GET /researches
   # GET /researches.json
@@ -24,8 +26,6 @@ class ResearchesController < ApplicationController
   # POST /researches
   # POST /researches.json
   def create
-    @research = Research.new(research_params)
-
     respond_to do |format|
       if @research.save
         format.html { redirect_to @research, notice: 'Research was successfully created.' }
@@ -72,6 +72,10 @@ class ResearchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_research
       @research = Research.find(params[:id])
+    end
+
+    def load_research
+      @research = Research.new(research_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

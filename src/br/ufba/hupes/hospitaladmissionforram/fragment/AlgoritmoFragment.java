@@ -24,7 +24,10 @@ public class AlgoritmoFragment extends NewResearchFragment {
 
 	@AfterViews
 	public void init() {
-
+		algNaranjo.setText(research.getAlgNaranjo());
+		algOms.setText(research.getAlgOMS());
+		algRucam.setText(research.getAlgRUCAM());
+		algUe.setText(research.getAlgUE());
 	}
 
 	public boolean save() {

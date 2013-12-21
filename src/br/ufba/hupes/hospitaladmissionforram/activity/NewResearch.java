@@ -42,14 +42,11 @@ public class NewResearch extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.edit();
-    }
 
-    private void edit() {
+        NewResearchFragment.resetResearch();
         this.setContentView(R.layout.form_research);
         this.createTab();
         isNewResearch = getIntent().getStringExtra("RESEARCH_ID") == null;
-//        this.load();
     }
 
     private void createTab() {
@@ -155,7 +152,7 @@ public class NewResearch extends FragmentActivity {
         for (i = 0; i < fragments.length; i++) {
 		   try {
             	if (readyToSave) {
-            		if (fragments[i] != null || isNewResearch) { 
+            		if (fragments[i] != null || isNewResearch) {
 	            		researchFragment = (NewResearchFragment) fragments[i];
 						readyToSave = researchFragment.save();
             		}

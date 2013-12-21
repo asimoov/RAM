@@ -65,12 +65,12 @@ public final class RAMFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
-        comorbidity = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
-        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
-        otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
         initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
+        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
+        comorbidity = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
         cause = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
+        otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
+        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
         if (hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication)!= null) {
             hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication).setOnClickListener(new OnClickListener() {
 

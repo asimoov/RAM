@@ -1,25 +1,21 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
-
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.UUID;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.widget.Toast;
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.RAM;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 import br.ufba.hupes.hospitaladmissionforram.model.Status;
+
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 /**
  * Created by Leandro on 15/10/13.
@@ -29,8 +25,12 @@ public abstract class NewResearchFragment extends Fragment {
     private DatabaseHelper databaseHelper;
 
     static Research research;
+
+	public static void resetResearch() {
+		research = null;
+	}
     
-    @Override
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {

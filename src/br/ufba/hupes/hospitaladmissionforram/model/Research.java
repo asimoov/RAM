@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -52,6 +53,7 @@ public class Research {
 	@DatabaseField(foreign=true, foreignAutoRefresh = true)
 	private RAM ram;
 
+	@DatabaseField(dataType=DataType.SERIALIZABLE)
 	private ArrayList<Medication> medications;
 
 	@DatabaseField
@@ -101,9 +103,12 @@ public class Research {
 	
 	@DatabaseField
 	private String treatment;
-	
+
 	@DatabaseField
 	private String result;
+
+	@DatabaseField
+	private String deathDate;
 	
 	@DatabaseField
 	private String sequels;
@@ -471,5 +476,13 @@ public class Research {
 
 	public void setAlgRUCAM(String alguRUCAM) {
 		this.algRUCAM = alguRUCAM;
+	}
+
+	public String getDeathDate() {
+		return deathDate;
+	}
+
+	public void setDeathDate(String deathDate) {
+		this.deathDate = deathDate;
 	}
 }

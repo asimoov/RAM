@@ -1,8 +1,11 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
+import java.util.Arrays;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringArrayRes;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -93,6 +96,19 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	@ViewById
 	TextView editDataAlta;
 
+    @StringArrayRes(R.array.opcoes_tabagismo)
+    String[] arrayTabagismo;
+    @StringArrayRes(R.array.opcoes_etilismo)
+    String[] arrayEtilismo;
+    @StringArrayRes(R.array.opcoes_gravidade)
+    String[] arrayGravidade;
+    @StringArrayRes(R.array.opcoes_resultado)
+    String[] arrayResultado;
+    @StringArrayRes(R.array.opcoes_tempo)
+    String[] arrayTempo;
+    @StringArrayRes(R.array.opcoes_tratamento)
+    String[] arrayTratamento;
+	
     @AfterViews
     public void init() {
     	checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -154,9 +170,59 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+    	
+    	fillViews();
     }
     
-    @Override
+    private void fillViews() {
+    	chkAnotherLocation.setChecked(research.isAnotherLocation());
+    	checkMedAnterior.setChecked(research.isExposicaoPrevia());
+    	checkReacao.setChecked(research.isDesenvolveuReacao());
+    	editReacaoPassada.setText(research.getReacoesAdversas());
+    	checkReacaoPassada.setChecked(editReacaoPassada.length() > 0);
+    	
+    	editPlantasMed.setText(research.getPlantasMedicinais());
+    	if (editPlantasMed.length() > 0) {
+			checkPlantasMed.setChecked(true);
+			editPlantasMedFreq.setText(research.getFreqPlantasMedicinais());
+    	}
+
+    	String s;
+    	s = research.getTabagismo();
+    	if (s != null && s.length() > 0) {
+    		spnTabagismo.setSelection(Arrays.asList(arrayTabagismo).indexOf(s));
+    		spnTempoTabagismo.setSelection(Arrays.asList(arrayTempo).indexOf(research.getTempoTabagismo()));
+		}
+
+    	s = research.getEtilismo();
+    	if (s != null && s.length() > 0) {
+    		spnEtilismo.setSelection(Arrays.asList(arrayEtilismo).indexOf(s));
+    		spnTempoEtilismo.setSelection(Arrays.asList(arrayTempo).indexOf(research.getTempoEtilismo()));
+		}
+    	
+    	chkCrack.setChecked(research.isUsaCrack());
+    	chkCocaina.setChecked(research.isUsaCocaina());
+    	chkMaconha.setChecked(research.isUsaMaconha());
+    	chkLsd.setChecked(research.isUsaLSD());
+    	
+		s = research.getTreatment();
+		if (s != null && s.length() > 0) {
+			spnTratamento.setSelection(Arrays.asList(arrayTratamento).indexOf(s));
+		}
+		s = research.getResult();
+		if (s != null && s.length() > 0) {
+			spinnerResultado.setSelection(Arrays.asList(arrayResultado).indexOf(s));
+		}
+		s = research.getGravity();
+		if (s != null && s.length() > 0) {
+			spnGravidade.setSelection(Arrays.asList(arrayGravidade).indexOf(s));
+		}
+		editSequelas.setText(research.getSequels());
+    	editDataAlta.setText(research.getDischargeDate());
+    	editDataObito.setText(research.getDeathDate());
+	}
+
+	@Override
     public boolean save() {
     	research.setAnotherLocation(chkAnotherLocation.isChecked());
     	research.setExposicaoPrevia(checkMedAnterior.isChecked());
@@ -179,11 +245,14 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     	research.setUsaCocaina(chkCocaina.isChecked());
     	research.setUsaMaconha(chkMaconha.isChecked());
     	research.setUsaLSD(chkLsd.isChecked());
-    	
+ 
+    	research.setTreatment(spnTratamento.getSelectedItem().toString());
     	research.setSequels(editSequelas.getText().toString());
     	research.setResult(spinnerResultado.getSelectedItem().toString());
+    	research.setDeathDate(editDataObito.getText().toString());
     	research.setDischargeDate(editDataAlta.getText().toString());
     	research.setGravity(spnGravidade.getSelectedItem().toString());
+    	
     	return true;
     }
 }

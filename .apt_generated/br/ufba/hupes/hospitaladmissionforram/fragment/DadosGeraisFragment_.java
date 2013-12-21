@@ -69,18 +69,18 @@ public final class DadosGeraisFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        height = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.height));
-        name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
-        handbook = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.handbook));
         sexFemale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexFemale));
-        birthday = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.birthday));
-        sexMale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexMale));
         color = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.color));
         admission = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.admission));
-        number = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.number));
-        unit = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.unit));
+        height = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.height));
         bed = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.bed));
         weight = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.weight));
+        sexMale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexMale));
+        name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
+        handbook = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.handbook));
+        birthday = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.birthday));
+        number = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.number));
+        unit = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.unit));
         init();
     }
 

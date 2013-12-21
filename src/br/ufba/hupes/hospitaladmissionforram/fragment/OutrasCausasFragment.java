@@ -16,7 +16,7 @@ import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication.Listener;
 
 @EFragment(R.layout.frag_outras_causas)
-public class OutrasCausasFragment extends NewResearchFragment implements NovoMedicamentoListener {
+public class OutrasCausasFragment extends NewResearchFragment implements NovoMedicamentoListener, Listener {
 
 	@ViewById
 	LinearLayout medications;
@@ -25,39 +25,52 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 
 	@AfterViews
 	public void init() {
+		ArrayList<Medication> list = research.getMedications();
+		if (list != null) {
+			medicationList = list;
+			showMedications();
+		}
 	}
 
 	public boolean save() {
 		research.setMedications(medicationList);
 		return true;
 	}
-
-	@Click
-	public void addMedication() {
-		NovoMedicamentoFragment fragment = NovoMedicamentoFragment_.builder()
-				.build();
-		fragment.setListener(this);
-		fragment.show(getFragmentManager(), "NovoMedicamento");
-	}
+    
+    @Click
+    public void addMedication() {
+    	NovoMedicamentoFragment fragment = NovoMedicamentoFragment_.builder().build();
+    	fragment.setListener(this);
+    	fragment.show(getFragmentManager(), "NovoMedicamento");
+    }
 
 	@Override
 	public void saveMedication(Medication med) {
 		ViewMedication view = ViewMedication_.build(getActivity());
-		view.bind(med, new Listener() {
-			
-			@Override
-			public void onUpdate(int position) {
-				
-			}
-			
-			@Override
-			public void onDelete(int position) {
-				medicationList.remove(position);
-				medications.removeViewAt(position);
-			}
-		});
+		view.bind(med, this);
 		view.setTag(medicationList.size()); //Guarda a posicao da view
 		medications.addView(view);
 		medicationList.add(med);
+	}
+
+	@Override
+	public void onUpdate(int position) {
+		
+	}
+	
+	@Override
+	public void onDelete(int position) {
+		medicationList.remove(position);
+		medications.removeViewAt(position);
+	}
+	
+	public void showMedications(){
+		for (int i = 0, length = medicationList.size(); i < length; i++) {
+			Medication med = medicationList.get(i);
+			ViewMedication view = ViewMedication_.build(getActivity());
+			view.bind(med, this);
+			view.setTag(i);
+			medications.addView(view);
+		}
 	}
 }

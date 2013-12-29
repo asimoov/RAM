@@ -3,9 +3,13 @@
 
     <item
         android:id="@+id/menu_search"
-        android:icon="@android:drawable/ic_menu_search"
         android:actionViewClass="android.widget.SearchView"
+        android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="ifRoom|collapseActionView"
         android:title="Search"/>
+    <item
+        android:id="@+id/menu_about"
+        android:showAsAction="never"
+        android:title="Sobre"/>
 
 </menu>

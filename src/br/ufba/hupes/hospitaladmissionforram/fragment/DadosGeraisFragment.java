@@ -66,24 +66,22 @@ public class DadosGeraisFragment extends NewResearchFragment {
         }
 
         try {
-            weight.setText(research.getWeight().toString());
+            weight.setText(String.valueOf(research.getWeight()));
         } catch (Exception e) {
         }
 
         try {
-            height.setText(research.getHeight().toString());
+            height.setText(String.valueOf(research.getHeight()));
         } catch (Exception e) {
         }
 
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            birthday.setText(dateFormat.format(research.getBirthday()));
+            birthday.setText(research.getBirthday());
         } catch (Exception e) {
         }
 
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            admission.setText(dateFormat.format(research.getAdmission()));
+            admission.setText(research.getAdmission());
         } catch (Exception e) {
         }
 
@@ -105,8 +103,8 @@ public class DadosGeraisFragment extends NewResearchFragment {
                 research.setName(name.getText().toString());
                 research.setHandbook(handbook.getText().toString());
                 research.setBed(bed.getText().toString());
-                research.setBirthday(dateFormat.parse(birthday.getText().toString()));
-                research.setAdmission(dateFormat.parse(admission.getText().toString()));
+                research.setBirthday(birthday.getText().toString());
+                research.setAdmission(admission.getText().toString());
                 research.setWeight(Long.parseLong(weight.getText().toString(), 10));
                 research.setHeight(Long.parseLong(height.getText().toString(), 10));
                 research.setUnit(unit.getText().toString());

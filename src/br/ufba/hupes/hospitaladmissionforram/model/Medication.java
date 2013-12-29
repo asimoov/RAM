@@ -2,20 +2,28 @@ package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
+
 public class Medication implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	String name;
 	
+	@Expose
 	String way;
 	
+	@Expose
 	String dose;
 	
+	@Expose
 	String indication;
 	
+	@Expose
 	String start;
 	
+	@Expose
 	String end;
 	
 	public Medication() {

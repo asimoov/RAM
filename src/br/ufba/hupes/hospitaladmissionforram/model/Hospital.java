@@ -3,6 +3,7 @@ package br.ufba.hupes.hospitaladmissionforram.model;
 import java.util.Collection;
 import java.util.UUID;
 
+import com.google.gson.annotations.Expose;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -10,18 +11,23 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "hospital")
 public class Hospital {
 
-    @DatabaseField(id = true)
-    private UUID id = UUID.randomUUID();
+	@Expose
+	@DatabaseField(id = true)
+    private long id;
 
+	@Expose
     @DatabaseField
 	private String name;
 
+	@Expose
     @DatabaseField
 	private String acronym;
 
+	@Expose
     @DatabaseField
 	private String country;
 
+	@Expose
     @ForeignCollectionField(eager=true)
     private Collection<Research> researches;
 
@@ -35,15 +41,15 @@ public class Hospital {
 		this.country = county;
 	}
 
-    public Hospital(UUID id) {
+    public Hospital(long id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -45,7 +45,7 @@ public class NovoMedicamentoFragment extends DialogFragment {
     String[] ways;
 
 	private NovoMedicamentoListener listener;
-    
+
     @AfterViews
     public void init() {
     	try {

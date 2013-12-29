@@ -1,9 +1,9 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
+import com.google.gson.annotations.Expose;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -11,130 +11,176 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "research")
 public class Research {
 
+	@Expose
 	@DatabaseField(id = true)
-	private UUID id = UUID.randomUUID();
+	private String id;
 
+	@Expose
 	@DatabaseField
 	private String handbook;
 
+	@Expose
 	@DatabaseField
 	private String name;
 
+	@Expose
 	@DatabaseField
 	private String cns;
 
+	@Expose
 	@DatabaseField
-	private Date birthday;
+	private String birthday;
 
+	@Expose
 	@DatabaseField
 	private String sex;
 
+	@Expose
 	@DatabaseField
-	private Long weight;
+	private long weight;
 
+	@Expose
 	@DatabaseField
-	private Long height;
+	private long height;
 
+	@Expose
 	@DatabaseField
 	private String color;
 
+	@Expose
 	@DatabaseField
 	private String unit;
-
+ 
+	@Expose
 	@DatabaseField
 	private String bed;
 
+	@Expose
 	@DatabaseField
-	private Date admission;
+	private String admission;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true)
 	private Hospital hospital;
 
+	@Expose
 	@DatabaseField(foreign=true, foreignAutoRefresh = true)
 	private RAM ram;
 
+	@Expose
 	@DatabaseField(dataType=DataType.SERIALIZABLE)
 	private ArrayList<Medication> medications;
 
+	@Expose
 	@DatabaseField
-	private Integer status;
+	private int status;
 
+	@Expose
 	@DatabaseField
 	private boolean anotherLocation;
 
+	@Expose
 	@DatabaseField
 	private boolean exposicaoPrevia;
 
+	@Expose
 	@DatabaseField
 	private boolean desenvolveuReacao;
 
+	@Expose
 	@DatabaseField
 	private String reacoesAdversas;
 
+	@Expose
 	@DatabaseField
 	private String plantasMedicinais;
 
+	@Expose
 	@DatabaseField
 	private String freqPlantasMedicinais;
 
+	@Expose
 	@DatabaseField
 	private String tabagismo;
 
+	@Expose
 	@DatabaseField
 	private String tempoTabagismo;
 
+	@Expose
 	@DatabaseField
 	private String etilismo;
 
+	@Expose
 	@DatabaseField
 	private String tempoEtilismo;
 
+	@Expose
 	@DatabaseField
 	private boolean usaCrack;
 	
+	@Expose
 	@DatabaseField
 	private boolean usaCocaina;
 	
+	@Expose
 	@DatabaseField
 	private boolean usaMaconha;
 	
+	@Expose
 	@DatabaseField
 	private boolean usaLSD;
 	
+	@Expose
 	@DatabaseField
 	private String treatment;
 
+	@Expose
 	@DatabaseField
 	private String result;
 
+	@Expose
 	@DatabaseField
 	private String deathDate;
 	
+	@Expose
 	@DatabaseField
 	private String sequels;
 
+	@Expose
 	@DatabaseField
 	private String dischargeDate;
 	
+	@Expose
 	@DatabaseField
 	private String gravity;
 
+	@Expose
 	@DatabaseField
 	private String algNaranjo;
+	@Expose
 	@DatabaseField
 	private String algOMS;
+	@Expose
 	@DatabaseField
 	private String algUE;
+	@Expose
 	@DatabaseField
 	private String algRUCAM;
 	
+	@Expose
 	@DatabaseField
-	private Date updateAt;
+	private String updateAt;
 
+	@Expose
 	@DatabaseField
-	private Date syncedAt;
+	private String syncedAt;
 
+	@Expose
+	@DatabaseField
+	private boolean sent;
+	
 	public Research() {
+		 id = UUID.randomUUID().toString();
 	}
 
 	public Research(String handbook, String name, String bed, String cns,
@@ -146,11 +192,11 @@ public class Research {
 		this.setHospital(hospital);
 	}
 
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -178,11 +224,11 @@ public class Research {
 		this.cns = cns;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -194,7 +240,7 @@ public class Research {
 		this.sex = sex;
 	}
 
-	public Long getWeight() {
+	public long getWeight() {
 		return weight;
 	}
 
@@ -202,7 +248,7 @@ public class Research {
 		this.weight = weight;
 	}
 
-	public Long getHeight() {
+	public long getHeight() {
 		return height;
 	}
 
@@ -234,11 +280,11 @@ public class Research {
 		this.bed = bed;
 	}
 
-	public Date getAdmission() {
+	public String getAdmission() {
 		return admission;
 	}
 
-	public void setAdmission(Date admission) {
+	public void setAdmission(String admission) {
 		this.admission = admission;
 	}
 
@@ -258,19 +304,19 @@ public class Research {
 		this.status = status;
 	}
 
-	public Date getUpdateAt() {
+	public String getUpdateAt() {
 		return updateAt;
 	}
 
-	public void setUpdateAt(Date updateAt) {
+	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
 	}
 
-	public Date getSyncedAt() {
+	public String getSyncedAt() {
 		return syncedAt;
 	}
 
-	public void setSyncedAt(Date syncedAt) {
+	public void setSyncedAt(String syncedAt) {
 		this.syncedAt = syncedAt;
 	}
 
@@ -484,5 +530,13 @@ public class Research {
 
 	public void setDeathDate(String deathDate) {
 		this.deathDate = deathDate;
+	}
+
+	public boolean isSent() {
+		return sent;
+	}
+
+	public void setSent(boolean sent) {
+		this.sent = sent;
 	}
 }

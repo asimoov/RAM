@@ -10,6 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import br.ufba.hupes.hospitaladmissionforram.model.Cause;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
@@ -46,14 +47,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
             for(Class clazz: ClASSES) {
                 TableUtils.createTable(connectionSource, clazz);
-            }
-
-            Hospital hospitals[] = new Hospital[] {
-                new Hospital("Hospital Universitário Professor Edgard Santos", "HUPES", "Salvador"),
-                new Hospital("Hospital Geral do Estado", "HGE", "Salvador") };
-            Dao HospitalDao = this.getDao(Hospital.class);
-            for(Hospital hospital: hospitals) {
-                HospitalDao.createIfNotExists(hospital);
             }
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);

@@ -52,11 +52,10 @@ public abstract class NewResearchFragment extends Fragment {
 			return queryForId;
         }
 
-        String hospitalId = extras.getString("HOSPITAL_ID");
-        if(hospitalId != null) {
+        long hospitalId = extras.getLong("HOSPITAL_ID",0);
+        if(hospitalId != 0) {
             Dao dao = this.getHelper().getDao(Hospital.class);
-            UUID id = UUID.fromString(hospitalId);
-            Hospital hospital = (Hospital) dao.queryForId(id);
+			Hospital hospital = (Hospital) dao.queryForId(hospitalId);
 
             Research research = new Research();
             research.setHospital(hospital);
@@ -80,7 +79,8 @@ public abstract class NewResearchFragment extends Fragment {
     	if(research.isOpen()) {
             research.setStatus(Status.OPEN.ordinal());
 
-            research.setUpdateAt(new Date());
+            //TODO
+            research.setUpdateAt(new Date().toString());
             Dao<Research, UUID> dao = getHelper().getDao(Research.class);
             dao.createOrUpdate(research);
             saveRAMOnDatabase(research);

@@ -1,5 +1,13 @@
 package br.ufba.hupes.hospitaladmissionforram.activity;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.rest.RestService;
+
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -12,29 +20,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.ResearchAdapter;
+import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection;
+import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
+
+import com.google.gson.GsonBuilder;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 /**
  * Created by denis on 12/09/13.
  */
+@EActivity
 public class ListResearches extends Activity {
     DatabaseHelper databaseHelper;
 
     ResearchAdapter adapter;
 
+    @RestService
+    RestConnection connection;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +79,8 @@ public class ListResearches extends Activity {
     }
 
     private Hospital getHospital() throws SQLException {
-        Dao HospitalDao = this.getHelper().getDao(Hospital.class);
-        UUID id = UUID.fromString(this.getIntent().getExtras().getString("HOSPITAL_ID"));
+        Dao<Hospital,Long> HospitalDao = this.getHelper().getDao(Hospital.class);
+        long id = this.getIntent().getExtras().getLong("HOSPITAL_ID");
         return (Hospital) HospitalDao.queryForId(id);
     }
 
@@ -82,17 +90,36 @@ public class ListResearches extends Activity {
             case R.id.add_item:
                 try {
                     Intent intent = new Intent(this, NewResearch.class);
-                    intent.putExtra("HOSPITAL_ID", getHospital().getId().toString());
+                    intent.putExtra("HOSPITAL_ID", getHospital().getId());
                     startActivityForResult(intent, 1);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
                 return true;
+            case R.id.sync:
+				sendResearches();
+        	return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Background
+	protected void sendResearches() {
+		try {
+			Dao<Research, ?> dao = getHelper().getDao(Research.class);
+			List<Research> researchesToSend = dao.queryForEq("sent", false);
+			for (Research research : researchesToSend) {
+				Log.d("DEBUG", new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(research));
+				connection.newResearch(research);
+				research.setSent(true);
+				dao.update(research);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

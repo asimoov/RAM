@@ -21,10 +21,29 @@ public class RequestInterceptor implements ClientHttpRequestInterceptor {
 	@RootContext
 	Context context;
 	
+	private static String login;
+	private static String pass;
+	
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
     	 HttpHeaders headers = request.getHeaders();
-         HttpAuthentication auth = new HttpBasicAuthentication("awe@awe.com", "12345678");
+         HttpAuthentication auth = new HttpBasicAuthentication(login, pass);
          headers.setAuthorization(auth);
          return execution.execute(request, body);
     }
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		RequestInterceptor.login = login;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		RequestInterceptor.pass = pass;
+	}
 }

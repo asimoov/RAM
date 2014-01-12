@@ -1,5 +1,6 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.androidannotations.annotations.AfterViews;
@@ -14,9 +15,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R;
+import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
 
 @EFragment(R.layout.frag_info_adic)
 public class InfoAdicionaisFragment extends NewResearchFragment {
@@ -108,9 +111,18 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     String[] arrayTempo;
     @StringArrayRes(R.array.opcoes_tratamento)
     String[] arrayTratamento;
+
+	@ViewById 
+	LinearLayout linear;
 	
     @AfterViews
     public void init() {
+    	if (!research.isOpen()) {
+	        ArrayList<View> list = linear.getTouchables();
+	        for (View view : list) {
+				view.setEnabled(false);
+			}
+        }
     	checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -224,6 +236,13 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 
 	@Override
     public boolean save() {
+		String dataObito = editDataObito.getText().toString();
+		if (dataObito.length() > 0) {
+			if (Validator.validateDateIsAfter("01/01/2014",dataObito , "dd/MM/yyyy", editDataObito, "Escolha uma data válida.")) {
+				return false;
+			}
+		}
+		
     	research.setAnotherLocation(chkAnotherLocation.isChecked());
     	research.setExposicaoPrevia(checkMedAnterior.isChecked());
     	research.setDesenvolveuReacao(checkMedAnterior.isChecked() && checkReacao.isChecked());

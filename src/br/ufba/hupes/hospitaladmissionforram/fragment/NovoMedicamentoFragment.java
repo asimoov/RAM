@@ -60,6 +60,9 @@ public class NovoMedicamentoFragment extends DialogFragment {
 				way.setSelection(Arrays.binarySearch(ways,medicationItem.getWay()));
 			} catch (Exception e) {}
     		dose.setText(medicationItem.getDose());
+    		if (medicationItem.getDose().endsWith("ml")) {
+    			doseType.setSelection(1);
+    		}
     		indication.setText(medicationItem.getIndication());
     		initialDate.setText(medicationItem.getStart());
     		finalDate.setText(medicationItem.getEnd());

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content" >
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -12,7 +13,7 @@
             android:id="@+id/chk_another_location"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Foi atendido em outro local no início dos sintomas" />
+            android:text="Foi atendido em outro local no início dos sintomas?" />
 
         <CheckBox
             android:id="@+id/chk_med_anterior"

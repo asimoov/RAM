@@ -1,13 +1,14 @@
 package br.ufba.hupes.hospitaladmissionforram.helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by denis on 13/09/13.
@@ -22,8 +23,6 @@ public class Validator {
                 String strText = text.toString();
                 if (!TextUtils.isEmpty(strText)) {
                     edText.setError(null);
-                    edText.setFocusable(false);
-
                     return true;
                 }
             }
@@ -36,7 +35,8 @@ public class Validator {
         return false;
     }
 
-    public static boolean validateDateFormat(View pView, String pDateFormat, String pMessage) {
+    @SuppressLint("SimpleDateFormat")
+	public static boolean validateDateFormat(View pView, String pDateFormat, String pMessage) {
         if (pView instanceof EditText) {
             EditText edText = (EditText) pView;
             Editable text = edText.getText();
@@ -47,7 +47,6 @@ public class Validator {
                     try {
                         format.parse(strText);
                         edText.setError(null);
-                        edText.setFocusable(false);
                         return true;
                     } catch (ParseException pe) {
 
@@ -72,20 +71,7 @@ public class Validator {
             if (textIni != null && textFin != null) {
             	String strIniDate = edText.getText().toString();
             	String strFinDate = edText2.getText().toString();
-		        if (!TextUtils.isEmpty(strIniDate) && !TextUtils.isEmpty(strFinDate)) {
-		            SimpleDateFormat format = new SimpleDateFormat(pDateFormat);
-		            try {
-		            	Date iniDate = format.parse(strIniDate);
-		            	Date finDate = format.parse(strFinDate);
-		                if (!finDate.before(iniDate)) { 
-			            	edText.setError(null);
-			                edText.setFocusable(false);
-			                return true;
-		                }
-		            } catch (ParseException pe) {
-		
-		            }
-		        }
+		        return validateDateIsAfter(strIniDate, strFinDate, pDateFormat, edText, pMessage);
             }
 	        // em qualquer outra condição é gerado um erro
 	        edText.setError(pMessage);
@@ -93,5 +79,27 @@ public class Validator {
 	        edText.requestFocus();
 		}
         return false;
+	}
+
+	@SuppressLint("SimpleDateFormat")
+	public static boolean validateDateIsAfter(String strIniDate, String strFinDate, String pDateFormat, EditText edText, String pMessage) {
+		if (!TextUtils.isEmpty(strIniDate) && !TextUtils.isEmpty(strFinDate)) {
+		    SimpleDateFormat format = new SimpleDateFormat(pDateFormat);
+		    try {
+		    	Date iniDate = format.parse(strIniDate);
+		    	Date finDate = format.parse(strFinDate);
+		        if (!finDate.before(iniDate)) { 
+		        	edText.setError(null);
+		            return true;
+		        }
+		    } catch (ParseException pe) {
+
+		    }
+		}
+        // em qualquer outra condição é gerado um erro
+        edText.setError(pMessage);
+        edText.setFocusable(true);
+        edText.requestFocus();
+		return false;
 	}
 }

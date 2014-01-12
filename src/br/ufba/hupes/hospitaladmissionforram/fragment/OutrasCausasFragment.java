@@ -7,13 +7,14 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.fragment.NovoMedicamentoFragment.NovoMedicamentoListener;
 import br.ufba.hupes.hospitaladmissionforram.model.Medication;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication;
-import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication.Listener;
+import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 
 @EFragment(R.layout.frag_outras_causas)
 public class OutrasCausasFragment extends NewResearchFragment implements NovoMedicamentoListener, Listener {
@@ -23,6 +24,8 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 
 	ArrayList<Medication> medicationList = new ArrayList<Medication>();
 
+	private LinearLayout linear;
+
 	@AfterViews
 	public void init() {
 		ArrayList<Medication> list = research.getMedications();
@@ -30,6 +33,12 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 			medicationList = list;
 			showMedications();
 		}
+		if (!research.isOpen()) {
+	        ArrayList<View> list2 = linear.getTouchables();
+	        for (View view : list2) {
+				view.setEnabled(false);
+			}
+        }
 	}
 
 	public boolean save() {

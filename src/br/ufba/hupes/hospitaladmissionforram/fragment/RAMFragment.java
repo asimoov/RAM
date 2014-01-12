@@ -7,17 +7,18 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.fragment.NovoMedicamentoFragment.NovoMedicamentoListener;
-import br.ufba.hupes.hospitaladmissionforram.model.Cause;
 import br.ufba.hupes.hospitaladmissionforram.model.Medication;
 import br.ufba.hupes.hospitaladmissionforram.model.RAM;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication;
-import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication.Listener;
+import br.ufba.hupes.hospitaladmissionforram.view.ViewMedication_;
 
 @EFragment(R.layout.frag_ram)
 public class RAMFragment extends NewResearchFragment implements NovoMedicamentoListener, Listener {
@@ -26,10 +27,10 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 	LinearLayout medications;
 	
 	@ViewById
-	EditText cause;
+	AutoCompleteTextView cause;
 
 	@ViewById
-	EditText comorbidity;
+	AutoCompleteTextView comorbidity;
 
 	@ViewById
 	EditText otherCauses;
@@ -46,9 +47,9 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     public void init() {
     	RAM ram = research.getRam();
     	if (ram != null) {
-			cause.setText(ram.getCause().getDisease());
+			cause.setText(ram.getCause());
 			otherCauses.setText(ram.getOtherCauses());
-			comorbidity.setText(ram.getComorbidity().getDisease());
+			comorbidity.setText(ram.getComorbidity());
 			initialDate.setText(ram.getInitialDate());
 			finalDate.setText(ram.getFinalDate());
 			ArrayList<Medication> suspects = ram.getSuspects();
@@ -57,6 +58,10 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 				showMedications();
 			}
     	}
+    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.cid10));
+        cause.setAdapter(adapter);
+        comorbidity.setAdapter(adapter);
     }
 
     public boolean save() {
@@ -68,9 +73,9 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     	
     	RAM ram = new RAM();
     	ram.setSuspects(medicationList);
-    	ram.setComorbidity(new Cause(comorbidity.getText().toString(), null));
+    	ram.setComorbidity(comorbidity.getText().toString());
     	ram.setOtherCauses(otherCauses.getText().toString());
-    	ram.setCause(new Cause(cause.getText().toString(), null));
+    	ram.setCause(cause.getText().toString());
     	ram.setSuspects(medicationList);
     	ram.setInitialDate(initialDate.getText().toString());
     	ram.setFinalDate(finalDate.getText().toString());
@@ -108,7 +113,7 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
 		medications.removeViewAt(position);
 	}
 	
-	public void showMedications(){
+	public void showMedications() {
 		for (int i = 0, length = medicationList.size(); i < length; i++) {
 			Medication med = medicationList.get(i);
 			ViewMedication view = ViewMedication_.build(getActivity());

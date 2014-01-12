@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -27,18 +30,19 @@ import android.widget.TextView;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.PagerAdapter;
 import br.ufba.hupes.hospitaladmissionforram.fragment.NewResearchFragment;
+import br.ufba.hupes.hospitaladmissionforram.model.UserHolder_;
 
-
-/**
- * Created by denis on 09/09/13.
- */
+@EActivity
 public class NewResearch extends FragmentActivity {
 
 	private ViewPager pager;
     private PagerAdapter pagerAdapter;
 
     private boolean isNewResearch;
-    
+
+	@Pref
+	UserHolder_ userHolder;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,8 @@ public class NewResearch extends FragmentActivity {
             }
         };
         String[] tabNames = {"Dados\nGerais", "RAM", "Outras", "Info\nAdicionais", "Algoritmo"};
-        for (int i = 0; i < tabNames.length; i++) {
+        int length = tabNames.length - (userHolder.admin().get() ? 0 : 1);
+		for (int i = 0; i < length; i++) {
             actionBar.addTab(actionBar.newTab().setText(tabNames[i]).setTabListener(tabListener));
         }
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -149,7 +154,8 @@ public class NewResearch extends FragmentActivity {
         boolean readyToSave = true;
         NewResearchFragment researchFragment = null;
         int i;
-        for (i = 0; i < fragments.length; i++) {
+        int length = fragments.length - (userHolder.admin().get() ? 0 : 1);
+		for (i = 0; i < length; i++) {
 		   try {
             	if (readyToSave) {
             		if (fragments[i] != null || isNewResearch) {

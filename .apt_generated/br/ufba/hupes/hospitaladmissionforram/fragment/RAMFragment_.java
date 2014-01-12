@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import br.ufba.hupes.hospitaladmissionforram.R.layout;
@@ -65,12 +66,12 @@ public final class RAMFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
-        cause = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
-        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
         initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
-        comorbidity = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
+        medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
         otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
+        comorbidity = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
+        cause = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
+        finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
         {
             View view = hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication);
             if (view!= null) {

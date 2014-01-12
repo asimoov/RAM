@@ -48,7 +48,7 @@ public class SearchResearches extends Activity {
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
                     Research research = researches.get(position);
-                    Intent intent = new Intent(SearchResearches.this, NewResearch.class);
+                    Intent intent = new Intent(SearchResearches.this, NewResearch_.class);
                     intent.putExtra("RESEARCH_ID", research.getId().toString());
                     startActivityForResult(intent, 1);
                 }

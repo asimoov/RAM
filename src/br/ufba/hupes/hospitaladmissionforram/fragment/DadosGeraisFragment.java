@@ -1,6 +1,7 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringArrayRes;
 
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,6 +47,9 @@ public class DadosGeraisFragment extends NewResearchFragment {
     @ViewById
     EditText unit;
 
+    @ViewById
+    LinearLayout linear;
+    
     @StringArrayRes(R.array.colors)
     String[] arrayColors;
     private List<String> colors;
@@ -89,6 +95,13 @@ public class DadosGeraisFragment extends NewResearchFragment {
         color.setSelection(colors.indexOf(research.getColor()));
 
         unit.setText(research.getUnit());
+        
+        if (!research.isOpen()) {
+	        ArrayList<View> list = linear.getTouchables();
+	        for (View view : list) {
+				view.setEnabled(false);
+			}
+        }
     }
 
     public boolean save() {
@@ -98,7 +111,8 @@ public class DadosGeraisFragment extends NewResearchFragment {
                 Validator.validateNotNull(handbook, "O prontu√°rio nao pode estar em branco") &&
                 Validator.validateNotNull(bed, "O leito nao pode estar em branco") &&
                 Validator.validateNotNull(admission, "O Admissao nao pode estar em branco") &&
-                Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento est· no formato errada")) {
+                Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento est· no formato errada") && 
+                Validator.validateDateIsAfter("01/01/2014",admission.getText().toString(), "dd/MM/yyyy", admission, "Data de admiss„o incorreta")) {
             try {
                 research.setName(name.getText().toString());
                 research.setHandbook(handbook.getText().toString());

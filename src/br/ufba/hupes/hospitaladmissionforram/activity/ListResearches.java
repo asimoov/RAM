@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.rest.RestService;
 
@@ -20,6 +19,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import br.ufba.hupes.hospitaladmissionforram.MainService;
+import br.ufba.hupes.hospitaladmissionforram.MainService_;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.ResearchAdapter;
 import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection;
@@ -27,7 +28,6 @@ import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 
-import com.google.gson.GsonBuilder;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -68,7 +68,7 @@ public class ListResearches extends Activity {
                 public void onItemClick(AdapterView<?> arg0, View arg1,
                                         int position, long arg3) {
                     Research research = researches.get(position);
-                    Intent intent = new Intent(ListResearches.this, NewResearch.class);
+                    Intent intent = new Intent(ListResearches.this, NewResearch_.class);
                     intent.putExtra("RESEARCH_ID", research.getId().toString());
                     startActivityForResult(intent, 1);
                 }
@@ -89,7 +89,7 @@ public class ListResearches extends Activity {
         switch (item.getItemId()) {
             case R.id.add_item:
                 try {
-                    Intent intent = new Intent(this, NewResearch.class);
+                    Intent intent = new Intent(this, NewResearch_.class);
                     intent.putExtra("HOSPITAL_ID", getHospital().getId());
                     startActivityForResult(intent, 1);
                 } catch (SQLException e) {
@@ -98,28 +98,13 @@ public class ListResearches extends Activity {
 
                 return true;
             case R.id.sync:
-				sendResearches();
+        		startService(new Intent(this, MainService_.class).setAction(MainService.SYNC_RESOURCES));
         	return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    @Background
-	protected void sendResearches() {
-		try {
-			Dao<Research, ?> dao = getHelper().getDao(Research.class);
-			List<Research> researchesToSend = dao.queryForEq("sent", false);
-			for (Research research : researchesToSend) {
-				Log.d("DEBUG", new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(research));
-				connection.newResearch(research);
-				research.setSent(true);
-				dao.update(research);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

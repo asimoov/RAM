@@ -91,10 +91,10 @@ public final class ViewMedication_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        name = ((TextView) hasViews.findViewById(id.name));
         way = ((TextView) hasViews.findViewById(id.way));
-        dose = ((TextView) hasViews.findViewById(id.dose));
         indication = ((TextView) hasViews.findViewById(id.indication));
+        dose = ((TextView) hasViews.findViewById(id.dose));
+        name = ((TextView) hasViews.findViewById(id.name));
         date = ((TextView) hasViews.findViewById(id.date));
         {
             View view = hasViews.findViewById(id.bt_delete);

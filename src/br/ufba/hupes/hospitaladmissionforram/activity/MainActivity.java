@@ -3,17 +3,18 @@ package br.ufba.hupes.hospitaladmissionforram.activity;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
-import org.androidannotations.annotations.rest.RestService;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,9 +22,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SearchView;
+import br.ufba.hupes.hospitaladmissionforram.MainService;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
-import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection;
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 
@@ -38,36 +39,22 @@ public class MainActivity extends Activity {
 
     private HospitalAdapter adapter;
     
-    @RestService
-    RestConnection connection;
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-        getHospitalsOnline();
+		update();
     }
 
-    @Background
-    public void getHospitalsOnline() {
-		try {
-			Hospital[] hospitals = connection.getHospitals();
-			Dao<Hospital, ?> hospitalDao = this.getHelper().getDao(Hospital.class);
-			for(Hospital hospital: hospitals) {
-				hospitalDao.createOrUpdate(hospital);
-			}
-			update();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+	};
+	
     @UiThread
     protected void update() {
         try {
             final List<Hospital> hospitals = getHospitals();
-            hospitals.remove(2);
             this.adapter = new HospitalAdapter(this,
                     R.layout.item_hospital, hospitals);
 
@@ -142,4 +129,25 @@ public class MainActivity extends Activity {
             return true;
         }
     };
+    
+    BroadcastReceiver broadReceiver = new BroadcastReceiver(){
+    	
+    	@Override
+    	public void onReceive(Context context, Intent intent) {
+    		update();
+    	}
+	};
+
+    @Override
+    protected void onStart() {
+    	super.onStart();
+		LocalBroadcastManager.getInstance(this).registerReceiver(broadReceiver, new IntentFilter(MainService.UPDATE_HOSPITALS));
+    };
+    
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	LocalBroadcastManager.getInstance(this).unregisterReceiver(broadReceiver);
+    }
+    
 }

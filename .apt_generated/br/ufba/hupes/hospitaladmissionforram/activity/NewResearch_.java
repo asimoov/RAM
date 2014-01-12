@@ -9,14 +9,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection_;
+import br.ufba.hupes.hospitaladmissionforram.model.UserHolder_;
+import org.androidannotations.api.SdkVersionHelper;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
-public final class ListResearches_
-    extends ListResearches
+public final class NewResearch_
+    extends NewResearch
     implements HasViews
 {
 
@@ -31,7 +33,7 @@ public final class ListResearches_
     }
 
     private void init_(Bundle savedInstanceState) {
-        connection = new RestConnection_();
+        userHolder = new UserHolder_(this);
     }
 
     @Override
@@ -52,16 +54,24 @@ public final class ListResearches_
         onViewChangedNotifier_.notifyViewChanged(this);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(Context context) {
-        return new ListResearches_.IntentBuilder_(context);
+    public static NewResearch_.IntentBuilder_ intent(Context context) {
+        return new NewResearch_.IntentBuilder_(context);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(android.app.Fragment fragment) {
-        return new ListResearches_.IntentBuilder_(fragment);
+    public static NewResearch_.IntentBuilder_ intent(android.app.Fragment fragment) {
+        return new NewResearch_.IntentBuilder_(fragment);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
-        return new ListResearches_.IntentBuilder_(supportFragment);
+    public static NewResearch_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
+        return new NewResearch_.IntentBuilder_(supportFragment);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (((SdkVersionHelper.getSdkInt()< 5)&&(keyCode == KeyEvent.KEYCODE_BACK))&&(event.getRepeatCount() == 0)) {
+            onBackPressed();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public static class IntentBuilder_ {
@@ -73,26 +83,26 @@ public final class ListResearches_
 
         public IntentBuilder_(Context context) {
             context_ = context;
-            intent_ = new Intent(context, ListResearches_.class);
+            intent_ = new Intent(context, NewResearch_.class);
         }
 
         public IntentBuilder_(android.app.Fragment fragment) {
             fragment_ = fragment;
             context_ = fragment.getActivity();
-            intent_ = new Intent(context_, ListResearches_.class);
+            intent_ = new Intent(context_, NewResearch_.class);
         }
 
         public IntentBuilder_(android.support.v4.app.Fragment fragment) {
             fragmentSupport_ = fragment;
             context_ = fragment.getActivity();
-            intent_ = new Intent(context_, ListResearches_.class);
+            intent_ = new Intent(context_, NewResearch_.class);
         }
 
         public Intent get() {
             return intent_;
         }
 
-        public ListResearches_.IntentBuilder_ flags(int flags) {
+        public NewResearch_.IntentBuilder_ flags(int flags) {
             intent_.setFlags(flags);
             return this;
         }

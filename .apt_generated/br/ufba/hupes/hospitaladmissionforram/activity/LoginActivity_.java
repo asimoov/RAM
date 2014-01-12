@@ -10,14 +10,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection_;
+import android.widget.EditText;
+import br.ufba.hupes.hospitaladmissionforram.R.id;
+import br.ufba.hupes.hospitaladmissionforram.R.layout;
+import br.ufba.hupes.hospitaladmissionforram.connection.RequestInterceptor_;
+import org.androidannotations.api.BackgroundExecutor;
 import org.androidannotations.api.view.HasViews;
+import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
-public final class ListResearches_
-    extends ListResearches
-    implements HasViews
+public final class LoginActivity_
+    extends LoginActivity
+    implements HasViews, OnViewChangedListener
 {
 
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
@@ -28,10 +34,12 @@ public final class ListResearches_
         init_(savedInstanceState);
         super.onCreate(savedInstanceState);
         OnViewChangedNotifier.replaceNotifier(previousNotifier);
+        setContentView(layout.login);
     }
 
     private void init_(Bundle savedInstanceState) {
-        connection = new RestConnection_();
+        OnViewChangedNotifier.registerOnViewChangedListener(this);
+        requestInterceptor = RequestInterceptor_.getInstance_(this);
     }
 
     @Override
@@ -52,16 +60,56 @@ public final class ListResearches_
         onViewChangedNotifier_.notifyViewChanged(this);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(Context context) {
-        return new ListResearches_.IntentBuilder_(context);
+    public static LoginActivity_.IntentBuilder_ intent(Context context) {
+        return new LoginActivity_.IntentBuilder_(context);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(android.app.Fragment fragment) {
-        return new ListResearches_.IntentBuilder_(fragment);
+    public static LoginActivity_.IntentBuilder_ intent(android.app.Fragment fragment) {
+        return new LoginActivity_.IntentBuilder_(fragment);
     }
 
-    public static ListResearches_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
-        return new ListResearches_.IntentBuilder_(supportFragment);
+    public static LoginActivity_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
+        return new LoginActivity_.IntentBuilder_(supportFragment);
+    }
+
+    @Override
+    public void onViewChanged(HasViews hasViews) {
+        editPass = ((EditText) hasViews.findViewById(id.editPass));
+        editLogin = ((EditText) hasViews.findViewById(id.editLogin));
+        {
+            View view = hasViews.findViewById(id.btLogin);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        LoginActivity_.this.btLogin();
+                    }
+
+                }
+                );
+            }
+        }
+        init();
+    }
+
+    @Override
+    public void doLogin() {
+        BackgroundExecutor.execute(new BackgroundExecutor.Task("", 0, "") {
+
+
+            @Override
+            public void execute() {
+                try {
+                    LoginActivity_.super.doLogin();
+                } catch (Throwable e) {
+                    Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
+                }
+            }
+
+        }
+        );
     }
 
     public static class IntentBuilder_ {
@@ -73,26 +121,26 @@ public final class ListResearches_
 
         public IntentBuilder_(Context context) {
             context_ = context;
-            intent_ = new Intent(context, ListResearches_.class);
+            intent_ = new Intent(context, LoginActivity_.class);
         }
 
         public IntentBuilder_(android.app.Fragment fragment) {
             fragment_ = fragment;
             context_ = fragment.getActivity();
-            intent_ = new Intent(context_, ListResearches_.class);
+            intent_ = new Intent(context_, LoginActivity_.class);
         }
 
         public IntentBuilder_(android.support.v4.app.Fragment fragment) {
             fragmentSupport_ = fragment;
             context_ = fragment.getActivity();
-            intent_ = new Intent(context_, ListResearches_.class);
+            intent_ = new Intent(context_, LoginActivity_.class);
         }
 
         public Intent get() {
             return intent_;
         }
 
-        public ListResearches_.IntentBuilder_ flags(int flags) {
+        public LoginActivity_.IntentBuilder_ flags(int flags) {
             intent_.setFlags(flags);
             return this;
         }

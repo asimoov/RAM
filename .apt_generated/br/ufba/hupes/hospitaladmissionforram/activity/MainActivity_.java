@@ -13,8 +13,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection_;
-import org.androidannotations.api.BackgroundExecutor;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
@@ -35,7 +33,6 @@ public final class MainActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
-        connection = new RestConnection_();
     }
 
     @Override
@@ -76,24 +73,6 @@ public final class MainActivity_
             @Override
             public void run() {
                 MainActivity_.super.update();
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void getHospitalsOnline() {
-        BackgroundExecutor.execute(new BackgroundExecutor.Task("", 0, "") {
-
-
-            @Override
-            public void execute() {
-                try {
-                    MainActivity_.super.getHospitalsOnline();
-                } catch (Throwable e) {
-                    Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
-                }
             }
 
         }

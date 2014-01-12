@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import br.ufba.hupes.hospitaladmissionforram.R.array;
@@ -69,18 +70,19 @@ public final class DadosGeraisFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        sexFemale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexFemale));
-        sexMale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexMale));
+        name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
         birthday = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.birthday));
-        handbook = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.handbook));
+        height = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.height));
+        unit = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.unit));
+        admission = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.admission));
+        number = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.number));
+        color = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.color));
         bed = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.bed));
         weight = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.weight));
-        height = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.height));
-        admission = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.admission));
-        name = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.name));
-        color = ((Spinner) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.color));
-        unit = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.unit));
-        number = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.number));
+        sexFemale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexFemale));
+        linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
+        handbook = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.handbook));
+        sexMale = ((RadioButton) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.sexMale));
         init();
     }
 

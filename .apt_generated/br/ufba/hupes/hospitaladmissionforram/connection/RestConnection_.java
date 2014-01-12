@@ -8,6 +8,7 @@ package br.ufba.hupes.hospitaladmissionforram.connection;
 import java.util.ArrayList;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
+import br.ufba.hupes.hospitaladmissionforram.model.User;
 import org.androidannotations.api.rest.RestErrorHandler;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,7 @@ public final class RestConnection_
 
     public RestConnection_() {
         restTemplate = new RestTemplate();
-        rootUrl = "http://reacao-adversa-medicamentos.herokuapp.com";
+        rootUrl = "http://192.168.1.101:3000/";
         restTemplate.getMessageConverters().add(new MyConverter());
         restTemplate.setInterceptors(new ArrayList<ClientHttpRequestInterceptor>());
         restTemplate.getInterceptors().add(new RequestInterceptor());
@@ -40,6 +41,34 @@ public final class RestConnection_
     public Hospital[] getHospitals() {
         try {
             return restTemplate.exchange(rootUrl.concat("/hospitals"), HttpMethod.GET, null, Hospital[].class).getBody();
+        } catch (RestClientException e) {
+            if (restErrorHandler!= null) {
+                restErrorHandler.onRestClientExceptionThrown(e);
+                return null;
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    @Override
+    public User login() {
+        try {
+            return restTemplate.exchange(rootUrl.concat("/users/show"), HttpMethod.GET, null, User.class).getBody();
+        } catch (RestClientException e) {
+            if (restErrorHandler!= null) {
+                restErrorHandler.onRestClientExceptionThrown(e);
+                return null;
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    @Override
+    public Research[] getResearches() {
+        try {
+            return restTemplate.exchange(rootUrl.concat("/researches"), HttpMethod.GET, null, Research[].class).getBody();
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);

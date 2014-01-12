@@ -13,16 +13,17 @@
         <item>Amarelo</item>
     </string-array>
     <string-array name="ways">
-        <item>Oral</item>
-        <item>Retal</item>
-        <item>Intradérmica</item>
-        <item>Subcutânea</item>
-        <item>Intramuscular</item>
+        <item>Dérmica</item>
         <item>Endovenosa</item>
         <item>Inalatória</item>
-        <item>Ocular</item>
+        <item>Intradérmica</item>
         <item>Intranasal</item>
-        <item>Dérmica</item>
+        <item>Intramuscular</item>
+        <item>Intratecal</item>
+        <item>Ocular</item>
+        <item>Oral</item>
+        <item>Retal</item>
+        <item>Subcutânea</item>
         <item>Vaginal</item>
     </string-array>
     <string-array name="opcoes_tratamento">

@@ -16,12 +16,12 @@ public class RAM {
 	private String id = UUID.randomUUID().toString();
 
 	@Expose
-	@DatabaseField(dataType=DataType.SERIALIZABLE)
-    private Cause cause;
+	@DatabaseField
+    private String cause;
 	
 	@Expose
-	@DatabaseField(dataType=DataType.SERIALIZABLE)
-    private Cause comorbidity;
+	@DatabaseField
+    private String comorbidity;
 
 	@Expose
 	@DatabaseField
@@ -50,19 +50,19 @@ public class RAM {
         this.suspects = suspects;
     }
 
-    public Cause getCause() {
+    public String getCause() {
         return cause;
     }
 
-    public void setCause(Cause cause) {
+    public void setCause(String cause) {
         this.cause = cause;
     }
 
-    public Cause getComorbidity() {
+    public String getComorbidity() {
         return comorbidity;
     }
 
-    public void setComorbidity(Cause comorbidity) {
+    public void setComorbidity(String comorbidity) {
         this.comorbidity = comorbidity;
     }
 

@@ -66,7 +66,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital> {
 		holder.quantity.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
 		holder.acronym.setText(hospital.getAcronym());
 		holder.name.setText(hospital.getName().toString());
-		holder.county.setText(hospital.getCounty());
+		holder.county.setText(hospital.getCity());
 		
 		return view;
 	}

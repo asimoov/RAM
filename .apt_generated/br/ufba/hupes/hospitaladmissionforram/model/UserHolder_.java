@@ -37,6 +37,14 @@ public final class UserHolder_
         return stringField("id", "");
     }
 
+    public StringPrefField login() {
+        return stringField("login", "");
+    }
+
+    public StringPrefField pass() {
+        return stringField("pass", "");
+    }
+
     public final static class UserHolderEditor_
         extends EditorHelper<UserHolder_.UserHolderEditor_>
     {
@@ -52,6 +60,14 @@ public final class UserHolder_
 
         public StringPrefEditorField<UserHolder_.UserHolderEditor_> id() {
             return stringField("id");
+        }
+
+        public StringPrefEditorField<UserHolder_.UserHolderEditor_> login() {
+            return stringField("login");
+        }
+
+        public StringPrefEditorField<UserHolder_.UserHolderEditor_> pass() {
+            return stringField("pass");
         }
 
     }

@@ -4,12 +4,21 @@
     <item
         android:id="@+id/menu_search"
         android:actionViewClass="android.widget.SearchView"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_menu_search"
         android:showAsAction="ifRoom|collapseActionView"
         android:title="Search"/>
+    <item
+        android:id="@+id/menu_sync"
+        android:icon="@drawable/ic_menu_refresh"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:title="Sincronizar"/>
     <item
         android:id="@+id/menu_about"
         android:showAsAction="never"
         android:title="Sobre"/>
+    <item
+        android:id="@+id/menu_logout"
+        android:showAsAction="never"
+        android:title="Sair"/>
 
 </menu>

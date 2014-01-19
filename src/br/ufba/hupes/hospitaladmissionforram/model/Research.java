@@ -63,6 +63,9 @@ public class Research {
 	private Hospital hospital;
 
 	@Expose
+	private long hospital_id;
+
+	@Expose
 	@DatabaseField(foreign=true, foreignAutoRefresh = true)
 	private RAM ram;
 
@@ -169,11 +172,11 @@ public class Research {
 	
 	@Expose
 	@DatabaseField
-	private String updateAt;
-
+	private String updatedAt; //from server
+	
 	@Expose
 	@DatabaseField
-	private String syncedAt;
+	private String createdAt; //from server
 
 	@Expose
 	@DatabaseField
@@ -294,6 +297,7 @@ public class Research {
 
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
+		this.hospital_id = hospital.getId();
 	}
 
 	public Integer getStatus() {
@@ -304,20 +308,12 @@ public class Research {
 		this.status = status;
 	}
 
-	public String getUpdateAt() {
-		return updateAt;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdateAt(String updateAt) {
-		this.updateAt = updateAt;
-	}
-
-	public String getSyncedAt() {
-		return syncedAt;
-	}
-
-	public void setSyncedAt(String syncedAt) {
-		this.syncedAt = syncedAt;
+	public void setUpdatedAt(String updateAt) {
+		this.updatedAt = updateAt;
 	}
 
 	public boolean isOpen() {
@@ -538,5 +534,17 @@ public class Research {
 
 	public void setSent(boolean sent) {
 		this.sent = sent;
+	}
+
+	public long getHospitalId() {
+		return hospital_id;
+	}
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 }

@@ -170,7 +170,6 @@ public class NewResearch extends FragmentActivity {
         }
 		
         if (readyToSave) {
-        	//TODO salvar research
         	try {
 				researchFragment.saveResearchOnDatabase();
 				finish();
@@ -182,7 +181,7 @@ public class NewResearch extends FragmentActivity {
         }
     }
 
-    @SuppressLint("ValidFragment")
+    @SuppressLint({ "ValidFragment", "SimpleDateFormat" })
 	public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 

@@ -6,6 +6,7 @@
 package br.ufba.hupes.hospitaladmissionforram.connection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 import br.ufba.hupes.hospitaladmissionforram.model.User;
@@ -26,7 +27,7 @@ public final class RestConnection_
 
     public RestConnection_() {
         restTemplate = new RestTemplate();
-        rootUrl = "http://192.168.1.101:3000/";
+        rootUrl = "http://reacao-adversa-medicamentos.herokuapp.com";
         restTemplate.getMessageConverters().add(new MyConverter());
         restTemplate.setInterceptors(new ArrayList<ClientHttpRequestInterceptor>());
         restTemplate.getInterceptors().add(new RequestInterceptor());
@@ -38,9 +39,9 @@ public final class RestConnection_
     }
 
     @Override
-    public Hospital[] getHospitals() {
+    public User login() {
         try {
-            return restTemplate.exchange(rootUrl.concat("/hospitals"), HttpMethod.GET, null, Hospital[].class).getBody();
+            return restTemplate.exchange(rootUrl.concat("/users/show"), HttpMethod.GET, null, User.class).getBody();
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);
@@ -52,9 +53,9 @@ public final class RestConnection_
     }
 
     @Override
-    public User login() {
+    public Hospital[] getHospitals() {
         try {
-            return restTemplate.exchange(rootUrl.concat("/users/show"), HttpMethod.GET, null, User.class).getBody();
+            return restTemplate.exchange(rootUrl.concat("/hospitals"), HttpMethod.GET, null, Hospital[].class).getBody();
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);
@@ -80,14 +81,29 @@ public final class RestConnection_
     }
 
     @Override
-    public String newResearch(Research research) {
+    public void newResearch(Research research) {
         HttpEntity<Research> requestEntity = new HttpEntity<Research>(research);
         try {
-            return restTemplate.exchange(rootUrl.concat("/researches"), HttpMethod.POST, requestEntity, String.class).getBody();
+            restTemplate.exchange(rootUrl.concat("/researches"), HttpMethod.POST, requestEntity, null);
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);
-                return null;
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    @Override
+    public void updateResearch(String id, Research research) {
+        HttpEntity<Research> requestEntity = new HttpEntity<Research>(research);
+        HashMap<String, Object> urlVariables = new HashMap<String, Object>();
+        urlVariables.put("id", id);
+        try {
+            restTemplate.exchange(rootUrl.concat("/researches/{id}"), HttpMethod.PUT, requestEntity, null, urlVariables);
+        } catch (RestClientException e) {
+            if (restErrorHandler!= null) {
+                restErrorHandler.onRestClientExceptionThrown(e);
             } else {
                 throw e;
             }

@@ -8,4 +8,8 @@ public interface UserHolder {
 	boolean admin();
 	
 	public String id();
+	
+	public String login();
+	
+	public String pass();
 }

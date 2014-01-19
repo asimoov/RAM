@@ -29,11 +29,11 @@ public class RAM {
 
 	@Expose
 	@DatabaseField
-    private String initialDate;
+    private String start;
 
 	@Expose
 	@DatabaseField
-    private String finalDate;
+    private String end;
 	
 	@DatabaseField(foreign=true)
 	private Research research;
@@ -83,18 +83,18 @@ public class RAM {
 	}
 
 	public String getFinalDate() {
-		return finalDate;
+		return end;
 	}
 
 	public void setFinalDate(String finalDate) {
-		this.finalDate = finalDate;
+		this.end = finalDate;
 	}
 
 	public String getInitialDate() {
-		return initialDate;
+		return start;
 	}
 
 	public void setInitialDate(String initialDate) {
-		this.initialDate = initialDate;
+		this.start = initialDate;
 	}
 }

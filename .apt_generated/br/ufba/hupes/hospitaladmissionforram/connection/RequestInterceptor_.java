@@ -30,7 +30,6 @@ public final class RequestInterceptor_
     }
 
     private void init_() {
-        context = context_;
     }
 
 }

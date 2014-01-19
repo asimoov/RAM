@@ -9,9 +9,12 @@ import org.androidannotations.annotations.rest.RestService;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +38,7 @@ import com.j256.ormlite.dao.Dao;
  * Created by denis on 12/09/13.
  */
 @EActivity
-public class ListResearches extends Activity {
+public class ListResearches extends BaseActivity {
     DatabaseHelper databaseHelper;
 
     ResearchAdapter adapter;
@@ -49,6 +52,31 @@ public class ListResearches extends Activity {
         setContentView(R.layout.list_researches);
 
         this.update();
+    }
+    
+
+    BroadcastReceiver broadReceiver = new BroadcastReceiver() {
+    	@Override
+    	public void onReceive(Context context, Intent intent) {
+    		dismissProgressDialog();
+    		String extra = intent.getStringExtra(MainService.ERROR);
+			if (extra != null) {
+				showAlertDialog(extra.isEmpty() ? "Erro desconhecido na sincronização, tente novamente" : extra);
+			}
+    		update();
+    	}
+	};
+
+    @Override
+    protected void onStart() {
+    	super.onStart();
+		LocalBroadcastManager.getInstance(this).registerReceiver(broadReceiver, new IntentFilter(MainService.SYNC_RESOURCES));
+    };
+    
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	LocalBroadcastManager.getInstance(this).unregisterReceiver(broadReceiver);
     }
 
     private void update() {
@@ -97,7 +125,8 @@ public class ListResearches extends Activity {
                 }
 
                 return true;
-            case R.id.sync:
+            case R.id.menu_sync:
+            	showProgressDialog("Sincronizando...");
         		startService(new Intent(this, MainService_.class).setAction(MainService.SYNC_RESOURCES));
         	return true;
             default:

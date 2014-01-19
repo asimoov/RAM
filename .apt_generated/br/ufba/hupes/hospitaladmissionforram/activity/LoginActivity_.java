@@ -9,8 +9,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import br.ufba.hupes.hospitaladmissionforram.R.id;
@@ -27,6 +28,7 @@ public final class LoginActivity_
 {
 
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
+    private Handler handler_ = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public final class LoginActivity_
         {
             View view = hasViews.findViewById(id.btLogin);
             if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
+                view.setOnClickListener(new android.view.View.OnClickListener() {
 
 
                     @Override
@@ -92,6 +94,62 @@ public final class LoginActivity_
             }
         }
         init();
+    }
+
+    @Override
+    public void showAlertDialog(final String message, final String positiveButton, final String negativeButton, final android.content.DialogInterface.OnClickListener positiveListener, final android.content.DialogInterface.OnClickListener negativeListener) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.showAlertDialog(message, positiveButton, negativeButton, positiveListener, negativeListener);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showProgressDialog(final String message) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.showProgressDialog(message);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissAlertDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.dismissAlertDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.dismissProgressDialog();
+            }
+
+        }
+        );
     }
 
     @Override

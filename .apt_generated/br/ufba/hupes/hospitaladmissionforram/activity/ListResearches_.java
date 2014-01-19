@@ -7,8 +7,11 @@ package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection_;
@@ -21,6 +24,7 @@ public final class ListResearches_
 {
 
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
+    private Handler handler_ = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,62 @@ public final class ListResearches_
 
     public static ListResearches_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
         return new ListResearches_.IntentBuilder_(supportFragment);
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.dismissProgressDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showProgressDialog(final String arg0) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.showProgressDialog(arg0);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showAlertDialog(final String arg0, final String arg1, final String arg2, final OnClickListener arg3, final OnClickListener arg4) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.showAlertDialog(arg0, arg1, arg2, arg3, arg4);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissAlertDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.dismissAlertDialog();
+            }
+
+        }
+        );
     }
 
     public static class IntentBuilder_ {

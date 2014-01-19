@@ -238,7 +238,7 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     public boolean save() {
 		String dataObito = editDataObito.getText().toString();
 		if (dataObito.length() > 0) {
-			if (Validator.validateDateIsAfter("01/01/2014",dataObito , "dd/MM/yyyy", editDataObito, "Escolha uma data válida.")) {
+			if (!Validator.validateDateIsAfter("01/01/2014",dataObito , "dd/MM/yyyy", editDataObito, "Escolha uma data válida.")) {
 				return false;
 			}
 		}

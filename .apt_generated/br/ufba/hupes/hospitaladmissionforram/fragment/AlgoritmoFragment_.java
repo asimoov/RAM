@@ -64,10 +64,10 @@ public final class AlgoritmoFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        algOms = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_oms));
-        algUe = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_ue));
-        algNaranjo = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_naranjo));
         linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
+        algOms = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_oms));
+        algNaranjo = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_naranjo));
+        algUe = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_ue));
         algRucam = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_rucam));
         init();
     }

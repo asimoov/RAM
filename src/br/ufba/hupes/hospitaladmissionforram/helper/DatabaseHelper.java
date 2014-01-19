@@ -12,6 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.ufba.hupes.hospitaladmissionforram.MainApp;
 import br.ufba.hupes.hospitaladmissionforram.model.Cause;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.Medication;
@@ -25,7 +26,7 @@ import br.ufba.hupes.hospitaladmissionforram.model.Research;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
-    private static final String DATABASE_NAME = "hospitaladmissionforram.db";
+    private static final String DATABASE_NAME = "hospitaladmissionforram";
 
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
@@ -33,7 +34,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final Class[] ClASSES = {Hospital.class, Research.class, RAM.class};
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME + MainApp.getInstance().getUser().id().get() + ".db", null, DATABASE_VERSION);
     }
 
     /**

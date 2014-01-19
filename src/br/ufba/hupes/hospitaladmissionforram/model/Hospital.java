@@ -1,7 +1,6 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import com.google.gson.annotations.Expose;
 import com.j256.ormlite.field.DatabaseField;
@@ -25,7 +24,7 @@ public class Hospital {
 
 	@Expose
     @DatabaseField
-	private String country;
+	private String city;
 
 	@Expose
     @ForeignCollectionField(eager=true)
@@ -38,7 +37,7 @@ public class Hospital {
 		super();
 		this.name = name;
 		this.acronym = acronym;
-		this.country = county;
+		this.city = county;
 	}
 
     public Hospital(long id) {
@@ -69,12 +68,12 @@ public class Hospital {
 		this.acronym = acronym;
 	}
 
-	public String getCounty() {
-		return country;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCounty(String county) {
-		this.country = county;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public Number getQuantity() {
@@ -95,5 +94,13 @@ public class Hospital {
 
     public String getFullName(){
         return getAcronym() + " - " + getName();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    	if (o instanceof Hospital) {
+    		return getId() == ((Hospital)o).getId();
+		}
+    	return super.equals(o);
     }
 }

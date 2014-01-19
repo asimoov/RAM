@@ -9,13 +9,15 @@
         android:title="Search"/>
     <item
         android:id="@+id/add_item"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_add"
         android:orderInCategory="20"
         android:showAsAction="ifRoom"
         android:title="Add"/>
     <item
-        android:id="@+id/sync"
-        android:showAsAction="never"
+        android:id="@+id/menu_sync"
+        android:orderInCategory="21"
+        android:icon="@drawable/ic_menu_refresh"
+        android:showAsAction="ifRoom|collapseActionView"
         android:title="Sincronizar"/>
 
 </menu>

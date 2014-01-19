@@ -2,12 +2,12 @@ package br.ufba.hupes.hospitaladmissionforram.fragment;
 
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
+import br.ufba.hupes.hospitaladmissionforram.MainApp;
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
 import br.ufba.hupes.hospitaladmissionforram.model.RAM;
@@ -46,20 +46,18 @@ public abstract class NewResearchFragment extends Fragment {
         Bundle extras = getActivity().getIntent().getExtras();
         String researchId = extras.getString("RESEARCH_ID");
         if (researchId != null) {
-            Dao dao = this.getHelper().getDao(Research.class);
-            UUID id = UUID.fromString(researchId);
-            Research queryForId = (Research) dao.queryForId(id);
-			return queryForId;
+            Dao<Research, String> dao = this.getHelper().getDao(Research.class);
+            Research research = (Research) dao.queryForId(researchId);
+			return research;
         }
 
         long hospitalId = extras.getLong("HOSPITAL_ID",0);
         if(hospitalId != 0) {
-            Dao dao = this.getHelper().getDao(Hospital.class);
+            Dao<Hospital, Long> dao = this.getHelper().getDao(Hospital.class);
 			Hospital hospital = (Hospital) dao.queryForId(hospitalId);
 
             Research research = new Research();
             research.setHospital(hospital);
-            Dao dao2 = this.getHelper().getDao(Research.class);
             return research;
         }
         return null;
@@ -71,21 +69,27 @@ public abstract class NewResearchFragment extends Fragment {
         if (this.databaseHelper == null) {
             this.databaseHelper = (DatabaseHelper) OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
         }
-
         return this.databaseHelper;
     }
 
 	public void saveResearchOnDatabase() throws SQLException {
     	if(research.isOpen()) {
             research.setStatus(Status.OPEN.ordinal());
-
-            //TODO
-            research.setUpdateAt(new Date().toString());
-            Dao<Research, UUID> dao = getHelper().getDao(Research.class);
+            
+            long hospitalId = getActivity().getIntent().getLongExtra("HOSPITAL_ID",0);
+            if (hospitalId != 0) {
+            	research.setHospital(new Hospital(hospitalId));
+            }
+            if (research.getCreatedAt() != null) {
+            	research.setCreatedAt("");
+            }
+            research.setUpdatedAt(MainApp.getDateFormatted(new Date(), "yyyy-MM-dd HH:mm:ss ZZZ"));
+            Dao<Research, String> dao = getHelper().getDao(Research.class);
             dao.createOrUpdate(research);
             saveRAMOnDatabase(research);
 
             getActivity().setResult(Activity.RESULT_OK);
+            
             Toast.makeText(getActivity(), "Salvo", Toast.LENGTH_SHORT).show();
         } else {
             research.setStatus(Status.CLOSE.ordinal());
@@ -95,7 +99,7 @@ public abstract class NewResearchFragment extends Fragment {
 
 	private void saveRAMOnDatabase(Research research2) throws SQLException {
 		RAM ram = research.getRam();
-		Dao<RAM, UUID> dao = getHelper().getDao(RAM.class);
+		Dao<RAM, ?> dao = getHelper().getDao(RAM.class);
 		dao.createOrUpdate(ram);
 	}
 }

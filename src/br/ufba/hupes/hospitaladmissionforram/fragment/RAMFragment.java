@@ -60,8 +60,10 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     	}
     	ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.cid10));
+    	comorbidity.setAdapter(adapter);
+        adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.cid10_cause));
         cause.setAdapter(adapter);
-        comorbidity.setAdapter(adapter);
     }
 
     public boolean save() {

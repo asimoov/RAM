@@ -7,6 +7,7 @@ package br.ufba.hupes.hospitaladmissionforram.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,6 +64,62 @@ public final class MainActivity_
 
     public static MainActivity_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
         return new MainActivity_.IntentBuilder_(supportFragment);
+    }
+
+    @Override
+    public void showAlertDialog(final String message, final String positiveButton, final String negativeButton, final OnClickListener positiveListener, final OnClickListener negativeListener) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                MainActivity_.super.showAlertDialog(message, positiveButton, negativeButton, positiveListener, negativeListener);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissAlertDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                MainActivity_.super.dismissAlertDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                MainActivity_.super.dismissProgressDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showProgressDialog(final String message) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                MainActivity_.super.showProgressDialog(message);
+            }
+
+        }
+        );
     }
 
     @Override

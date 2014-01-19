@@ -1,11 +1,14 @@
 package br.ufba.hupes.hospitaladmissionforram;
 
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EService;
 import org.androidannotations.annotations.rest.RestService;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.springframework.web.client.ResourceAccessException;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -14,6 +17,7 @@ import android.util.Log;
 import br.ufba.hupes.hospitaladmissionforram.connection.RestConnection;
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
 import br.ufba.hupes.hospitaladmissionforram.model.Hospital;
+import br.ufba.hupes.hospitaladmissionforram.model.RAM;
 import br.ufba.hupes.hospitaladmissionforram.model.Research;
 import br.ufba.hupes.hospitaladmissionforram.model.User;
 import br.ufba.hupes.hospitaladmissionforram.model.UserHolder_;
@@ -26,7 +30,8 @@ import com.j256.ormlite.stmt.PreparedQuery;
 @EService
 public class MainService extends IntentService {
 
-    public static final String LOGIN = "LOGIN";
+    public static final String ERROR = "ERROR";
+	public static final String LOGIN = "LOGIN";
     public static final String UPDATE_HOSPITALS = "UPDATE_HOSPITALS";
     public static final String SYNC_RESOURCES = "SYNC_RESOURCES";
 
@@ -50,8 +55,14 @@ public class MainService extends IntentService {
 		} else if (action.equals(UPDATE_HOSPITALS)) {
 			getHospitalsOnline();
 		} else if (action.equals(SYNC_RESOURCES)) {
-			sendResearches();
+			syncResources();
 		}
+	}
+
+	private void sendError(String action, String message) {
+		Intent intent = new Intent(action);
+		intent.putExtra(ERROR, message);
+		LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 	}
 
 	@Background
@@ -61,16 +72,28 @@ public class MainService extends IntentService {
 			if (user != null) {
 				userHolder.admin().put(user.isAdmin());
 				userHolder.id().put(user.getId());
-				Hospital[] hospitals = user.getHospitals();
+				Hospital[] h = user.getHospitals();
+				List<Hospital> serverHospitals = Arrays.asList(h);
 				Dao<Hospital, ?> hospitalDao = this.getHelper().getDao(Hospital.class);
-				if (hospitals.length > 0) {
-					for(Hospital hospital: hospitals) {
+				if (serverHospitals.size() > 0) {
+					
+					List<Hospital> list = hospitalDao.queryForAll();
+					for(Hospital hospital: list) {
+						if (!serverHospitals.contains(hospital)) {
+							hospitalDao.delete(hospital);
+						}
+					}
+					
+					for(Hospital hospital: serverHospitals) {
 						hospitalDao.createOrUpdate(hospital);
 					}
 				}
 				LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOGIN));
 			}
+		} catch (ResourceAccessException e) {
+			sendError(LOGIN, "Não foi possível se conectar ao servidor. Verifique seu acesso à internet e tente novamente.");
 		} catch (Exception e) {
+			sendError(LOGIN, "");
 			e.printStackTrace();
 		}
 	}
@@ -78,28 +101,92 @@ public class MainService extends IntentService {
 	@Background
     public void getHospitalsOnline() {
 		try {
-			Hospital[] hospitals = connection.getHospitals();
+			Hospital[] h = connection.getHospitals();
+			List<Hospital> serverHospitals = Arrays.asList(h);
 			Dao<Hospital, ?> hospitalDao = this.getHelper().getDao(Hospital.class);
-			if (hospitals.length > 0) {
-				for(Hospital hospital: hospitals) {
+			if (serverHospitals.size() > 0) {
+				
+				List<Hospital> list = hospitalDao.queryForAll();
+				for(Hospital hospital: list) {
+					if (!serverHospitals.contains(hospital)) {
+						hospitalDao.delete(hospital);
+					}
+				}
+				
+				for(Hospital hospital: serverHospitals) {
 					hospitalDao.createOrUpdate(hospital);
 				}
-				LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(UPDATE_HOSPITALS));
+				try {
+					getResearches();
+					sendResearches();
+				} catch (Exception e) {
+				}
+			} else {
+				hospitalDao.delete(hospitalDao.queryForAll());
 			}
+			LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(UPDATE_HOSPITALS));
+		} catch (ResourceAccessException e) {
+			sendError(UPDATE_HOSPITALS, "Não foi possível se conectar ao servidor. Verifique seu acesso à internet e tente novamente.");
 		} catch (Exception e) {
+			sendError(UPDATE_HOSPITALS, "Erro ao sincronizar, tente novamente mais tarde");
 			e.printStackTrace();
 		}
     }
 	
 	@Background
+	protected void syncResources() {
+		try {
+			getResearches();
+			sendResearches();
+		} catch (ResourceAccessException e) {
+			sendError(SYNC_RESOURCES, "Não foi possível se conectar ao servidor. Verifique seu acesso à internet e tente novamente.");
+		} catch (Exception e) {
+			sendError(SYNC_RESOURCES, "Erro ao sincronizar, tente novamente mais tarde");
+		}
+		LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(SYNC_RESOURCES));
+	}
+
+	protected void getResearches() {
+		Research[] researches = connection.getResearches();
+		for (int i = 0; i < researches.length; i++) {
+			try {
+				Research serverResearch = researches[i];
+				serverResearch.setHospital(new Hospital(serverResearch.getHospitalId()));
+				Dao<Research, String> dao;
+					dao = getHelper().getDao(Research.class);
+	            Research dbResearch = dao.queryForId(serverResearch.getId());
+	            if (dbResearch != null) {
+	            	String updatedAt = dbResearch.getUpdatedAt();
+	            	
+	            	if (MainApp.compareDatesFormatted(serverResearch.getUpdatedAt(),updatedAt,"yyyy-MM-dd HH:mm:ss ZZZ") <= 0) {
+	            		Log.d("DEBUG", "Pulou update: " + updatedAt);
+	            		Log.d("DEBUG", "Pulou update: " + new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(serverResearch));
+	            		continue;
+	            	}
+	            }
+	            dao.createOrUpdate(serverResearch);
+	    		RAM ram = serverResearch.getRam();
+	    		Dao<RAM, String> dao2 = getHelper().getDao(RAM.class);
+	    		dao2.createOrUpdate(ram);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	protected void sendResearches() {
 		try {
 			Dao<Research, ?> dao = getHelper().getDao(Research.class);
-			PreparedQuery<Research> preparedQuery = dao.queryBuilder().where().isNull("syncedAt").prepare();
+			PreparedQuery<Research> preparedQuery = dao.queryBuilder().where().isNull("createdAt").or().eq("createdAt", "").prepare();
 			List<Research> researchesToSend = dao.query(preparedQuery);
 			for (Research research : researchesToSend) {
+				research.setHospital(research.getHospital());
 				Log.d("DEBUG", new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(research));
-				connection.newResearch(research);
+				if (research.getCreatedAt() == null) {
+					connection.newResearch(research);
+				} else {
+					connection.updateResearch(research.getId(), research);
+				}
 				research.setSent(true);
 				dao.update(research);
 			}

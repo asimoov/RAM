@@ -22,7 +22,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SearchView;
+import br.ufba.hupes.hospitaladmissionforram.MainApp;
 import br.ufba.hupes.hospitaladmissionforram.MainService;
+import br.ufba.hupes.hospitaladmissionforram.MainService_;
 import br.ufba.hupes.hospitaladmissionforram.R;
 import br.ufba.hupes.hospitaladmissionforram.adapter.HospitalAdapter;
 import br.ufba.hupes.hospitaladmissionforram.helper.DatabaseHelper;
@@ -33,7 +35,7 @@ import com.j256.ormlite.dao.Dao;
 
 @SuppressLint("NewApi")
 @EActivity
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private DatabaseHelper databaseHelper;
 
@@ -116,6 +118,20 @@ public class MainActivity extends Activity {
         return true;
 	}
 
+	@Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout:
+            	MainApp.getInstance().logoff(this);
+            	return true;
+            case R.id.menu_sync:
+            	showProgressDialog("Sincronizando...");
+            	startService(new Intent(this, MainService_.class).setAction(MainService.UPDATE_HOSPITALS));
+            	return true;
+        }
+        return false;
+	}
+	
     final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
 
         @Override
@@ -134,6 +150,11 @@ public class MainActivity extends Activity {
     	
     	@Override
     	public void onReceive(Context context, Intent intent) {
+    		dismissProgressDialog();
+    		String extra = intent.getStringExtra(MainService.ERROR);
+			if (extra != null) {
+				showAlertDialog(extra.isEmpty() ? "Erro desconhecido na sincronização, tente novamente" : extra);
+			}
     		update();
     	}
 	};

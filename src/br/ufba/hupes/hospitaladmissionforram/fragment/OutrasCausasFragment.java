@@ -24,7 +24,8 @@ public class OutrasCausasFragment extends NewResearchFragment implements NovoMed
 
 	ArrayList<Medication> medicationList = new ArrayList<Medication>();
 
-	private LinearLayout linear;
+	@ViewById
+	LinearLayout linear;
 
 	@AfterViews
 	public void init() {

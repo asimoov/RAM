@@ -317,7 +317,7 @@ public class Research {
 	}
 
 	public boolean isOpen() {
-		return true;
+		return status != Status.CLOSE.ordinal();
 	}
 
 	public ArrayList<Medication> getMedications() {

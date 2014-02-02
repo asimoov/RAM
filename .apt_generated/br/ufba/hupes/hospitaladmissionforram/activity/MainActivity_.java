@@ -67,27 +67,13 @@ public final class MainActivity_
     }
 
     @Override
-    public void showAlertDialog(final String message, final String positiveButton, final String negativeButton, final OnClickListener positiveListener, final OnClickListener negativeListener) {
+    public void showProgressDialog(final String arg0) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                MainActivity_.super.showAlertDialog(message, positiveButton, negativeButton, positiveListener, negativeListener);
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void dismissAlertDialog() {
-        handler_.post(new Runnable() {
-
-
-            @Override
-            public void run() {
-                MainActivity_.super.dismissAlertDialog();
+                MainActivity_.super.showProgressDialog(arg0);
             }
 
         }
@@ -109,13 +95,27 @@ public final class MainActivity_
     }
 
     @Override
-    public void showProgressDialog(final String message) {
+    public void showAlertDialog(final String arg0, final String arg1, final String arg2, final OnClickListener arg3, final OnClickListener arg4) {
         handler_.post(new Runnable() {
 
 
             @Override
             public void run() {
-                MainActivity_.super.showProgressDialog(message);
+                MainActivity_.super.showAlertDialog(arg0, arg1, arg2, arg3, arg4);
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissAlertDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                MainActivity_.super.dismissAlertDialog();
             }
 
         }

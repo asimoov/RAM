@@ -80,8 +80,15 @@ public class Hospital {
 		return getResearches().size();
 	}
 
-    public Number getQuantityOpen() {
-        return 0;
+    public Number getQuantityClosed() {
+    	int x = 0;
+    	Collection<Research> collection = getResearches();
+    	for (Research research : collection) {
+			if (!research.isOpen()) {
+				x++;
+			}
+		}
+		return x;
     }
 
     public Collection<Research> getResearches() {

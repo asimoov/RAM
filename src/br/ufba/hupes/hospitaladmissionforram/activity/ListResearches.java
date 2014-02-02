@@ -53,8 +53,7 @@ public class ListResearches extends BaseActivity {
 
         this.update();
     }
-    
-
+ 
     BroadcastReceiver broadReceiver = new BroadcastReceiver() {
     	@Override
     	public void onReceive(Context context, Intent intent) {
@@ -98,6 +97,7 @@ public class ListResearches extends BaseActivity {
                     Research research = researches.get(position);
                     Intent intent = new Intent(ListResearches.this, NewResearch_.class);
                     intent.putExtra("RESEARCH_ID", research.getId().toString());
+                    intent.putExtra("OPEN", research.isOpen());
                     startActivityForResult(intent, 1);
                 }
             });
@@ -133,7 +133,6 @@ public class ListResearches extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

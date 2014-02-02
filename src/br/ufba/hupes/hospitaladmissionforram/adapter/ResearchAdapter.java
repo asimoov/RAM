@@ -66,8 +66,14 @@ public class ResearchAdapter extends ArrayAdapter<Research> {
         holder.handbook.setText(research.getHandbook());
 		holder.name.setText(research.getName());
 
-        if(research.getStatus() == null || research.getStatus() == Status.OPEN.ordinal()) {
-            holder.status.setImageResource(R.drawable.rejected);
+        if(research.isOpen()) {
+            if (research.isSent() || (research.getCreatedAt() != null && !research.getCreatedAt().equals(""))) {
+            	holder.status.setImageResource(R.drawable.green_arrow);
+            } else {
+            	holder.status.setImageResource(R.drawable.red_arrow);
+            }
+        } else {
+        	holder.status.setImageResource(R.drawable.approved);
         }
 
 		return view;

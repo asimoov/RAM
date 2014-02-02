@@ -100,7 +100,9 @@ public class NewResearch extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.save_research, menu);
+    	if (getIntent().getBooleanExtra("OPEN", true)) {
+    		getMenuInflater().inflate(R.menu.save_research, menu);
+    	}
 
         return true;
     }
@@ -225,18 +227,22 @@ public class NewResearch extends FragmentActivity {
     
     @Override
     public void onBackPressed() {
-    	AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Deseja sair? Você perderá todos os dados não salvos");
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-            	NewResearch.super.onBackPressed();
-            }
-        });
-        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-            	dialog.dismiss();
-            }
-        });
-        alert.show();
+    	if (getIntent().getBooleanExtra("OPEN", true)) {
+    		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+	        alert.setTitle("Deseja sair? Você perderá todos os dados não salvos");
+	        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int whichButton) {
+	            	NewResearch.super.onBackPressed();
+	            }
+	        });
+	        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int whichButton) {
+	            	dialog.dismiss();
+	            }
+	        });
+	        alert.show();
+    	} else {
+    		super.onBackPressed();
+    	}
     }
 }

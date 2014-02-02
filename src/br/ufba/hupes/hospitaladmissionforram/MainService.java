@@ -177,13 +177,15 @@ public class MainService extends IntentService {
 	protected void sendResearches() {
 		try {
 			Dao<Research, ?> dao = getHelper().getDao(Research.class);
-			PreparedQuery<Research> preparedQuery = dao.queryBuilder().where().isNull("createdAt").or().eq("createdAt", "").prepare();
+			PreparedQuery<Research> preparedQuery = dao.queryBuilder().where().isNull("createdAt").or().eq("createdAt", "").and().eq("sent", false).prepare();
+			
 			List<Research> researchesToSend = dao.query(preparedQuery);
 			for (Research research : researchesToSend) {
 				research.setHospital(research.getHospital());
 				Log.d("DEBUG", new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(research));
 				if (research.getCreatedAt() == null) {
 					connection.newResearch(research);
+					research.setCreatedAt("");
 				} else {
 					connection.updateResearch(research.getId(), research);
 				}

@@ -31,5 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/approved"/>
+            android:padding="10dp"
+            android:src="@drawable/red_arrow"/>
 </RelativeLayout>

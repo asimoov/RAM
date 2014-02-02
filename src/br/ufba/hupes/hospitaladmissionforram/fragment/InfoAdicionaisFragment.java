@@ -117,12 +117,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	
     @AfterViews
     public void init() {
-    	if (!research.isOpen()) {
-	        ArrayList<View> list = linear.getTouchables();
-	        for (View view : list) {
-				view.setEnabled(false);
-			}
-        }
     	checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -184,6 +178,12 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 		});
     	
     	fillViews();
+    	if (!research.isOpen()) {
+    		ArrayList<View> list = linear.getTouchables();
+    		for (View view : list) {
+    			view.setEnabled(false);
+    		}
+    	}
     }
     
     private void fillViews() {

@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void onResume() {
+		update();
 		super.onResume();
 	};
 	

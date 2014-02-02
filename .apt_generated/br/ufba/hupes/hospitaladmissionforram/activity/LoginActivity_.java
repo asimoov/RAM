@@ -76,8 +76,8 @@ public final class LoginActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        editPass = ((EditText) hasViews.findViewById(id.editPass));
         editLogin = ((EditText) hasViews.findViewById(id.editLogin));
+        editPass = ((EditText) hasViews.findViewById(id.editPass));
         {
             View view = hasViews.findViewById(id.btLogin);
             if (view!= null) {
@@ -97,34 +97,6 @@ public final class LoginActivity_
     }
 
     @Override
-    public void showAlertDialog(final String message, final String positiveButton, final String negativeButton, final android.content.DialogInterface.OnClickListener positiveListener, final android.content.DialogInterface.OnClickListener negativeListener) {
-        handler_.post(new Runnable() {
-
-
-            @Override
-            public void run() {
-                LoginActivity_.super.showAlertDialog(message, positiveButton, negativeButton, positiveListener, negativeListener);
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void showProgressDialog(final String message) {
-        handler_.post(new Runnable() {
-
-
-            @Override
-            public void run() {
-                LoginActivity_.super.showProgressDialog(message);
-            }
-
-        }
-        );
-    }
-
-    @Override
     public void dismissAlertDialog() {
         handler_.post(new Runnable() {
 
@@ -139,6 +111,20 @@ public final class LoginActivity_
     }
 
     @Override
+    public void showAlertDialog(final String message, final String positiveButton, final String negativeButton, final android.content.DialogInterface.OnClickListener positiveListener, final android.content.DialogInterface.OnClickListener negativeListener) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.showAlertDialog(message, positiveButton, negativeButton, positiveListener, negativeListener);
+            }
+
+        }
+        );
+    }
+
+    @Override
     public void dismissProgressDialog() {
         handler_.post(new Runnable() {
 
@@ -146,6 +132,20 @@ public final class LoginActivity_
             @Override
             public void run() {
                 LoginActivity_.super.dismissProgressDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showProgressDialog(final String message) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                LoginActivity_.super.showProgressDialog(message);
             }
 
         }

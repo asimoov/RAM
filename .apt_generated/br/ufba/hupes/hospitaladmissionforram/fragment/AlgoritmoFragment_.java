@@ -65,9 +65,9 @@ public final class AlgoritmoFragment_
     @Override
     public void onViewChanged(HasViews hasViews) {
         linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
-        algOms = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_oms));
-        algNaranjo = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_naranjo));
         algUe = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_ue));
+        algNaranjo = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_naranjo));
+        algOms = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_oms));
         algRucam = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.alg_rucam));
         init();
     }

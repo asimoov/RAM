@@ -84,6 +84,7 @@ public abstract class NewResearchFragment extends Fragment {
             	research.setCreatedAt("");
             }
             research.setUpdatedAt(MainApp.getDateFormatted(new Date(), "yyyy-MM-dd HH:mm:ss ZZZ"));
+            research.setSent(false);
             Dao<Research, String> dao = getHelper().getDao(Research.class);
             dao.createOrUpdate(research);
             saveRAMOnDatabase(research);

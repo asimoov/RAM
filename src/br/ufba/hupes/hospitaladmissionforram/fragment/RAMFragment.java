@@ -7,6 +7,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -42,7 +43,10 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     EditText finalDate;
 	
     ArrayList<Medication> medicationList = new ArrayList<Medication>();
-	
+
+	@ViewById
+	LinearLayout linear;
+
     @AfterViews
     public void init() {
     	RAM ram = research.getRam();
@@ -64,6 +68,13 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
         adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.cid10_cause));
         cause.setAdapter(adapter);
+
+        if (!research.isOpen()) {
+	        ArrayList<View> list = linear.getTouchables();
+	        for (View view : list) {
+				view.setEnabled(false);
+			}
+        }
     }
 
     public boolean save() {

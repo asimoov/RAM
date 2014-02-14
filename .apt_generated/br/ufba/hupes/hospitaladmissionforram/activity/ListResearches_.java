@@ -69,34 +69,6 @@ public final class ListResearches_
     }
 
     @Override
-    public void dismissProgressDialog() {
-        handler_.post(new Runnable() {
-
-
-            @Override
-            public void run() {
-                ListResearches_.super.dismissProgressDialog();
-            }
-
-        }
-        );
-    }
-
-    @Override
-    public void showProgressDialog(final String arg0) {
-        handler_.post(new Runnable() {
-
-
-            @Override
-            public void run() {
-                ListResearches_.super.showProgressDialog(arg0);
-            }
-
-        }
-        );
-    }
-
-    @Override
     public void showAlertDialog(final String arg0, final String arg1, final String arg2, final OnClickListener arg3, final OnClickListener arg4) {
         handler_.post(new Runnable() {
 
@@ -118,6 +90,34 @@ public final class ListResearches_
             @Override
             public void run() {
                 ListResearches_.super.dismissAlertDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.dismissProgressDialog();
+            }
+
+        }
+        );
+    }
+
+    @Override
+    public void showProgressDialog(final String arg0) {
+        handler_.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                ListResearches_.super.showProgressDialog(arg0);
             }
 
         }

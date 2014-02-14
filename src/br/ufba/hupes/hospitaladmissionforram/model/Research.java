@@ -37,11 +37,11 @@ public class Research {
 
 	@Expose
 	@DatabaseField
-	private long weight;
+	private float weight;
 
 	@Expose
 	@DatabaseField
-	private long height;
+	private float height;
 
 	@Expose
 	@DatabaseField
@@ -243,19 +243,19 @@ public class Research {
 		this.sex = sex;
 	}
 
-	public long getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Long weight) {
+	public void setWeight(Float weight) {
 		this.weight = weight;
 	}
 
-	public long getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(Long height) {
+	public void setHeight(Float height) {
 		this.height = height;
 	}
 

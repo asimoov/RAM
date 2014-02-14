@@ -119,8 +119,8 @@ public class DadosGeraisFragment extends NewResearchFragment {
                 research.setBed(bed.getText().toString());
                 research.setBirthday(birthday.getText().toString());
                 research.setAdmission(admission.getText().toString());
-                research.setWeight(Long.parseLong(weight.getText().toString(), 10));
-                research.setHeight(Long.parseLong(height.getText().toString(), 10));
+                research.setWeight(Float.parseFloat(weight.getText().toString()));
+                research.setHeight(Float.parseFloat(height.getText().toString()));
                 research.setUnit(unit.getText().toString());
 
                 research.setColor(colors.get(color.getSelectedItemPosition()));

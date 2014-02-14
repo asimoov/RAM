@@ -39,9 +39,9 @@ public final class RestConnection_
     }
 
     @Override
-    public User login() {
+    public Hospital[] getHospitals() {
         try {
-            return restTemplate.exchange(rootUrl.concat("/users/show"), HttpMethod.GET, null, User.class).getBody();
+            return restTemplate.exchange(rootUrl.concat("/hospitals"), HttpMethod.GET, null, Hospital[].class).getBody();
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);
@@ -67,9 +67,9 @@ public final class RestConnection_
     }
 
     @Override
-    public Hospital[] getHospitals() {
+    public User login() {
         try {
-            return restTemplate.exchange(rootUrl.concat("/hospitals"), HttpMethod.GET, null, Hospital[].class).getBody();
+            return restTemplate.exchange(rootUrl.concat("/users/show"), HttpMethod.GET, null, User.class).getBody();
         } catch (RestClientException e) {
             if (restErrorHandler!= null) {
                 restErrorHandler.onRestClientExceptionThrown(e);

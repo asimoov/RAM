@@ -66,12 +66,12 @@ public final class RAMFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        cause = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
-        initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
-        comorbidity = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
         linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
         medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
+        cause = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.cause));
+        initialDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.initial_date));
         finalDate = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.final_date));
+        comorbidity = ((AutoCompleteTextView) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.comorbidity));
         otherCauses = ((EditText) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.other_causes));
         {
             View view = hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication);

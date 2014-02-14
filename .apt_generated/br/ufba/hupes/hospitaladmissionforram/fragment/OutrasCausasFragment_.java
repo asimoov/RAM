@@ -64,8 +64,8 @@ public final class OutrasCausasFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
         medications = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.medications));
+        linear = ((LinearLayout) hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.linear));
         {
             View view = hasViews.findViewById(br.ufba.hupes.hospitaladmissionforram.R.id.addMedication);
             if (view!= null) {

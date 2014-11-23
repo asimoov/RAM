@@ -20,13 +20,13 @@
                 android:layout_weight="0.25"
                 android:text="Naranjo" />
 
-            <EditText
-                android:id="@+id/alg_naranjo"
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/alg_naranjo"
                 android:layout_weight="0.75"
-                android:ems="10"
-                android:singleLine="true" />
+                android:entries="@array/alg_naranjo" />
+
         </LinearLayout>
         
         <LinearLayout
@@ -40,13 +40,13 @@
                 android:layout_weight="0.25"
                 android:text="OMS" />
 
-            <EditText
-                android:id="@+id/alg_oms"
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/alg_oms"
                 android:layout_weight="0.75"
-                android:ems="10"
-                android:singleLine="true" />
+                android:entries="@array/alg_oms" />
+
         </LinearLayout>
         
         <LinearLayout
@@ -60,13 +60,13 @@
                 android:layout_weight="0.25"
                 android:text="UE" />
 
-            <EditText
-                android:id="@+id/alg_ue"
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/alg_ue"
                 android:layout_weight="0.75"
-                android:ems="10"
-                android:singleLine="true" />
+                android:entries="@array/alg_ue" />
+
         </LinearLayout>
         
         <LinearLayout
@@ -80,13 +80,13 @@
                 android:layout_weight="0.25"
                 android:text="RUCAM" />
 
-            <EditText
-                android:id="@+id/alg_rucam"
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/alg_rucam"
                 android:layout_weight="0.75"
-                android:ems="10"
-                android:singleLine="true" />
+                android:entries="@array/alg_rucam" />
+
         </LinearLayout>
         
         

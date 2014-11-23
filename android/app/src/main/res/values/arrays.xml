@@ -67,6 +67,8 @@
         <item>Suspensão do medicamento</item>
         <item>Suspensão e tratamento medicamentoso</item>
         <item>Tratamento medicamentoso</item>
+        <item>Não medicamentoso</item>
+        <item>Ajuste de dose</item>
         <item>Não tratada</item>
     </string-array>
     <string-array name="opcoes_resultado">
@@ -99,5 +101,30 @@
         <item>5 a 10 anos</item>
         <item>Mais de 10 anos</item>
     </string-array>
-
+    <string-array name="alg_naranjo">
+        <item>Definida (9 ou +)</item>
+        <item>Provável (5 a 8)</item>
+        <item>Possível (1 a 4)</item>
+        <item>Duvidosa (0 ou menos)</item>
+    </string-array>
+    <string-array name="alg_oms">
+        <item>Certa ou Provada</item>
+        <item>Provável</item>
+        <item>Possível</item>
+        <item>Improvável</item>
+        <item>Condicional/inclassificável</item>
+        <item>Não avaliável/inclassificável</item>
+    </string-array>
+    <string-array name="alg_ue">
+        <item>Categoria A</item>
+        <item>Categoria B</item>
+        <item>Categoria O</item>
+    </string-array>
+    <string-array name="alg_rucam">
+        <item>Altamente provável (&gt;8)</item>
+        <item>Provável (6 a 8)</item>
+        <item>Possível (3 a 5)</item>
+        <item>Improvável (1 a 2)</item>
+        <item>Excluída (&lt;0)</item>
+    </string-array>
 </resources>

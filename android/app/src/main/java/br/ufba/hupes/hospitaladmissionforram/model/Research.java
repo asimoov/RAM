@@ -1,12 +1,12 @@
 package br.ufba.hupes.hospitaladmissionforram.model;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 import com.google.gson.annotations.Expose;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 @DatabaseTable(tableName = "research")
 public class Research {
@@ -83,15 +83,23 @@ public class Research {
 
 	@Expose
 	@DatabaseField
+    private String anotherLocationDescription;
+
+	@Expose
+	@DatabaseField
 	private boolean exposicaoPrevia;
 
 	@Expose
 	@DatabaseField
 	private boolean desenvolveuReacao;
 
-	@Expose
-	@DatabaseField
-	private String reacoesAdversas;
+    @Expose
+    @DatabaseField
+    private String reacoesAdversas;
+
+    @Expose
+    @DatabaseField
+    private String medsReacoesAdversas;
 
 	@Expose
 	@DatabaseField
@@ -547,4 +555,20 @@ public class Research {
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
+
+    public String getAnotherLocationDescription() {
+        return anotherLocationDescription;
+    }
+
+    public void setAnotherLocationDescription(String anotherLocationDescription) {
+        this.anotherLocationDescription = anotherLocationDescription;
+    }
+
+    public String getMedsReacoesAdversas() {
+        return medsReacoesAdversas;
+    }
+
+    public void setMedsReacoesAdversas(String medsReacoesAdversas) {
+        this.medsReacoesAdversas = medsReacoesAdversas;
+    }
 }

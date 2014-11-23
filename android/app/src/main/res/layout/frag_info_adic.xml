@@ -17,6 +17,27 @@
             android:layout_height="wrap_content"
             android:text="Foi atendido em outro local no início dos sintomas?" />
 
+        <LinearLayout
+            android:id="@+id/view_outro_local"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Local: " />
+
+            <EditText
+                android:id="@+id/edit_outro_local"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:singleLine="true" />
+        </LinearLayout>
         <Switch
             android:textOn="SIM"
             android:textOff="NÃO"
@@ -59,6 +80,28 @@
 
             <EditText
                 android:id="@+id/edit_reacao_passada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_reacao_passada_med"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Medicamento Suspeito" />
+
+            <EditText
+                android:id="@+id/edit_reacao_passada_med"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
@@ -227,7 +270,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:entries="@array/alg_naranjo"
+                android:entries="@array/opcoes_resultado"
                 android:spinnerMode="dropdown" />
         </LinearLayout>
 

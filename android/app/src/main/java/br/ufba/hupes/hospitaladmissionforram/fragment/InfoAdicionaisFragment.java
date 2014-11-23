@@ -38,8 +38,17 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	@ViewById(R.id.chk_reacao_passada)
 	Switch checkReacaoPassada;
 
-	@ViewById
-	View viewReacaoPassada;
+    @ViewById
+    View viewOutroLocal;
+
+    @ViewById
+    EditText editOutroLocal;
+
+    @ViewById
+    View viewReacaoPassada;
+
+    @ViewById
+    View viewReacaoPassadaMed;
 
 	@ViewById
 	Spinner spnTabagismo;
@@ -59,8 +68,11 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	@ViewById
 	View viewDataObito;
 
-	@ViewById
-	EditText editReacaoPassada;
+    @ViewById
+    EditText editReacaoPassada;
+
+    @ViewById
+    EditText editReacaoPassadaMed;
 
 	@ViewById
 	Spinner spnTempoTabagismo;
@@ -104,17 +116,26 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	
     @AfterViews
     public void init() {
-    	checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+        chkAnotherLocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                viewOutroLocal.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        checkMedAnterior.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkReacao.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        checkReacaoPassada.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				checkReacao.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-			}
-		});
-    	
-    	checkReacaoPassada.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				viewReacaoPassada.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                viewReacaoPassada.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                viewReacaoPassadaMed.setVisibility(isChecked ? View.VISIBLE : View.GONE);
 			}
 		});
 
@@ -167,9 +188,11 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     
     private void fillViews() {
     	chkAnotherLocation.setChecked(research.isAnotherLocation());
-    	checkMedAnterior.setChecked(research.isExposicaoPrevia());
+    	editOutroLocal.setText(research.getAnotherLocationDescription());
+        checkMedAnterior.setChecked(research.isExposicaoPrevia());
     	checkReacao.setChecked(research.isDesenvolveuReacao());
     	editReacaoPassada.setText(research.getReacoesAdversas());
+        editReacaoPassadaMed.setText(research.getMedsReacoesAdversas());
     	checkReacaoPassada.setChecked(editReacaoPassada.length() > 0);
 
     	String s;
@@ -215,11 +238,17 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 				return false;
 			}
 		}
-		
-    	research.setAnotherLocation(chkAnotherLocation.isChecked());
+
+        boolean chkAnotherLocationChecked = chkAnotherLocation.isChecked();
+        research.setAnotherLocation(chkAnotherLocationChecked);
+        if (chkAnotherLocationChecked) {
+            research.setAnotherLocationDescription(editOutroLocal.getText().toString());
+        }
+
     	research.setExposicaoPrevia(checkMedAnterior.isChecked());
     	research.setDesenvolveuReacao(checkMedAnterior.isChecked() && checkReacao.isChecked());
     	research.setReacoesAdversas(editReacaoPassada.getText().toString());
+        research.setMedsReacoesAdversas(editReacaoPassadaMed.getText().toString());
 
     	if (spnTabagismo.getSelectedItemPosition() > 0) {
     		research.setTabagismo(spnTabagismo.getSelectedItem().toString());

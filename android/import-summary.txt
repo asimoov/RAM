@@ -1,0 +1,280 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .factorypath
+* .gitignore
+* RAM-master.iml
+* RAM.iml
+* androidannotations-3.0.jar
+* frontserver/
+* frontserver/.gitignore
+* frontserver/Gemfile
+* frontserver/Gemfile.lock
+* frontserver/README.rdoc
+* frontserver/Rakefile
+* frontserver/app/
+* frontserver/app/assets/
+* frontserver/app/assets/images/
+* frontserver/app/assets/images/.keep
+* frontserver/app/assets/javascripts/
+* frontserver/app/assets/javascripts/application.js
+* frontserver/app/assets/javascripts/causes.js.coffee
+* frontserver/app/assets/javascripts/cids.js.coffee
+* frontserver/app/assets/javascripts/hospitals.js.coffee
+* frontserver/app/assets/javascripts/medications.js.coffee
+* frontserver/app/assets/javascripts/researches.js.coffee
+* frontserver/app/assets/javascripts/welcome.js.coffee
+* frontserver/app/assets/stylesheets/
+* frontserver/app/assets/stylesheets/application.css
+* frontserver/app/assets/stylesheets/causes.css.scss
+* frontserver/app/assets/stylesheets/cids.css.scss
+* frontserver/app/assets/stylesheets/hospitals.css.scss
+* frontserver/app/assets/stylesheets/medications.css.scss
+* frontserver/app/assets/stylesheets/researches.css.scss
+* frontserver/app/assets/stylesheets/scaffolds.css.scss
+* frontserver/app/assets/stylesheets/welcome.css.scss
+* frontserver/app/controllers/
+* frontserver/app/controllers/application_controller.rb
+* frontserver/app/controllers/causes_controller.rb
+* frontserver/app/controllers/cids_controller.rb
+* frontserver/app/controllers/concerns/
+* frontserver/app/controllers/concerns/.keep
+* frontserver/app/controllers/hospitals_controller.rb
+* frontserver/app/controllers/medications_controller.rb
+* frontserver/app/controllers/researches_controller.rb
+* frontserver/app/controllers/users_controller.rb
+* frontserver/app/controllers/welcome_controller.rb
+* frontserver/app/helpers/
+* frontserver/app/helpers/application_helper.rb
+* frontserver/app/helpers/causes_helper.rb
+* frontserver/app/helpers/cids_helper.rb
+* frontserver/app/helpers/hospitals_helper.rb
+* frontserver/app/helpers/medications_helper.rb
+* frontserver/app/helpers/researches_helper.rb
+* frontserver/app/helpers/welcome_helper.rb
+* frontserver/app/mailers/
+* frontserver/app/mailers/.keep
+* frontserver/app/models/
+* frontserver/app/models/.keep
+* frontserver/app/models/ability.rb
+* frontserver/app/models/cause.rb
+* frontserver/app/models/cid.rb
+* frontserver/app/models/concerns/
+* frontserver/app/models/concerns/.keep
+* frontserver/app/models/hospital.rb
+* frontserver/app/models/medication.rb
+* frontserver/app/models/research.rb
+* frontserver/app/models/user.rb
+* frontserver/app/views/
+* frontserver/app/views/causes/
+* frontserver/app/views/causes/_form.html.erb
+* frontserver/app/views/causes/edit.html.erb
+* frontserver/app/views/causes/index.html.erb
+* frontserver/app/views/causes/index.json.jbuilder
+* frontserver/app/views/causes/new.html.erb
+* frontserver/app/views/causes/show.html.erb
+* frontserver/app/views/causes/show.json.jbuilder
+* frontserver/app/views/cids/
+* frontserver/app/views/cids/_form.html.erb
+* frontserver/app/views/cids/edit.html.erb
+* frontserver/app/views/cids/index.html.erb
+* frontserver/app/views/cids/index.json.jbuilder
+* frontserver/app/views/cids/new.html.erb
+* frontserver/app/views/cids/show.html.erb
+* frontserver/app/views/cids/show.json.jbuilder
+* frontserver/app/views/hospitals/
+* frontserver/app/views/hospitals/_form.html.erb
+* frontserver/app/views/hospitals/edit.html.erb
+* frontserver/app/views/hospitals/index.html.erb
+* frontserver/app/views/hospitals/index.json.jbuilder
+* frontserver/app/views/hospitals/new.html.erb
+* frontserver/app/views/hospitals/show.html.erb
+* frontserver/app/views/hospitals/show.json.jbuilder
+* frontserver/app/views/layouts/
+* frontserver/app/views/layouts/application.html.erb
+* frontserver/app/views/medications/
+* frontserver/app/views/medications/_form.html.erb
+* frontserver/app/views/medications/edit.html.erb
+* frontserver/app/views/medications/index.html.erb
+* frontserver/app/views/medications/index.json.jbuilder
+* frontserver/app/views/medications/new.html.erb
+* frontserver/app/views/medications/show.html.erb
+* frontserver/app/views/medications/show.json.jbuilder
+* frontserver/app/views/researches/
+* frontserver/app/views/researches/_form.html.erb
+* frontserver/app/views/researches/edit.html.erb
+* frontserver/app/views/researches/excel.xls.erb
+* frontserver/app/views/researches/index.html.erb
+* frontserver/app/views/researches/index.json.jbuilder
+* frontserver/app/views/researches/new.html.erb
+* frontserver/app/views/researches/show.html.erb
+* frontserver/app/views/researches/show.json.jbuilder
+* frontserver/app/views/users/
+* frontserver/app/views/users/_form.html.erb
+* frontserver/app/views/users/edit.html.erb
+* frontserver/app/views/users/index.html.erb
+* frontserver/app/views/users/index.json.jbuilder
+* frontserver/app/views/users/new.html.erb
+* frontserver/app/views/users/show.html.erb
+* frontserver/app/views/users/show.json.jbuilder
+* frontserver/app/views/welcome/
+* frontserver/app/views/welcome/index.html.erb
+* frontserver/config.ru
+* frontserver/config/
+* frontserver/config/application.rb
+* frontserver/config/boot.rb
+* frontserver/config/database.yml
+* frontserver/config/environment.rb
+* frontserver/config/environments/
+* frontserver/config/environments/development.rb
+* frontserver/config/environments/production.rb
+* frontserver/config/environments/test.rb
+* frontserver/config/initializers/
+* frontserver/config/initializers/backtrace_silencers.rb
+* frontserver/config/initializers/devise.rb
+* frontserver/config/initializers/filter_parameter_logging.rb
+* frontserver/config/initializers/inflections.rb
+* frontserver/config/initializers/mime_types.rb
+* frontserver/config/initializers/secret_token.rb
+* frontserver/config/initializers/session_store.rb
+* frontserver/config/initializers/wrap_parameters.rb
+* frontserver/config/locales/
+* frontserver/config/locales/devise.en.yml
+* frontserver/config/locales/en.yml
+* frontserver/config/routes.rb
+* frontserver/db/
+* frontserver/db/migrate/
+* frontserver/db/migrate/20131201143744_create_hospitals.rb
+* frontserver/db/migrate/20131201152435_create_researches.rb
+* frontserver/db/migrate/20131201154107_create_medications.rb
+* frontserver/db/migrate/20131201155721_create_causes.rb
+* frontserver/db/migrate/20131201160507_create_cids.rb
+* frontserver/db/migrate/20131201163921_devise_create_users.rb
+* frontserver/db/migrate/20131218140804_create_permission.rb
+* frontserver/db/schema.rb
+* frontserver/db/seeds.rb
+* frontserver/lib/
+* frontserver/lib/assets/
+* frontserver/lib/assets/.keep
+* frontserver/lib/tasks/
+* frontserver/lib/tasks/.keep
+* frontserver/public/
+* frontserver/public/404.html
+* frontserver/public/422.html
+* frontserver/public/500.html
+* frontserver/public/favicon.ico
+* frontserver/public/robots.txt
+* frontserver/test/
+* frontserver/test/controllers/
+* frontserver/test/controllers/.keep
+* frontserver/test/controllers/causes_controller_test.rb
+* frontserver/test/controllers/cids_controller_test.rb
+* frontserver/test/controllers/hospitals_controller_test.rb
+* frontserver/test/controllers/medications_controller_test.rb
+* frontserver/test/controllers/researches_controller_test.rb
+* frontserver/test/controllers/welcome_controller_test.rb
+* frontserver/test/fixtures/
+* frontserver/test/fixtures/.keep
+* frontserver/test/fixtures/causes.yml
+* frontserver/test/fixtures/cids.yml
+* frontserver/test/fixtures/hospitals.yml
+* frontserver/test/fixtures/medications.yml
+* frontserver/test/fixtures/researches.yml
+* frontserver/test/fixtures/users.yml
+* frontserver/test/helpers/
+* frontserver/test/helpers/.keep
+* frontserver/test/helpers/causes_helper_test.rb
+* frontserver/test/helpers/cids_helper_test.rb
+* frontserver/test/helpers/hospitals_helper_test.rb
+* frontserver/test/helpers/medications_helper_test.rb
+* frontserver/test/helpers/researches_helper_test.rb
+* frontserver/test/helpers/welcome_helper_test.rb
+* frontserver/test/integration/
+* frontserver/test/integration/.keep
+* frontserver/test/mailers/
+* frontserver/test/mailers/.keep
+* frontserver/test/models/
+* frontserver/test/models/.keep
+* frontserver/test/models/cause_test.rb
+* frontserver/test/models/cid_test.rb
+* frontserver/test/models/hospital_test.rb
+* frontserver/test/models/medication_test.rb
+* frontserver/test/models/research_test.rb
+* frontserver/test/models/user_test.rb
+* frontserver/test/test_helper.rb
+* frontserver/vendor/
+* frontserver/vendor/assets/
+* frontserver/vendor/assets/javascripts/
+* frontserver/vendor/assets/javascripts/.keep
+* frontserver/vendor/assets/stylesheets/
+* frontserver/vendor/assets/stylesheets/.keep
+* generated/
+* generated/br/
+* generated/br/ufba/
+* generated/br/ufba/hupes/
+* generated/br/ufba/hupes/hospitaladmissionforram/
+* generated/br/ufba/hupes/hospitaladmissionforram/fragment/
+* generated/br/ufba/hupes/hospitaladmissionforram/fragment/DadosGeraisFragment_.java
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+gson-2.2.4.jar => com.google.code.gson:gson:2.2.4
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.2.4.jar => version 2.2.4 in com.google.code.gson:gson:2.2.4
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* .apt_generated/ => app/src/main/java/
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/androidannotations-api-3.0.jar => app/libs/androidannotations-api-3.0.jar
+* libs/ormlite-android-4.46.jar => app/libs/ormlite-android-4.46.jar
+* libs/ormlite-core-4.46.jar => app/libs/ormlite-core-4.46.jar
+* libs/spring-android-core-1.0.0.RELEASE.jar => app/libs/spring-android-core-1.0.0.RELEASE.jar
+* libs/spring-android-rest-template-1.0.0.RELEASE.jar => app/libs/spring-android-rest-template-1.0.0.RELEASE.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

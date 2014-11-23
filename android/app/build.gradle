@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 15
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "br.ufba.hupes.hospitaladmissionforram"
+        minSdkVersion 11
+        targetSdkVersion 16
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+    }
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.processResources.manifestFile
+        resourcePackageName "br.ufba.hupes.hospitaladmissionforram"
+    }
+}
+dependencies {
+    compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'org.androidannotations:androidannotations-api:3.2+'
+    compile 'org.springframework.android:spring-android-rest-template:1.0.+'
+    compile 'com.j256.ormlite:ormlite-android:4.46'
+
+    apt "org.androidannotations:androidannotations:3.2+"
+}

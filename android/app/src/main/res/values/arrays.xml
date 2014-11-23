@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="dose_types">
+        <item>mg</item>
+        <item>ml</item>
+        <item>mcg</item>
+        <item>gotas</item>
+        <item>UI</item>
+    </string-array>
+    <string-array name="colors">
+        <item>Branco</item>
+        <item>Indígenas</item>
+        <item>Negro</item>
+        <item>Pardo</item>
+        <item>Amarelo</item>
+    </string-array>
+    <string-array name="ways">
+        <item>Dérmica</item>
+        <item>Endovenosa</item>
+        <item>Inalatória</item>
+        <item>Intradérmica</item>
+        <item>Intranasal</item>
+        <item>Intramuscular</item>
+        <item>Intratecal</item>
+        <item>Ocular</item>
+        <item>Oral</item>
+        <item>Retal</item>
+        <item>Subcutânea</item>
+        <item>Vaginal</item>
+    </string-array>
+    <string-array name="planta_partes">
+        <item>Folha</item>
+        <item>Raiz</item>
+        <item>Casca</item>
+        <item>Galhos</item>
+        <item>Flor</item>
+        <item>Fruto</item>
+        <item>Semente</item>
+    </string-array>
+    <string-array name="planta_modo_preparo">
+        <item>Decocto - Ferver</item>
+        <item>Infusão - Só água quente</item>
+        <item>Macerado - Sem aquecimento</item>
+        <item>Sumo ou suco</item>
+        <item>Lambedor</item>
+        <item>Garrafada</item>
+        <item>Tinturas</item>
+        <item>Óleos</item>
+        <item>Bochecho</item>
+        <item>In natura</item>
+        <item>Banho</item>
+        <item>Inalação</item>
+        <item>Cataplasmas</item>
+        <item>Compressa</item>
+        <item>Uguento</item>
+    </string-array>
+    <string-array name="planta_modo_obtencao">
+        <item>Em plantações da própria casa</item>
+        <item>Farmácia</item>
+        <item>Vizinhos</item>
+        <item>Comprados em algum tipo de mercado</item>
+        <item>Raizeiros</item>
+        <item>Com profissional da saúde</item>
+    </string-array>
+    <string-array name="opcoes_tratamento">
+        <item>Suspensão do medicamento</item>
+        <item>Suspensão e tratamento medicamentoso</item>
+        <item>Tratamento medicamentoso</item>
+        <item>Não tratada</item>
+    </string-array>
+    <string-array name="opcoes_resultado">
+        <item>Recuperado</item>
+        <item>Risco de vida</item>
+        <item>Desconhecido</item>
+        <item>Fatal</item>
+    </string-array>
+    <string-array name="opcoes_gravidade">
+        <item>Leve</item>
+        <item>Moderada</item>
+        <item>Grave</item>
+        <item>Fatal</item>
+    </string-array>
+    <string-array name="opcoes_tabagismo">
+        <item>Não fuma</item>
+        <item>1 a 10 cigarros/dia</item>
+        <item>10 a 20 cigarros/dia</item>
+        <item>mais de 20 cigarros/dia</item>
+    </string-array>
+    <string-array name="opcoes_etilismo">
+        <item>Não bebe</item>
+        <item>1 a 3 vezes na semana</item>
+        <item>3 a 5 vezes na semana</item>
+        <item>mais de 5 vezes na semana</item>
+    </string-array>
+    <string-array name="opcoes_tempo">
+        <item>Menos de 1 ano</item>
+        <item>1 a 5 anos</item>
+        <item>5 a 10 anos</item>
+        <item>Mais de 10 anos</item>
+    </string-array>
+
+</resources>

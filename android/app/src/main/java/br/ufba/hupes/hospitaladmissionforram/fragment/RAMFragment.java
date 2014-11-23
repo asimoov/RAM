@@ -128,7 +128,7 @@ public class RAMFragment extends NewResearchFragment implements NovoMedicamentoL
     
     @Click
     public void addMedication() {
-    	NovoMedicamentoFragment fragment = NovoMedicamentoFragment_.builder().build();
+    	NovoMedicamentoFragment fragment = NovoMedicamentoFragment_.builder().showCheckPlant(true).build();
     	fragment.setListener(this);
     	fragment.show(getFragmentManager(), "NovoMedicamento");
     }

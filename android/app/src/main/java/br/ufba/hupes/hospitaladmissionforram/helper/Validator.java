@@ -36,7 +36,13 @@ public class Validator {
     }
 
     @SuppressLint("SimpleDateFormat")
-	public static boolean validateDateFormat(View pView, String pDateFormat, String pMessage) {
+    public static boolean validateDateFormat(View pView, String pDateFormat, String pMessage) {
+        return validateDateFormat(pView, pDateFormat, false, pMessage);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static boolean validateDateFormat(View pView, String pDateFormat, boolean canBeNull, String pMessage) {
+        if (canBeNull) return true;
         if (pView instanceof EditText) {
             EditText edText = (EditText) pView;
             Editable text = edText.getText();
@@ -62,8 +68,13 @@ public class Validator {
         return false;
     }
 
-	public static boolean validateDateRange(View pInitialDate, View pFinalDate, String pDateFormat, String pMessage) {
-		if (pInitialDate instanceof EditText && pFinalDate instanceof EditText) {
+    public static boolean validateDateRange(View pInitialDate, View pFinalDate, String pDateFormat, String pMessage) {
+        return validateDateRange(pInitialDate, pFinalDate, pDateFormat, false, pMessage);
+    }
+
+    public static boolean validateDateRange(View pInitialDate, View pFinalDate, String pDateFormat, boolean canBeNull, String pMessage) {
+		if (canBeNull) return validateDateFormat(pInitialDate, pDateFormat, pMessage);
+        if (pInitialDate instanceof EditText && pFinalDate instanceof EditText) {
 			EditText edText = (EditText) pInitialDate;
 			EditText edText2 = (EditText) pFinalDate;
             Editable textIni = edText.getText();

@@ -115,7 +115,7 @@ public class DadosGeraisFragment extends NewResearchFragment {
                 Validator.validateNotNull(bed, "O leito nao pode estar em branco") &&
                 Validator.validateNotNull(admission, "O Admissao nao pode estar em branco") &&
                 Validator.validateDateFormat(birthday, "dd/MM/yyyy", "A data de nascimento está no formato errada") &&
-                Validator.validateDateIsAfter("01/01/2014",admission.getText().toString(), "dd/MM/yyyy", admission, "Data de admiss�o incorreta")) {
+                Validator.validateDateIsAfter("01/01/2014",admission.getText().toString(), "dd/MM/yyyy", admission, "Data de admissão incorreta")) {
             try {
                 research.setName(name.getText().toString());
                 research.setHandbook(handbook.getText().toString());

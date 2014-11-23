@@ -9,6 +9,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -26,28 +27,19 @@ import br.ufba.hupes.hospitaladmissionforram.helper.Validator;
 public class InfoAdicionaisFragment extends NewResearchFragment {
 
 	@ViewById
-	CheckBox chkAnotherLocation;
+    Switch chkAnotherLocation;
 
 	@ViewById(R.id.chk_med_anterior)
-	CheckBox checkMedAnterior;
+	Switch checkMedAnterior;
 
 	@ViewById(R.id.chk_desenv_reacao)
-	CheckBox checkReacao;
-	
+	Switch checkReacao;
+
 	@ViewById(R.id.chk_reacao_passada)
-	CheckBox checkReacaoPassada;
-	
-	@ViewById(R.id.chk_plantas_med)
-	CheckBox checkPlantasMed;
+	Switch checkReacaoPassada;
 
 	@ViewById
 	View viewReacaoPassada;
-
-	@ViewById
-	View viewPlantasMed;
-	
-	@ViewById
-	View viewPlantasMedFreq;
 
 	@ViewById
 	Spinner spnTabagismo;
@@ -69,12 +61,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 
 	@ViewById
 	EditText editReacaoPassada;
-
-	@ViewById
-	EditText editPlantasMed;
-
-	@ViewById
-	EditText editPlantasMedFreq;
 
 	@ViewById
 	Spinner spnTempoTabagismo;
@@ -131,14 +117,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 				viewReacaoPassada.setVisibility(isChecked ? View.VISIBLE : View.GONE);
 			}
 		});
-    	
-    	checkPlantasMed.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				viewPlantasMed.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-				viewPlantasMedFreq.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-			}
-		});
 
     	spnTabagismo.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -193,12 +171,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     	checkReacao.setChecked(research.isDesenvolveuReacao());
     	editReacaoPassada.setText(research.getReacoesAdversas());
     	checkReacaoPassada.setChecked(editReacaoPassada.length() > 0);
-    	
-    	editPlantasMed.setText(research.getPlantasMedicinais());
-    	if (editPlantasMed.length() > 0) {
-			checkPlantasMed.setChecked(true);
-			editPlantasMedFreq.setText(research.getFreqPlantasMedicinais());
-    	}
 
     	String s;
     	s = research.getTabagismo();
@@ -248,8 +220,6 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     	research.setExposicaoPrevia(checkMedAnterior.isChecked());
     	research.setDesenvolveuReacao(checkMedAnterior.isChecked() && checkReacao.isChecked());
     	research.setReacoesAdversas(editReacaoPassada.getText().toString());
-    	research.setPlantasMedicinais(editPlantasMed.getText().toString());
-    	research.setFreqPlantasMedicinais(editPlantasMedFreq.getText().toString());
 
     	if (spnTabagismo.getSelectedItemPosition() > 0) {
     		research.setTabagismo(spnTabagismo.getSelectedItem().toString());

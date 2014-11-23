@@ -1,6 +1,8 @@
 package br.ufba.hupes.hospitaladmissionforram.fragment;
 
 import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.ArrayAdapter;
@@ -81,7 +83,10 @@ public class NovoMedicamentoFragment extends DialogFragment {
     @StringArrayRes
     String[] ways;
 
-	private NovoMedicamentoListener listener;
+    @ViewById
+    View btDeleteFinalDate;
+
+    private NovoMedicamentoListener listener;
 
     @AfterViews
     public void init() {
@@ -90,8 +95,24 @@ public class NovoMedicamentoFragment extends DialogFragment {
 			getDialog().setCanceledOnTouchOutside(false);
 		} catch (Exception e) {
 		}
-    	
-    	checkPlantasMed.setVisibility(showCheckPlant ? View.VISIBLE : View.GONE);
+        finalDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                btDeleteFinalDate.setVisibility(editable.toString().length() > 0 ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        checkPlantasMed.setVisibility(showCheckPlant ? View.VISIBLE : View.GONE);
     	
     	if (medicationItem != null) {
     		name.setText(medicationItem.getName());
@@ -142,6 +163,11 @@ public class NovoMedicamentoFragment extends DialogFragment {
     }
 
     @Click
+    void btDeleteFinalDate() {
+        finalDate.setText("");
+    }
+
+    @Click
     public void btCancelar() {
     	dismiss();
 	}
@@ -182,15 +208,15 @@ public class NovoMedicamentoFragment extends DialogFragment {
 					&& Validator.validateNotNull(plantaDose, "A dosagem não pode estar em branco")
 					&& Validator.validateNotNull(plantaObtencao, "A forma de obtenção não pode estar em branco")
 					&& Validator.validateDateFormat(initialDate, "dd/MM/yyyy","A data inicial está no formato errado")
-					&& Validator.validateDateFormat(finalDate, "dd/MM/yyyy","A data final está no formato errado")
-					&& Validator.validateDateRange(initialDate, finalDate,"dd/MM/yyyy","A data final está no formato errado"));
+					&& Validator.validateDateFormat(finalDate.getText().length() > 0 ? finalDate : null, "dd/MM/yyyy",true, "A data final está no formato errado")
+					&& Validator.validateDateRange(initialDate, finalDate.getText().length() > 0 ? finalDate : null,"dd/MM/yyyy",true, "A data final está no formato errado"));
 		} else {
 			return (Validator.validateNotNull(name,"O medicamento não pode estar em branco")
 					&& Validator.validateNotNull(dose,"A dose não pode estar em branco")
 					&& Validator.validateNotNull(indication,"A indicação não pode estar em branco")
 					&& Validator.validateDateFormat(initialDate, "dd/MM/yyyy","A data inicial está no formato errado")
-					&& Validator.validateDateFormat(finalDate, "dd/MM/yyyy","A data final está no formato errado")
-					&& Validator.validateDateRange(initialDate, finalDate,"dd/MM/yyyy","A data final está no formato errado"));
+					&& Validator.validateDateFormat(finalDate.getText().length() > 0 ? finalDate : null, "dd/MM/yyyy",true, "A data final está no formato errado")
+					&& Validator.validateDateRange(initialDate, finalDate.getText().length() > 0 ? finalDate : null,"dd/MM/yyyy",true, "A data final está no formato errado"));
 		}
 	}
 

@@ -9,19 +9,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <CheckBox
+        <Switch
+            android:textOn="SIM"
+            android:textOff="NÃO"
             android:id="@+id/chk_another_location"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Foi atendido em outro local no início dos sintomas?" />
 
-        <CheckBox
+        <Switch
+            android:textOn="SIM"
+            android:textOff="NÃO"
             android:id="@+id/chk_med_anterior"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Exposição prévia ao medicamento suspeito?" />
 
-        <CheckBox
+        <Switch
+            android:textOn="SIM"
+            android:textOff="NÃO"
             android:id="@+id/chk_desenv_reacao"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -29,7 +35,9 @@
             android:text="Desenvolveu a reação?"
             android:visibility="gone" />
 
-        <CheckBox
+        <Switch
+            android:textOn="SIM"
+            android:textOff="NÃO"
             android:id="@+id/chk_reacao_passada"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -54,54 +62,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/chk_plantas_med"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Faz uso de produtos a base de plantas medicinais?" />
-
-        <LinearLayout
-            android:id="@+id/view_plantas_med"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="Quais?" />
-
-            <EditText
-                android:id="@+id/edit_plantas_med"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/view_plantas_med_freq"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal"
-            android:visibility="gone" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="Com que frequência?" />
-
-            <EditText
-                android:id="@+id/edit_plantas_med_freq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -302,7 +262,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.25"
                 android:text="Sequelas (Se houve) " />
 

@@ -11,13 +11,27 @@ android {
         targetSdkVersion 16
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            storeFile file("ram.keystore")
+            storePassword "ram.hupes"
+            keyAlias "ram"
+            keyPassword "ram.hupes"
         }
     }
 
+    buildTypes {
+        release {
+//            runProguard false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+    }
 
     packagingOptions {
         exclude 'META-INF/notice.txt'

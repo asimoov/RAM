@@ -149,6 +149,10 @@ public class Research {
 	@DatabaseField
 	private String result;
 
+    @Expose
+    @DatabaseField
+    private String riskLife;
+
 	@Expose
 	@DatabaseField
 	private String deathDate;
@@ -570,5 +574,13 @@ public class Research {
 
     public void setMedsReacoesAdversas(String medsReacoesAdversas) {
         this.medsReacoesAdversas = medsReacoesAdversas;
+    }
+
+    public String getRiskLife() {
+        return riskLife;
+    }
+
+    public void setRiskLife(String riskLife) {
+        this.riskLife = riskLife;
     }
 }

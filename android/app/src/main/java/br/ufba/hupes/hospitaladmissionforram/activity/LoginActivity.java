@@ -55,8 +55,8 @@ public class LoginActivity extends BaseActivity {
 			doLogin();
 			return;
 		}
-		editLogin.setText("awe@awe.com");
-		editPass.setText("12345678");
+		//editLogin.setText("awe@awe.com");
+		//editPass.setText("12345678");
 	}
 
 	protected void update() {

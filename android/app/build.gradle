@@ -42,6 +42,7 @@ android {
 apt {
     arguments {
         androidManifestFile variant.processResources.manifestFile
+        //androidManifestFile variant.outputs.processResources.manifestFile
         resourcePackageName "br.ufba.hupes.hospitaladmissionforram"
     }
 }

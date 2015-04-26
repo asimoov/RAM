@@ -28,6 +28,7 @@
         <item>Retal</item>
         <item>Subcutânea</item>
         <item>Vaginal</item>
+        <item>Sonda</item>
     </string-array>
     <string-array name="planta_partes">
         <item>Folha</item>
@@ -72,9 +73,12 @@
         <item>Não tratada</item>
     </string-array>
     <string-array name="opcoes_resultado">
-        <item>Recuperado</item>
-        <item>Risco de vida</item>
-        <item>Desconhecido</item>
+        <item>Sim</item>
+        <item>Não</item>
+    </string-array>
+    <string-array name="opcoes_risco_vida">
+        <item>Sim</item>
+        <item>Não</item>
         <item>Fatal</item>
     </string-array>
     <string-array name="opcoes_gravidade">

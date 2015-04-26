@@ -59,6 +59,9 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 	@ViewById
 	Spinner spinnerResultado;
 
+    @ViewById
+    Spinner spinnerRiscoVida;
+
 	@ViewById
 	View viewTempoTabagismo;
 	
@@ -100,14 +103,22 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 
     @StringArrayRes(R.array.opcoes_tabagismo)
     String[] arrayTabagismo;
+
     @StringArrayRes(R.array.opcoes_etilismo)
     String[] arrayEtilismo;
+
     @StringArrayRes(R.array.opcoes_gravidade)
     String[] arrayGravidade;
+
     @StringArrayRes(R.array.opcoes_resultado)
     String[] arrayResultado;
+
+    @StringArrayRes(R.array.opcoes_risco_vida)
+    String[] arrayRiscoVida;
+
     @StringArrayRes(R.array.opcoes_tempo)
     String[] arrayTempo;
+
     @StringArrayRes(R.array.opcoes_tratamento)
     String[] arrayTratamento;
 
@@ -165,7 +176,7 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 			}
 		});
     	
-    	spinnerResultado.setOnItemSelectedListener(new OnItemSelectedListener() {
+    	spinnerRiscoVida.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View v, int position, long arg3) {
@@ -221,6 +232,10 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
 		if (s != null && s.length() > 0) {
 			spinnerResultado.setSelection(Arrays.asList(arrayResultado).indexOf(s));
 		}
+        s = research.getRiskLife();
+        if (s != null && s.length() > 0) {
+            spinnerRiscoVida.setSelection(Arrays.asList(arrayRiscoVida).indexOf(s));
+        }
 		s = research.getGravity();
 		if (s != null && s.length() > 0) {
 			spnGravidade.setSelection(Arrays.asList(arrayGravidade).indexOf(s));
@@ -268,6 +283,7 @@ public class InfoAdicionaisFragment extends NewResearchFragment {
     	research.setTreatment(spnTratamento.getSelectedItem().toString());
     	research.setSequels(editSequelas.getText().toString());
     	research.setResult(spinnerResultado.getSelectedItem().toString());
+		research.setRiskLife(spinnerRiscoVida.getSelectedItem().toString());
     	research.setDeathDate(editDataObito.getText().toString());
     	research.setDischargeDate(editDataAlta.getText().toString());
     	research.setGravity(spnGravidade.getSelectedItem().toString());

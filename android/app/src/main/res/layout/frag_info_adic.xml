@@ -275,6 +275,26 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Risco de Vida" />
+
+            <Spinner
+                android:id="@+id/spinner_risco_vida"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:entries="@array/opcoes_risco_vida"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/view_data_obito"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
